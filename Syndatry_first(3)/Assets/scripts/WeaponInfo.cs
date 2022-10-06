@@ -19,7 +19,7 @@ public class WeaponInfo : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
         Image img = GetComponent<Image>();
         Text who = GameObject.Find("infoAboutWeapons").GetComponent<Text>();
         
-        if ((_playerManager.Inventory.Count == 3) && (who.text.Length > 1))
+        if ((_playerManager.Inventory.Count == 3) && (who.text.Length > 1) && (!this.name.Equals("debaf0")) && (!this.name.Equals("debaf1")))
         {
             img.sprite = null;
             img.color = new Color(255, 255, 255, 0f);
@@ -35,8 +35,14 @@ public class WeaponInfo : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
             {
                 if (_playerManager.Inventory[i].weaponIcon == img.sprite)
                 {
-                    
                     text.text = "Урон = " + _playerManager.Inventory[i].damage + "\nКол-во ударов = " + _playerManager.Inventory[i].how_hits;
+                }
+            }
+            for (int i =0; i < _playerManager.InventoryForDeb.Count; i++)
+            {
+                if ((_playerManager.InventoryForDeb[i].weaponIcon == img.sprite) && !(who.text.Length > 0))
+                {
+                    text.text = "Урон = " + _playerManager.InventoryForDeb[i].damage + "\nКол-во ударов = " + _playerManager.InventoryForDeb[i].how_hits;
                 }
             }
         }
