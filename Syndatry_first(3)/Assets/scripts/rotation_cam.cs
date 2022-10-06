@@ -5,7 +5,7 @@ using UnityEngine;
 public class rotation_cam : MonoBehaviour
 {
     public FixedJoystick joystick;
-    protected float CameraAngleSpeed = 1f;
+    protected float CameraAngleSpeed = 0.3f;
     protected float CameraAngle;
     public Transform target;
     private Vector3 _local;
@@ -31,7 +31,7 @@ public class rotation_cam : MonoBehaviour
         
         CameraAngle += joystick.Horizontal * CameraAngleSpeed;
         //Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, 
-            //transform.position + Quaternion.AngleAxis(CameraAngle, Vector3.up) * new Vector3(0, 20, 30), 0.6f);
+            //transform.position + Quaternion.AngleAxis(CameraAngle, Vector3.up) * new Vector3(0, 20, 30), 0.2f);
         Camera.main.transform.position = transform.position +
             Quaternion.AngleAxis(CameraAngle, Vector3.up) * new Vector3(0, 20, 30);
         Camera.main.transform.rotation = Quaternion.LookRotation(transform.position + Vector3.up * 2f - Camera.main.transform.position, Vector3.up);

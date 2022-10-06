@@ -19,15 +19,17 @@ public class testtt : MonoBehaviour
     {
         
         
-        CustomCharacterController playerScript = other.GetComponent<CustomCharacterController>();
+        List <WeaponBehaviour> _Inventory = other.GetComponent<CustomCharacterController>().Inventory;
         //Animator animator = other.GetComponent<Animator>();
         if (other.gameObject.name.Equals("videoCharacter"))
         {
-            Animator animator = other.GetComponent<Animator>();
-            playerScript.enabled = false;
-            //Animation animator2 = animator.GetComponent<Animation>();
-            //animator.Play("Walking");
-            animator.enabled = false;
+            for (int i = 0; i < _Inventory.Count; i++)
+            {
+                Debug.Log(_Inventory[i].damage);
+                //Debug.Log(_Inventory[i].name);
+                Debug.Log(_Inventory[i].weaponIcon);
+            }    
+            
         }
     }
 }

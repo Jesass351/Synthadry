@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class player : MonoBehaviour
 {
+   
     //public float velocity = 5.0f;rigidbody.velocity.y
     protected FixedJoystick joystick;
     // Start is called before the first frame update

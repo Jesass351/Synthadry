@@ -5,6 +5,26 @@ using UnityEngine;
 // необходимо чтобы название скрипта и название класса совпадали
 public class CustomCharacterController : MonoBehaviour
 {
+    
+
+    private List<WeaponBehaviour> inventory = new List<WeaponBehaviour>();
+    public List<WeaponBehaviour> Inventory
+    {
+        get { return inventory; }
+
+        set { inventory = value; }
+    }
+
+    private List<WeaponBehaviour> inventoryForDeb = new List<WeaponBehaviour>();
+    public List<WeaponBehaviour> InventoryForDeb
+    {
+        get { return inventoryForDeb; }
+
+        set { inventoryForDeb = value; }
+    }
+
+    public Canvas canvas;
+
     public Animator anim;
     public Rigidbody rig;
     public Transform mainCamera;
@@ -20,10 +40,7 @@ public class CustomCharacterController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Прекрепляем курсор к середине экрана
-        //Cursor.lockState = CursorLockMode.Locked;
-        // и делаем его невидимым
-        //Cursor.visible = false;
+        canvas = FindObjectOfType<Canvas>();
     }
     void Run()
     {
@@ -93,7 +110,7 @@ public class CustomCharacterController : MonoBehaviour
         movingVector = Vector3.ClampMagnitude(camF.normalized * vertical * currentSpeed + camR.normalized * horisontal * currentSpeed, currentSpeed);
         // Magnitude - это длинна вектора. я делю длинну на currentSpeed так как мы умножаем этот вектор на currentSpeed на 86 строке. Я хочу получить число максимум 1.
         anim.SetFloat("magnitude", movingVector.magnitude / currentSpeed);
-        Debug.Log(movingVector.magnitude / currentSpeed);
+        //Debug.Log(movingVector.magnitude / currentSpeed);
         // Здесь мы двигаем персонажа! Устанавливаем движение только по x & z потому что мы не хотим чтобы наш персонаж взлетал в воздух
         rig.velocity = new Vector3(movingVector.x, rig.velocity.y, movingVector.z);
         // У меня был баг, что персонаж крутился на месте и это исправил с помощью этой строки
