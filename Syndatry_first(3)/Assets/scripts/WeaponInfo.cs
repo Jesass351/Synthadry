@@ -16,6 +16,7 @@ public class WeaponInfo : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     void IBeginDragHandler.OnBeginDrag(PointerEventData eventData)
     {
         Text text = GameObject.Find("infoAboutSlots").GetComponent<Text>();
+
         Image img = GetComponent<Image>();
         Text who = GameObject.Find("infoAboutWeapons").GetComponent<Text>();
         
@@ -35,14 +36,15 @@ public class WeaponInfo : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
             {
                 if (_playerManager.Inventory[i].weaponIcon == img.sprite)
                 {
-                    text.text = "Урон = " + _playerManager.Inventory[i].damage + "\nКол-во ударов = " + _playerManager.Inventory[i].how_hits;
+                    text.text = "Damage = " + _playerManager.Inventory[i].damage + "\nHits = " + _playerManager.Inventory[i].how_hits;
+
                 }
             }
             for (int i =0; i < _playerManager.InventoryForDeb.Count; i++)
             {
                 if ((_playerManager.InventoryForDeb[i].weaponIcon == img.sprite) && !(who.text.Length > 0))
                 {
-                    text.text = "Урон = " + _playerManager.InventoryForDeb[i].damage + "\nКол-во ударов = " + _playerManager.InventoryForDeb[i].how_hits;
+                    text.text = "Damage = " + _playerManager.InventoryForDeb[i].damage + "\nHits = " + _playerManager.InventoryForDeb[i].how_hits;
                 }
             }
         }

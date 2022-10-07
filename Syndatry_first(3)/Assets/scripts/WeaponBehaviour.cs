@@ -16,10 +16,16 @@ public class WeaponBehaviour : MonoBehaviour
     //Image img = _grid.GetComponentInChildren<Image>();
     private void OnTriggerEnter(Collider other)
     {
+        Button button = GameObject.Find("ButtonTakeWeapon").GetComponent<Button>();
+        button.interactable = true;
         if (other.name.Equals("videoCharacter"))
-        { 
+        {
 
-            if (this.tag.Equals("debuf"))
+
+            ButtonWeapons oclick = GameObject.Find("ButtonTakeWeapon").GetComponent<ButtonWeapons>();
+
+
+            if (this.tag.Equals("debuf") && oclick.a)
             {
                 for (int i = 0;i < _playerManager.InventoryForDeb.Count;i++)
                 {
@@ -52,16 +58,20 @@ public class WeaponBehaviour : MonoBehaviour
                         Destroy(this.gameObject);
                     }
                 }
+                Text text1 = GameObject.Find("infoAboutWeapons").GetComponent<Text>();
+                text1.text = null;
             }
-            else if (_playerManager.Inventory.Count < 3)
+            else if (_playerManager.Inventory.Count < 3 && oclick.a)
             {
                 _playerManager.Inventory.Add(this);
                 Destroy(this.gameObject);
+                Text text = GameObject.Find("infoAboutWeapons").GetComponent<Text>();
+                text.text = null;
             }
             else
             {
                 Text text = GameObject.Find("infoAboutWeapons").GetComponent<Text>();
-                text.text = "Урон = " + damage.ToString() + "\n" + "Кол-во ударов = " + how_hits.ToString();
+                text.text = "Damage = " + damage.ToString() + "\n" + "Hits = " + how_hits.ToString();
             }
           
             
@@ -95,11 +105,25 @@ public class WeaponBehaviour : MonoBehaviour
         
 
     }
+    private void OnTriggerStay(Collider other)
+    {
+        ButtonWeapons onclick = GameObject.Find("ButtonTakeWeapon").GetComponent<ButtonWeapons>();
+        if (onclick.a)
+        {
+            OnTriggerEnter(other);
+        }
+ 
+    }
 
     private void OnTriggerExit(Collider other)
     {
         Text text = GameObject.Find("infoAboutWeapons").GetComponent<Text>();
         text.text = null;
+        ButtonWeapons oclick = GameObject.Find("ButtonTakeWeapon").GetComponent<ButtonWeapons>();
+        oclick.a = false;
+        Button but = oclick.GetComponent<Button>();
+        but.interactable = false;
+        
     }
 
 
