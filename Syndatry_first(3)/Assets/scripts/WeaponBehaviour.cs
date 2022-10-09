@@ -35,6 +35,8 @@ public class WeaponBehaviour : MonoBehaviour
                         Text text = GameObject.Find(debaf).GetComponent<Text>();
                         int b = int.Parse(text.text);
                         text.text = (b + 1).ToString();
+                        oclick.a = false;
+                        button.interactable = false;
                         Destroy(this.gameObject);
                         isfind = true;
                         break;
@@ -55,6 +57,8 @@ public class WeaponBehaviour : MonoBehaviour
                         Text text = GameObject.Find(debaf).GetComponent<Text>();
                         int b = int.Parse(text.text);
                         text.text = (b + 1).ToString();
+                        oclick.a = false;
+                        button.interactable = false;
                         Destroy(this.gameObject);
                     }
                 }
@@ -64,14 +68,24 @@ public class WeaponBehaviour : MonoBehaviour
             else if (_playerManager.Inventory.Count < 3 && oclick.a)
             {
                 _playerManager.Inventory.Add(this);
+                oclick.a = false;
+                button.interactable = false;
                 Destroy(this.gameObject);
                 Text text = GameObject.Find("infoAboutWeapons").GetComponent<Text>();
                 text.text = null;
             }
             else
             {
-                Text text = GameObject.Find("infoAboutWeapons").GetComponent<Text>();
-                text.text = "Damage = " + damage.ToString() + "\n" + "Hits = " + how_hits.ToString();
+                if (_playerManager.Inventory.Count == 3 && oclick.a)
+                {
+                    Text text = GameObject.Find("infoAboutWeapons").GetComponent<Text>();
+                    text.text = "Inventory full";
+                }
+                else
+                {
+                    Text text = GameObject.Find("infoAboutWeapons").GetComponent<Text>();
+                    text.text = "Damage = " + damage.ToString() + "\n" + "Hits = " + how_hits.ToString();
+                }
             }
           
             

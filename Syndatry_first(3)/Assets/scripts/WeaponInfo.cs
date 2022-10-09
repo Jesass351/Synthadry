@@ -13,6 +13,7 @@ public class WeaponInfo : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
         _playerManager = GameObject.Find("videoCharacter").GetComponent<CustomCharacterController>();
 
     }
+
     void IBeginDragHandler.OnBeginDrag(PointerEventData eventData)
     {
         Text text = GameObject.Find("infoAboutSlots").GetComponent<Text>();

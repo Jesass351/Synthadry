@@ -11,13 +11,20 @@ public class ButtonWeapons : MonoBehaviour, IDragHandler, IBeginDragHandler, IEn
     {
         button = GetComponent<Button>();
         button.interactable = false;
+        
     }
-    void IBeginDragHandler.OnBeginDrag(PointerEventData eventData)
+    public void ChangeA()
     {
         a = true;
+        
+    }
+    
+
+    void IBeginDragHandler.OnBeginDrag(PointerEventData eventData)
+    {
     }
 
-    // Start is called before the first frame update
+
     void IDragHandler.OnDrag(PointerEventData eventData)
     {
         
@@ -25,7 +32,5 @@ public class ButtonWeapons : MonoBehaviour, IDragHandler, IBeginDragHandler, IEn
 
     void IEndDragHandler.OnEndDrag(PointerEventData eventData)
     {
-        a = false;
-        button.interactable=false;
     }
 }
