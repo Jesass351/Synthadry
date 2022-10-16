@@ -11,6 +11,7 @@ public class ButtonWeapons : MonoBehaviour, IDragHandler, IBeginDragHandler, IEn
     {
         button = GetComponent<Button>();
         button.interactable = false;
+        button.image.enabled = false;
         
     }
     public void ChangeA()
