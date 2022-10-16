@@ -5,7 +5,7 @@ using UnityEngine;
 public class rotation_cam : MonoBehaviour
 {
     public FixedJoystick joystick;
-    protected float CameraAngleSpeed = 1f;
+    protected float CameraAngleSpeed = 3f;
     protected float CameraAngle;
     public Transform target;
     private Vector3 _local;
@@ -20,8 +20,12 @@ public class rotation_cam : MonoBehaviour
     }
     void Start()
     {
+        CameraAngle += joystick.Horizontal * CameraAngleSpeed;
+        Camera.main.transform.position = transform.position +
+            Quaternion.AngleAxis(CameraAngle, Vector3.up) * new Vector3(0, 15, 20);
         _local = target.InverseTransformPoint(_position);
         _mxd = Vector3.Distance(_position, target.position);
+        Debug.Log(_mxd);
         
     }
 
@@ -32,8 +36,9 @@ public class rotation_cam : MonoBehaviour
         CameraAngle += joystick.Horizontal * CameraAngleSpeed;
         //Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, 
             //transform.position + Quaternion.AngleAxis(CameraAngle, Vector3.up) * new Vector3(0, 20, 30), 0.2f);
+  
         Camera.main.transform.position = transform.position +
-            Quaternion.AngleAxis(CameraAngle, Vector3.up) * new Vector3(0, 20, 30);
+            Quaternion.AngleAxis(CameraAngle, Vector3.up) * new Vector3(0, 15, 20);
         Camera.main.transform.rotation = Quaternion.LookRotation(transform.position + Vector3.up * 2f - Camera.main.transform.position, Vector3.up);
         ObReact();
 
@@ -41,17 +46,17 @@ public class rotation_cam : MonoBehaviour
     
     void ObReact()
     {
+        //Camera.main.transform.position - target.position
         var distance = Vector3.Distance(_position, target.position);
         RaycastHit hit;
-        if (Physics.Raycast(target.position ,Camera.main.transform.position - target.position, 
-            out hit, _mxd, obstacles))
+        if (Physics.Raycast(target.position, Camera.main.transform.position - target.position,  out hit, _mxd, obstacles))
         {
             _position = hit.point;
         }
-        else if (distance < _mxd && !Physics.Raycast(_position, -transform.forward, .1f, obstacles))
+        else if (distance < _mxd && !Physics.Raycast(_position, -transform.forward, .05f, obstacles))
         {
             //_position = Vector3.Lerp(Camera.main.transform.position,
-            //transform.position + Quaternion.AngleAxis(CameraAngle, Vector3.up) * new Vector3(0, 20, 30), 0.01f);
+            //transform.position + Quaternion.AngleAxis(CameraAngle, Vector3.up) * new Vector3(0, 15, 30), 0.01f);
             _position -= Camera.main.transform.forward * .05f;
         }
     }

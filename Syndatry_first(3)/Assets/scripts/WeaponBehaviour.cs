@@ -18,15 +18,17 @@ public class WeaponBehaviour : MonoBehaviour
     {
         Button button = GameObject.Find("ButtonTakeWeapon").GetComponent<Button>();
         button.interactable = true;
+        button.image.enabled = true;
         if (other.name.Equals("videoCharacter"))
         {
 
 
             ButtonWeapons oclick = GameObject.Find("ButtonTakeWeapon").GetComponent<ButtonWeapons>();
 
-
+            Text text1 = GameObject.Find("infoAboutWeapons").GetComponent<Text>();
             if (this.tag.Equals("debuf") && oclick.a)
             {
+                //Text text1 = GameObject.Find("infoAboutWeapons").GetComponent<Text>();
                 for (int i = 0;i < _playerManager.InventoryForDeb.Count;i++)
                 {
                     if (_playerManager.InventoryForDeb[i].weaponIcon == this.weaponIcon)
@@ -37,6 +39,7 @@ public class WeaponBehaviour : MonoBehaviour
                         text.text = (b + 1).ToString();
                         oclick.a = false;
                         button.interactable = false;
+                        button.image.enabled = false;
                         Destroy(this.gameObject);
                         isfind = true;
                         break;
@@ -44,7 +47,7 @@ public class WeaponBehaviour : MonoBehaviour
                 }
                 if (!isfind)
                 {
-                    if (_playerManager.InventoryForDeb.Count < 2)
+                    if (_playerManager.InventoryForDeb.Count < 4)
                     {
                         //string grenade = "grenade_count";
                         //Text text = GameObject.Find(grenade).GetComponent<Text>();
@@ -59,10 +62,15 @@ public class WeaponBehaviour : MonoBehaviour
                         text.text = (b + 1).ToString();
                         oclick.a = false;
                         button.interactable = false;
+                        button.image.enabled = false;
                         Destroy(this.gameObject);
                     }
+                    else
+                    {
+                        text1.text = "Inventory full";
+                    }
                 }
-                Text text1 = GameObject.Find("infoAboutWeapons").GetComponent<Text>();
+                //Text text1 = GameObject.Find("infoAboutWeapons").GetComponent<Text>();
                 text1.text = null;
             }
             else if (_playerManager.Inventory.Count < 3 && oclick.a)
@@ -70,21 +78,22 @@ public class WeaponBehaviour : MonoBehaviour
                 _playerManager.Inventory.Add(this);
                 oclick.a = false;
                 button.interactable = false;
+                button.image.enabled = false;
                 Destroy(this.gameObject);
-                Text text = GameObject.Find("infoAboutWeapons").GetComponent<Text>();
-                text.text = null;
+                //Text text = GameObject.Find("infoAboutWeapons").GetComponent<Text>();
+                text1.text = null;
             }
             else
             {
                 if (_playerManager.Inventory.Count == 3 && oclick.a)
                 {
-                    Text text = GameObject.Find("infoAboutWeapons").GetComponent<Text>();
-                    text.text = "Inventory full";
+                    //Text text = GameObject.Find("infoAboutWeapons").GetComponent<Text>();
+                    text1.text = "Inventory full";
                 }
                 else
                 {
-                    Text text = GameObject.Find("infoAboutWeapons").GetComponent<Text>();
-                    text.text = "Damage = " + damage.ToString() + "\n" + "Hits = " + how_hits.ToString();
+                    //Text text = GameObject.Find("infoAboutWeapons").GetComponent<Text>();
+                    text1.text = "Damage = " + damage.ToString() + "\n" + "Hits = " + how_hits.ToString();
                 }
             }
           
@@ -137,6 +146,7 @@ public class WeaponBehaviour : MonoBehaviour
         oclick.a = false;
         Button but = oclick.GetComponent<Button>();
         but.interactable = false;
+        but.image.enabled = false;
         
     }
 
