@@ -21,7 +21,11 @@ public class MainMenuScene : MonoBehaviour
     }
 
     public void OnPlayClick() {
-        Debug.Log("Changed scene: Demo");
+        Debug.Log("PlayButton callback");
         SceneManager.LoadScene("Demo");
+    }
+
+    public void OnSettingsClick() {
+        Debug.Log("SettingsButton callback");
     }
 }
