@@ -22,7 +22,7 @@ public class MainMenuScene : MonoBehaviour
 
     public void OnPlayClick() {
         Debug.Log("PlayButton callback");
-        SceneManager.LoadScene("Demo");
+        SceneManager.LoadSceneAsync("Loader", LoadSceneMode.Single);
     }
 
     public void OnSettingsClick() {
