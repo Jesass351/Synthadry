@@ -32,6 +32,15 @@ public class LoaderScene : MonoBehaviour
     private IEnumerator AsyncLoader() {
 
         AsyncOperation async = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+        async.allowSceneActivation = false;
+
+
+        while (Time.timeSinceLevelLoad < 3.0f) {
+            yield return null;
+        }
+
+        async.allowSceneActivation = true;
+        // SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
 
         while (!async.isDone) {
             yield return null;
@@ -39,5 +48,7 @@ public class LoaderScene : MonoBehaviour
 
         Debug.Log("Loader completed callback");
         SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+        // SceneManager.SetActiveScene(SceneManager.GetSceneByName("Demo"));
+        // async.allowSceneActivation = true;
     }
 }
