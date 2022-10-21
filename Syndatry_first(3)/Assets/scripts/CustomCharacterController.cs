@@ -5,15 +5,16 @@ using UnityEngine;
 // необходимо чтобы название скрипта и название класса совпадали
 public class CustomCharacterController : MonoBehaviour
 {
-    
 
-    private List<WeaponBehaviour> inventory = new List<WeaponBehaviour>();
+
+    [SerializeField] private List<WeaponBehaviour> inventory = new List<WeaponBehaviour>();
     public List<WeaponBehaviour> Inventory
     {
         get { return inventory; }
 
         set { inventory = value; }
     }
+
 
     private List<WeaponBehaviour> inventoryForDeb = new List<WeaponBehaviour>();
     public List<WeaponBehaviour> InventoryForDeb

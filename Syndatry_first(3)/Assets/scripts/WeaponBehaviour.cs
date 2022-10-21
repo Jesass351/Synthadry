@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+
 public class WeaponBehaviour : MonoBehaviour
 {
     private CustomCharacterController _playerManager;
@@ -10,10 +12,13 @@ public class WeaponBehaviour : MonoBehaviour
     [SerializeField] public int damage;
     [SerializeField] public Sprite weaponIcon;
     [SerializeField] public int how_hits;
+    //public GameObject weaponPrefab;
     //private List<WeaponBehaviour> cl = new List<WeaponBehaviour>();
     //private GridLayoutGroup _grid;
     private bool isfind = false;
+    public GameObject testCube;
     //Image img = _grid.GetComponentInChildren<Image>();
+
     private void OnTriggerEnter(Collider other)
     {
         Button button = GameObject.Find("ButtonTakeWeapon").GetComponent<Button>();
@@ -75,6 +80,8 @@ public class WeaponBehaviour : MonoBehaviour
             }
             else if (_playerManager.Inventory.Count < 3 && oclick.a)
             {
+
+                //Instantiate(testCube, this.gameObject.transform.position, this.gameObject.transform.rotation);
                 _playerManager.Inventory.Add(this);
                 oclick.a = false;
                 button.interactable = false;
@@ -155,7 +162,9 @@ public class WeaponBehaviour : MonoBehaviour
     {
         _playerManager = GameObject.Find("videoCharacter").GetComponent<CustomCharacterController>();
         //_grid = _playerManager.canvas.GetComponentInChildren<GridLayoutGroup>();
+       // testCube = GameObject.Find("Cube");
         
+
     }
    
 }

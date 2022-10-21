@@ -515,6 +515,7 @@ MonoBehaviour:
   damage: 6
   weaponIcon: {fileID: 21300000, guid: e4b6f186664bef84fa1459645c692013, type: 3}
   how_hits: 3
+  weaponPrefab: {fileID: 1241734725944954740}
 --- !u!1 &1671756418232193348
 GameObject:
   m_ObjectHideFlags: 0

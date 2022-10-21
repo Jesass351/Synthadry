@@ -8,6 +8,10 @@ public class WeaponInfo : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
 {
     [SerializeField] private int index;
     private CustomCharacterController _playerManager;
+    private Transform playerPostion;
+    [SerializeField] private GameObject shotgunPrefab;
+    [SerializeField] private GameObject katanaPrefab;
+
     private void Start()
     {
         _playerManager = GameObject.Find("videoCharacter").GetComponent<CustomCharacterController>();
@@ -23,10 +27,24 @@ public class WeaponInfo : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
         
         if ((_playerManager.Inventory.Count == 3) && (who.text.Length > 1) && (!this.name.Equals("debaf0")) && (!this.name.Equals("debaf1")))
         {
-            img.sprite = null;
-            img.color = new Color(255, 255, 255, 0f);
+            playerPostion = GameObject.Find("videoCharacter").transform;
+            switch (img.sprite.name)
+            {
+                case "shotgun":
+                    Instantiate(shotgunPrefab, playerPostion.position + Vector3.back * 5, playerPostion.rotation);
+                    break;
+                case "e76e3f57012b83b3":
+                    Instantiate(katanaPrefab, playerPostion.position + Vector3.back * 5, playerPostion.rotation);
+                    break;
+            }
+
+            //Instantiate(_playerManager.Inventory[index].testCube, playerPostion.position, playerPostion.rotation);
+            string str = "weaponIcon2";
+            Image img1 = GameObject.Find(str).GetComponent<Image>();
+            img1.sprite = null;
+            img1.color = new Color(255, 255, 255, 0f);
             _playerManager.Inventory.RemoveAt(index);
-            
+
         }
 
 
