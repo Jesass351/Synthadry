@@ -8,6 +8,9 @@ public class WeaponInfo : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
 {
     [SerializeField] private int index;
     private CustomCharacterController _playerManager;
+    private Text text;
+    private Image img;
+    private Text who;
     private Transform playerPostion;
     [SerializeField] private GameObject shotgunPrefab;
     [SerializeField] private GameObject katanaPrefab;
@@ -15,6 +18,9 @@ public class WeaponInfo : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     private void Start()
     {
         _playerManager = GameObject.Find("videoCharacter").GetComponent<CustomCharacterController>();
+        text = GameObject.Find("infoAboutSlots").GetComponent<Text>();
+        img = GetComponent<Image>();
+        who = GameObject.Find("infoAboutWeapons").GetComponent<Text>();
 
     }
 

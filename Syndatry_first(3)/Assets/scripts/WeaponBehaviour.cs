@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
-
 public class WeaponBehaviour : MonoBehaviour
 {
     private CustomCharacterController _playerManager;
@@ -12,8 +10,11 @@ public class WeaponBehaviour : MonoBehaviour
     [SerializeField] public int damage;
     [SerializeField] public Sprite weaponIcon;
     [SerializeField] public int how_hits;
-    //public GameObject weaponPrefab;
-    //private List<WeaponBehaviour> cl = new List<WeaponBehaviour>();
+    private Button button;
+    private ButtonWeapons oclick;
+    private Text text1;
+    private ButtonWeapons onclick;
+    //private Listbuttonl<WeaponBehaviour> cl = new List<WeaponBehaviour>();
     //private GridLayoutGroup _grid;
     private bool isfind = false;
     public GameObject testCube;
@@ -161,10 +162,13 @@ public class WeaponBehaviour : MonoBehaviour
     private void Start()
     {
         _playerManager = GameObject.Find("videoCharacter").GetComponent<CustomCharacterController>();
+        button = GameObject.Find("ButtonTakeWeapon").GetComponent<Button>();
+        oclick = GameObject.Find("ButtonTakeWeapon").GetComponent<ButtonWeapons>();
+        text1 = GameObject.Find("infoAboutWeapons").GetComponent<Text>();
+        onclick = GameObject.Find("ButtonTakeWeapon").GetComponent<ButtonWeapons>();
         //_grid = _playerManager.canvas.GetComponentInChildren<GridLayoutGroup>();
        // testCube = GameObject.Find("Cube");
         
-
     }
    
 }
