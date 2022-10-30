@@ -6,11 +6,17 @@ using UnityEngine.SceneManagement;
 public class MainMenuScene : MonoBehaviour
 {
     private CanvasGroup fadeGroup;
+    private CanvasGroup settingsGroup;
+    private GameObject SettingsMenu;
+    private GameObject MainMenu;
     private float fadeSpeed = 0.6f;
     // Start is called before the first frame update
     void Start()
     {
-        fadeGroup = FindObjectOfType<CanvasGroup>();
+        SettingsMenu = GameObject.Find("SettingsMenu");
+        SettingsMenu.SetActive(false);
+        MainMenu = GameObject.Find("MainMenu");
+        fadeGroup = GameObject.Find("Fade").GetComponent<CanvasGroup>();
         fadeGroup.alpha = 1;
     }
 
@@ -27,5 +33,12 @@ public class MainMenuScene : MonoBehaviour
 
     public void OnSettingsClick() {
         Debug.Log("SettingsButton callback");
+        SettingsMenu.SetActive(true);
+        MainMenu.SetActive(false);
+    }
+
+    public void OnSettingsCloseButtonClick() {
+        MainMenu.SetActive(true);
+        SettingsMenu.SetActive(false);
     }
 }
