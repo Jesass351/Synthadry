@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class HealthManager : MonoBehaviour
 {
-    [SerializeField]private int _maxHealth;//максимальное хп
-    [SerializeField]private int _currentHealth;//текущее хп
+    [SerializeField] private int _maxHealth;//максимальное хп
+    [SerializeField] private int _currentHealth;//текущее хп
     [SerializeField] private int _maxShield;//максимальное хп
     [SerializeField] private int _currentShield;//текущее хп
-    [SerializeField]private HealthBarHandler _healthBarHandler;//скрипт с визуалом хп бара
+    [SerializeField] private HealthBarHandler _healthBarHandler;//скрипт с визуалом хп бара
 
     private void Awake()
     {

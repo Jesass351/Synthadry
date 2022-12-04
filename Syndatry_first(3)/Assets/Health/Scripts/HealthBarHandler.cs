@@ -14,7 +14,7 @@ public class HealthBarHandler : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _shieldInfo;
 
     // При старте
-    void Start()
+    void Awake()
     {
         // Присваиваем закрытому полю нашу картинку хп бара
         _healthBarImage = transform.GetChild(0).GetComponent<Image>();
