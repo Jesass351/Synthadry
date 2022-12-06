@@ -32,7 +32,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void Update()
     {
-        if (_fightManager.countOfRound % 2 == 0)
+        if (_fightManager.countOfRound % 2 == 0 && _fightManager.countOfRound > 0)
         {
             heroHealthManager.TakeDamage(Random.Range(10, 20));
 
