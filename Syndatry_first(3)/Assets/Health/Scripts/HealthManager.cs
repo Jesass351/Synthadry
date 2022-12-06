@@ -40,11 +40,24 @@ public class HealthManager : MonoBehaviour
     //метод получение урона и обновления хп бара
     public void TakeDamage(int damage)
     {
+
         if(_currentShield > 0)
         {
-            _currentShield -= damage;
-            _healthBarHandler.UpdateShieldBarStatus(_currentShield, _currentShield);
-            return;
+            if (damage >= _currentShield)
+            {
+                int damageToHealth = damage - _currentShield;
+                _currentShield -= damage - damageToHealth;
+                _currentHealth -= damageToHealth;
+                _healthBarHandler.UpdateShieldBarStatus(_currentShield, _maxShield);
+                _healthBarHandler.UpdateHealthBarStatus(_currentHealth, _maxHealth);
+                return;
+            }
+            else
+            {
+                _currentShield -= damage;
+                _healthBarHandler.UpdateShieldBarStatus(_currentShield, _maxShield);
+                return;
+            }
         }
 
         _currentHealth -= damage;
