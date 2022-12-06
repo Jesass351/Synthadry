@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System.Diagnostics.Contracts;
 
 public class WeaponInfo : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
@@ -12,8 +13,8 @@ public class WeaponInfo : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     public Image img;
     private Text who;
     private Transform playerPostion;
-    [SerializeField] private GameObject shotgunPrefab;
-    [SerializeField] private GameObject katanaPrefab;
+    [SerializeField] public GameObject shotgunPrefab;
+    [SerializeField] public GameObject katanaPrefab;
 
 
 
