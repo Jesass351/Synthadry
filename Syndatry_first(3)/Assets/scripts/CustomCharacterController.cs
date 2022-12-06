@@ -38,7 +38,8 @@ public class CustomCharacterController : MonoBehaviour
     public float horisontal;
     public float vertical;
     private float lerpMulti = 7f;
-    // Start is called before the first frame update
+
+
     void Start()
     {
         canvas = FindObjectOfType<Canvas>();
