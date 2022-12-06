@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class HealthManager : MonoBehaviour
 {
-    [SerializeField]private int _maxHealth;//максимальное хп
-    [SerializeField]private int _currentHealth;//текущее хп
-    [SerializeField]private HealthBarHandler _healthBarHandler;//скрипт с визуалом хп бара
+    [SerializeField] private int _maxHealth;//максимальное хп
+    [SerializeField] private int _currentHealth;//текущее хп
+    [SerializeField] private int _maxShield;//максимальное хп
+    [SerializeField] private int _currentShield;//текущее хп
+    [SerializeField] private HealthBarHandler _healthBarHandler;//скрипт с визуалом хп бара
 
     private void Awake()
     {
@@ -23,7 +25,8 @@ public class HealthManager : MonoBehaviour
     private void Start()
     {
         //обновляем статус при запуске лвла
-        _healthBarHandler.UpgradeHealthBarStatus(_currentHealth, _maxHealth);
+        _healthBarHandler.UpdateHealthBarStatus(_currentHealth, _maxHealth);
+        _healthBarHandler.UpdateShieldBarStatus(_currentShield, _maxShield);
     }
 
 
@@ -37,13 +40,20 @@ public class HealthManager : MonoBehaviour
     //метод получение урона и обновления хп бара
     public void TakeDamage(int damage)
     {
+        if(_currentShield > 0)
+        {
+            _currentShield -= damage;
+            _healthBarHandler.UpdateShieldBarStatus(_currentShield, _currentShield);
+            return;
+        }
+
         _currentHealth -= damage;
         if (_currentHealth <= 0)
         {
             Debug.Log("Смерть!");
             _currentHealth = 0;
         }
-            _healthBarHandler.UpgradeHealthBarStatus(_currentHealth, _maxHealth);
+            _healthBarHandler.UpdateHealthBarStatus(_currentHealth, _maxHealth);
     }
 
     //метод восстановления здоровья и обновления хп бара
@@ -52,14 +62,22 @@ public class HealthManager : MonoBehaviour
         _currentHealth += heal;
         if (_currentHealth > _maxHealth)
             _currentHealth = _maxHealth;
-        _healthBarHandler.UpgradeHealthBarStatus(_currentHealth, _maxHealth);
+        _healthBarHandler.UpdateHealthBarStatus(_currentHealth, _maxHealth);
+    }
+
+    public void TakeShield(int shield)
+    {
+        _currentShield += shield;
+        if (_currentShield > _maxShield)
+            _currentShield = _maxShield;
+        _healthBarHandler.UpdateShieldBarStatus(_currentShield, _maxShield);
     }
 
     //перерасчёт макс хп 
     public void RecountMaxHealth(int adder)
     {
         _maxHealth += adder;
-        _healthBarHandler.UpgradeHealthBarStatus(_currentHealth, _maxHealth);
+        _healthBarHandler.UpdateHealthBarStatus(_currentHealth, _maxHealth);
     }
 
 }
