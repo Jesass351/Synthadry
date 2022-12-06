@@ -5,22 +5,15 @@ using UnityEngine.UI;
 public class HealthBarHandler : MonoBehaviour
 {
     //изображение хп бара
-    private static Image _healthBarImage;
+    [SerializeField]
+    private Image _healthBarImage;
     //изображение бара щита
-    private static Image _shieldBarImage;
+    [SerializeField]
+    private Image _shieldBarImage;
     //текст для отображения цифр хп
     [SerializeField] private TextMeshProUGUI _healthInfo;
     //текст для отображения цифр щита
     [SerializeField] private TextMeshProUGUI _shieldInfo;
-
-    // При старте
-    void Awake()
-    {
-        // Присваиваем закрытому полю нашу картинку хп бара
-        _healthBarImage = transform.GetChild(0).GetComponent<Image>();
-        // Присваиваем закрытому полю нашу картинку щита бара
-        _shieldBarImage = transform.GetChild(1).GetComponent<Image>();
-    }
 
     //изменяем статус хп бара
     public void UpdateHealthBarStatus(int currentHP, int maxHP)

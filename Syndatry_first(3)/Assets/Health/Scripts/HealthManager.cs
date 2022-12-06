@@ -22,9 +22,7 @@ public class HealthManager : MonoBehaviour
             Debug.Break();
         }
 
-        //делаем текущее хп равное максимальному хп
-        if (_currentHealth > _maxHealth)
-            _maxHealth = _currentHealth;
+        HandleCurrentOverMax();
     }
 
     private void Start()
@@ -37,9 +35,8 @@ public class HealthManager : MonoBehaviour
 
     void Update()
     {
-        //проверяем, чтобы текущее хп не было больше максимального
-        if (_currentHealth > _maxHealth)
-            _maxHealth = _currentHealth;
+        HandleCurrentOverMax();
+        HandleDeath();
     }
 
     //метод получение урона и обновления хп бара
@@ -98,4 +95,18 @@ public class HealthManager : MonoBehaviour
         _healthBarHandler.UpdateHealthBarStatus(_currentHealth, _maxHealth);
     }
 
+    public void HandleDeath()
+    {
+        if (_currentHealth <= 0)
+        {
+            Debug.Log("Death");
+            Destroy(this);
+        }    
+    }
+
+    public void HandleCurrentOverMax()
+    {
+        if (_currentHealth > _maxHealth)
+            _currentHealth = _maxHealth;
+    }
 }
