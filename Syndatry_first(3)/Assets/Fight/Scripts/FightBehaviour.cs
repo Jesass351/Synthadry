@@ -6,6 +6,8 @@ public class FightBehaviour : MonoBehaviour
 {
     
     private CustomCharacterController _controllerManager;
+    private HealthManager _healManager;
+
 
     [SerializeField] private GameObject player;
     
@@ -14,29 +16,31 @@ public class FightBehaviour : MonoBehaviour
 
     [SerializeField] private GameObject mainCanvas;
     [SerializeField] private GameObject fightCanvas;
-    [SerializeField] private GameObject adminBtns;
     [SerializeField] private GameObject deathCanvas;
+    [SerializeField] private GameObject enemyHealthBar;
     private Animator anim;
 
 
+    public int countOfRound = 0;
+   
     private void OnTriggerEnter(Collider other)
     {
-        if (other.name.Equals("videoCharacter"))
+        if (other.name.Equals("videoCharacter") && (_controllerManager.Inventory.Count > 0))
         {
-            //Меняем камеру и Canvas
-            cameraOld.SetActive(false);
-            mainCanvas.SetActive(false);
-            cameraNew.SetActive(true);
-            fightCanvas.SetActive(true);
-            adminBtns.SetActive(true);
-
-
             //Отключаем управление и убираем анимацию
             anim.SetFloat("x", 0);
             anim.SetFloat("y", 0);
             _controllerManager.enabled = false;
 
-            
+            //Начинаем отсчет игры
+            countOfRound = 1;
+
+            //Меняем камеру и Canvas
+            cameraOld.SetActive(false);
+            mainCanvas.SetActive(false);
+            cameraNew.SetActive(true);
+            fightCanvas.SetActive(true);
+            enemyHealthBar.SetActive(true);
 
         }
     }
@@ -47,23 +51,23 @@ public class FightBehaviour : MonoBehaviour
         _controllerManager = player.GetComponent<CustomCharacterController>();
     }
 
-    private void DeathEvent()
+    public void DeathEvent()
     {
         Destroy(player);
 
         deathCanvas.SetActive(true);
         fightCanvas.SetActive(false);
         mainCanvas.SetActive(false);
+
        
     }
 
-    private void KillEvent()
+    public void KillEvent()
     {
         cameraOld.SetActive(true);
         cameraNew.SetActive(false);
         mainCanvas.SetActive(true);
-        adminBtns.SetActive(false);
-
+        enemyHealthBar.SetActive(false);
         _controllerManager.enabled = true;
 
 

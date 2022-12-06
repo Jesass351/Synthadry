@@ -9,11 +9,13 @@ public class WeaponInfo : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     [SerializeField] private int index;
     private CustomCharacterController _playerManager;
     private Text text;
-    private Image img;
+    public Image img;
     private Text who;
     private Transform playerPostion;
     [SerializeField] private GameObject shotgunPrefab;
     [SerializeField] private GameObject katanaPrefab;
+
+
 
     private void Start()
     {
@@ -89,4 +91,6 @@ public class WeaponInfo : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
             text.text = null;
         }
     }
+
+
 }

@@ -8,6 +8,11 @@ public class HealthManager : MonoBehaviour
     [SerializeField] private int _currentShield;//текущее хп
     [SerializeField] private HealthBarHandler _healthBarHandler;//скрипт с визуалом хп бара
 
+    public int CurrentHealth
+    {
+        get { return _currentHealth; }
+    }
+
     private void Awake()
     {
         //проверка, что макс. хп больше 0, иначе ошибка
