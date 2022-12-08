@@ -345,7 +345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f88b7fde1d912b469232c947a1b10b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 15
   weaponIcon: {fileID: 21300000, guid: 2342597956a0d08489233fceb1d6700c, type: 3}
   how_hits: 1
   testCube: {fileID: 995043706565637789}
