@@ -161,7 +161,7 @@ public class WeaponBehaviour : MonoBehaviour
 
     private void Start()
     {
-        _playerManager = GameObject.Find("videoCharacter").GetComponent<CustomCharacterController>();
+        _playerManager = GameObject.Find("Player Character").GetComponent<CustomCharacterController>();
         button = GameObject.Find("ButtonTakeWeapon").GetComponent<Button>();
         oclick = GameObject.Find("ButtonTakeWeapon").GetComponent<ButtonWeapons>();
         text1 = GameObject.Find("infoAboutWeapons").GetComponent<Text>();

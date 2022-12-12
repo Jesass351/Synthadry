@@ -10,7 +10,7 @@ public class DamageBoost : BaseBoost
 
     protected override void Start()
     {
-        _playerManager = GameObject.Find("videoCharacter").GetComponent<CustomCharacterController>();
+        _playerManager = GameObject.Find("Player Character").GetComponent<CustomCharacterController>();
         base.Start();
     }
 

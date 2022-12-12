@@ -25,17 +25,17 @@ public class FightBehaviour : MonoBehaviour
    
     private void OnTriggerEnter(Collider other)
     {
-        if (other.name.Equals("videoCharacter") && (_controllerManager.Inventory.Count > 0))
+        if (other.name.Equals("Player Character") && (_controllerManager.Inventory.Count > 0))
         {
-            //Отключаем управление и убираем анимацию
+            //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             anim.SetFloat("x", 0);
             anim.SetFloat("y", 0);
             _controllerManager.enabled = false;
 
-            //Начинаем отсчет игры
+            //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
             countOfRound = 1;
 
-            //Меняем камеру и Canvas
+            //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ Canvas
             cameraOld.SetActive(false);
             mainCanvas.SetActive(false);
             cameraNew.SetActive(true);
