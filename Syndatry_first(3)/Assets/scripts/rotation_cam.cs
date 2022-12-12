@@ -50,8 +50,7 @@ public class rotation_cam : MonoBehaviour
         //Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, 
             //transform.position + Quaternion.AngleAxis(CameraAngle, Vector3.up) * new Vector3(0, 20, 30), 0.2f);
   
-        _position = transform.position +
-            Quaternion.AngleAxis(CameraAngle, Vector3.up) * new Vector3(0, 15, 20);
+        _position = transform.position + Quaternion.AngleAxis(CameraAngle, Vector3.up) * new Vector3(0, 15, 20);
         _rotation = Quaternion.LookRotation(transform.position + Vector3.up * 2f - _position, Vector3.up);
         ObReact();
 

@@ -36,7 +36,7 @@ public class WeaponInfo : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
         
         if ((_playerManager.Inventory.Count == 3) && (who.text.Length > 1) && (!this.name.Equals("debaf0")) && (!this.name.Equals("debaf1")))
         {
-            playerPostion = GameObject.Find("videoCharacter").transform;
+            playerPostion = GameObject.Find("Player Character").transform;
             switch (img.sprite.name)
             {
                 case "shotgun":

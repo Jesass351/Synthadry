@@ -25,7 +25,7 @@ public class FightBehaviour : MonoBehaviour
    
     private void OnTriggerEnter(Collider other)
     {
-        if (other.name.Equals("Player Character") && (_controllerManager.Inventory.Count > 0))
+        if (other.tag == "Player" && (_controllerManager.Inventory.Count > 0))
         {
             //��������� ���������� � ������� ��������
             anim.SetFloat("x", 0);

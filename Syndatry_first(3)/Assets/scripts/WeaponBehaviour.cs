@@ -25,7 +25,7 @@ public class WeaponBehaviour : MonoBehaviour
         Button button = GameObject.Find("ButtonTakeWeapon").GetComponent<Button>();
         button.interactable = true;
         button.image.enabled = true;
-        if (other.name.Equals("videoCharacter"))
+        if (other.tag == "Player")
         {
 
 
