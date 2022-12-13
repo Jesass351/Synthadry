@@ -10,9 +10,10 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] private FightBehaviour _fightManager;
     [SerializeField] private SelectSlot _selectManager;
 
+
     
-    private int shotgunDamage = 10;
-    private int katanaDamage = 15;
+    private int shotgunDamage = 4;
+    private int katanaDamage = 10;
 
 
     private void OnMouseDown()
@@ -21,12 +22,24 @@ public class EnemyBehaviour : MonoBehaviour
         {
             enemyHealthManager.TakeDamage(WeaponInd(_selectManager.weaponChild));
 
-            
             if (enemyHealthManager.CurrentHealth <= 0)
             {
                 _fightManager.KillEvent();
             }
+            else
+            {
+                _fightManager.anim.SetBool("Shoot", true);
+            }
             _fightManager.countOfRound++;
+
+            
+        }
+    }
+    private void OnMouseUp()
+    {
+        if(_fightManager.anim.GetBool("Shoot"))
+        {
+            _fightManager.anim.SetBool("Shoot", false);
         }
     }
 
@@ -34,7 +47,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (_fightManager.countOfRound % 2 == 0 && _fightManager.countOfRound > 0)
         {
-            heroHealthManager.TakeDamage(Random.Range(10, 20));
+            heroHealthManager.TakeDamage(Random.Range(5, 10));
 
             if (heroHealthManager.CurrentHealth <= 0)
             {

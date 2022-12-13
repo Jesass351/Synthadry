@@ -18,7 +18,7 @@ public class FightBehaviour : MonoBehaviour
     [SerializeField] private GameObject fightCanvas;
     [SerializeField] private GameObject deathCanvas;
     [SerializeField] private GameObject enemyHealthBar;
-    private Animator anim;
+    public Animator anim;
 
 
     public int countOfRound = 0;
@@ -27,15 +27,12 @@ public class FightBehaviour : MonoBehaviour
     {
         if (other.tag == "Player" && (_controllerManager.Inventory.Count > 0))
         {
-            //��������� ���������� � ������� ��������
             anim.SetFloat("x", 0);
             anim.SetFloat("y", 0);
             _controllerManager.enabled = false;
 
-            //�������� ������ ����
             countOfRound = 1;
 
-            //������ ������ � Canvas
             cameraOld.SetActive(false);
             mainCanvas.SetActive(false);
             cameraNew.SetActive(true);
@@ -47,7 +44,6 @@ public class FightBehaviour : MonoBehaviour
 
     private void Start()
     {
-        anim = player.GetComponent<Animator>();
         _controllerManager = player.GetComponent<CustomCharacterController>();
     }
 
