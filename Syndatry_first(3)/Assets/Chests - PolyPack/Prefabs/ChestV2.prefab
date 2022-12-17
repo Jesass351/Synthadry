@@ -210,8 +210,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbf7440986ac4d446831bc910ae4943f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Weapon: {fileID: 995043706565637789, guid: e16cd905ae3d2bd4398b1abbefec9df3, type: 3}
+  Katana: {fileID: 995043706565637789, guid: e16cd905ae3d2bd4398b1abbefec9df3, type: 3}
+  Shotgun: {fileID: 4890662060990277559, guid: d37365553dd4edc44914f3ec04b34999, type: 3}
+  Grenade: {fileID: 1241734725944954740, guid: 21c5cc4ac44c3ef488e890435a84f688, type: 3}
   Chest: {fileID: 3606401277398463915}
+  goodChance: 90
+  badChance: 5
 --- !u!1 &5163936366418727399
 GameObject:
   m_ObjectHideFlags: 0
