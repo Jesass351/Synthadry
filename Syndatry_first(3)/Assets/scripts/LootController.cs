@@ -5,60 +5,56 @@ using UnityEngine;
 public class LootController : MonoBehaviour
 {
     // public List<WeaponBehaviour> Weapon = new List<WeaponBehaviour>();
-    public GameObject Katana;
-    public GameObject Shotgun;
-    public GameObject Grenade;
-    public GameObject Chest;
+    public GameObject Katana, Shotgun, Grenade, Chest;
+    public int goodChance, badChance, utilityChance;
+
+    [SerializeField] private HealthManager heroHealthManager;
     private GameObject Weapon;
-    public int goodChance;
-    public int badChance;
-    private int flag;
+    private int isChestOpen, maxChance = 100, weaponCount = 2;
 
     // Update is called once per frame
     void Start()
     {
-        flag = 1;
+        isChestOpen = 0;
     }
 
 
     public void ButtonClick()
     {
-        float eventChance = Random.Range(0, 99);
-        if (eventChance < goodChance)
-        {
-            eventChance = Random.Range(0, 99);
-            if (eventChance < 40)
+        if (isChestOpen == 0) {
+            float eventChance = Random.Range(0, maxChance);
+            if (eventChance < goodChance)
             {
-                eventChance = Random.Range(0, 2);
-                if (eventChance == 0)
+                eventChance = Random.Range(0, maxChance);
+                if (eventChance < maxChance - utilityChance)
                 {
-                    Weapon = Shotgun;
+                    eventChance = Random.Range(0, maxChance);
+                    if (eventChance < maxChance / weaponCount)
+                    {
+                        Weapon = Shotgun;
+                    }
+                    else
+                    {
+                        Weapon = Katana;
+                    }
                 }
                 else
                 {
-                    Weapon = Katana;
+                    Weapon = Grenade;
                 }
+
+                Weapon = Instantiate(Weapon, Chest.transform.position, Quaternion.identity);
+                Weapon.transform.position += transform.forward * 2 + transform.up * 2 - transform.right * 3.5f;
+            }
+            else if (eventChance < goodChance + badChance)
+            {
+                heroHealthManager.TakeDamage(10);
             }
             else
             {
-                Weapon = Grenade;
-            }
-
-            if (flag == 1)
-            {
-                Weapon = Instantiate(Weapon, Chest.transform.position, Quaternion.identity);
-                Weapon.transform.position += transform.forward * 2 + transform.up * 2 - transform.right * 3.5f;
-                flag = 0;
+                Debug.Log("Neutral event");
             }
         }
-        else if (eventChance < goodChance + badChance)
-        {
-            Debug.Log("Отрицательное событие");
-        }
-        else
-        {
-            Debug.Log("Ничего");
-        }
-        
+        isChestOpen = 1;
     }
 }
