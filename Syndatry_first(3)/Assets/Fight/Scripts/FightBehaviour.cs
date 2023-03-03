@@ -10,9 +10,6 @@ public class FightBehaviour : MonoBehaviour
 
 
     [SerializeField] private GameObject player;
-    
-    [SerializeField] private GameObject cameraOld;
-    [SerializeField] private GameObject cameraNew;
 
     [SerializeField] private GameObject mainCanvas;
     [SerializeField] private GameObject fightCanvas;
@@ -30,15 +27,12 @@ public class FightBehaviour : MonoBehaviour
             //��������� ���������� � ������� ��������
             anim.SetFloat("x", 0);
             anim.SetFloat("y", 0);
-            _controllerManager.enabled = false;
-
+            _controllerManager.canGo = false;
             //�������� ������ ����
             countOfRound = 1;
 
             //������ ������ � Canvas
-            cameraOld.SetActive(false);
             mainCanvas.SetActive(false);
-            cameraNew.SetActive(true);
             fightCanvas.SetActive(true);
             enemyHealthBar.SetActive(true);
 
@@ -64,11 +58,9 @@ public class FightBehaviour : MonoBehaviour
 
     public void KillEvent()
     {
-        cameraOld.SetActive(true);
-        cameraNew.SetActive(false);
         mainCanvas.SetActive(true);
         enemyHealthBar.SetActive(false);
-        _controllerManager.enabled = true;
+        _controllerManager.canGo = true;
 
 
         Destroy(this.gameObject);
