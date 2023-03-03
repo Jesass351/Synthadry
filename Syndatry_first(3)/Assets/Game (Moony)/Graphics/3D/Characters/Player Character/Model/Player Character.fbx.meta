@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 91a863d74ea14475d80d641f937487d4
 ModelImporter:
-  serializedVersion: 22103
+  serializedVersion: 21300
   internalIDToNameTable:
   - first:
       74: -203655887218126122
@@ -20,14 +20,7 @@ ModelImporter:
     removeConstantScaleCurves: 0
     motionNodeName: 
     rigImportErrors: 
-    rigImportWarnings: "Avatar Rig Configuration mis-match. Bone length in configuration
-      does not match position in animation file:\n\t'mixamorig:LeftUpLeg' : position
-      error = 10259.112305 mm\n\t'mixamorig:LeftLeg' : position error = 40676.199219
-      mm\n\t'mixamorig:LeftFoot' : position error = 34862.531250 mm\n\t'mixamorig:LeftToeBase'
-      : position error = 16841.794922 mm\n\t'mixamorig:RightUpLeg' : position error
-      = 10258.985352 mm\n\t'mixamorig:RightLeg' : position error = 40675.265625 mm\n\t'mixamorig:RightFoot'
-      : position error = 34860.738281 mm\n\t'mixamorig:RightToeBase' : position error
-      = 16815.550781 mm\n"
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -46,7 +39,7 @@ ModelImporter:
   meshes:
     lODScreenPercentages: []
     globalScale: 1
-    meshCompression: 0
+    meshCompression: 3
     addColliders: 1
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
@@ -77,7 +70,6 @@ ModelImporter:
     secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
-    strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -1261,7 +1253,6 @@ ModelImporter:
   humanoidOversampling: 1
   avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
-  importBlendShapeDeformPercent: 0
   remapMaterialsIfMaterialImportModeIsNone: 0
   additionalBone: 0
   userData: 
