@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Loader.unity
     guid: 482a8c156e0d8334698acbb89a64f294
+  - enabled: 1
+    path: Assets/Scenes/ParkSecondScene.unity
+    guid: e51fed8724563184a8368a5eefc2654b
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: ed1a3912b1bbe3c4690df7160156cf91,
       type: 2}
