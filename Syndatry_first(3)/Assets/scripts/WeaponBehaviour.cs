@@ -2,18 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class WeaponBehaviour : MonoBehaviour
 {
     private CustomCharacterController _playerManager;
-    
+
     [SerializeField] public int damage;
     [SerializeField] public Sprite weaponIcon;
     [SerializeField] public int how_hits;
-    private Button button;
-    private ButtonWeapons oclick;
+    //private Button button;
+   // private ButtonWeapons oclick;
     private Text text1;
-    private ButtonWeapons onclick;
+   //private ButtonWeapons onclick;
+
+    bool clickF = false;
+    private GameObject pressFText;
+
     //private Listbuttonl<WeaponBehaviour> cl = new List<WeaponBehaviour>();
     //private GridLayoutGroup _grid;
     private bool isfind = false;
@@ -22,17 +27,17 @@ public class WeaponBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Button button = GameObject.Find("ButtonTakeWeapon").GetComponent<Button>();
-        button.interactable = true;
-        button.image.enabled = true;
-        if (other.name.Equals("videoCharacter"))
+        //Button button = GameObject.Find("ButtonTakeWeapon").GetComponent<Button>();
+       // button.interactable = true;
+       // button.image.enabled = true;
+        if (other.tag == "Player")
         {
 
-
-            ButtonWeapons oclick = GameObject.Find("ButtonTakeWeapon").GetComponent<ButtonWeapons>();
+            // ButtonWeapons oclick = GameObject.Find("ButtonTakeWeapon").GetComponent<ButtonWeapons>();
+            pressFText.GetComponent<TextMeshProUGUI>().enabled = true;
 
             Text text1 = GameObject.Find("infoAboutWeapons").GetComponent<Text>();
-            if (this.tag.Equals("debuf") && oclick.a)
+            if (this.tag.Equals("debuf") && clickF)
             {
                 //Text text1 = GameObject.Find("infoAboutWeapons").GetComponent<Text>();
                 for (int i = 0;i < _playerManager.InventoryForDeb.Count;i++)
@@ -43,9 +48,11 @@ public class WeaponBehaviour : MonoBehaviour
                         Text text = GameObject.Find(debaf).GetComponent<Text>();
                         int b = int.Parse(text.text);
                         text.text = (b + 1).ToString();
-                        oclick.a = false;
-                        button.interactable = false;
-                        button.image.enabled = false;
+                        clickF = false;
+                        //  button.interactable = false;
+                        //  button.image.enabled = false;
+                        pressFText.GetComponent<TextMeshProUGUI>().enabled = false;
+
                         Destroy(this.gameObject);
                         isfind = true;
                         break;
@@ -66,9 +73,11 @@ public class WeaponBehaviour : MonoBehaviour
                         Text text = GameObject.Find(debaf).GetComponent<Text>();
                         int b = int.Parse(text.text);
                         text.text = (b + 1).ToString();
-                        oclick.a = false;
-                        button.interactable = false;
-                        button.image.enabled = false;
+                        clickF = false;
+                        //   button.interactable = false;
+                        //  button.image.enabled = false;
+                        pressFText.GetComponent<TextMeshProUGUI>().enabled = false;
+
                         Destroy(this.gameObject);
                     }
                     else
@@ -79,21 +88,23 @@ public class WeaponBehaviour : MonoBehaviour
                 //Text text1 = GameObject.Find("infoAboutWeapons").GetComponent<Text>();
                 text1.text = null;
             }
-            else if (_playerManager.Inventory.Count < 3 && oclick.a)
+            else if (_playerManager.Inventory.Count < 3 && clickF)
             {
 
                 //Instantiate(testCube, this.gameObject.transform.position, this.gameObject.transform.rotation);
                 _playerManager.Inventory.Add(this);
-                oclick.a = false;
-                button.interactable = false;
-                button.image.enabled = false;
+                clickF = false;
+                // button.interactable = false;
+                // button.image.enabled = false;
+                pressFText.GetComponent<TextMeshProUGUI>().enabled = false;
+
                 Destroy(this.gameObject);
                 //Text text = GameObject.Find("infoAboutWeapons").GetComponent<Text>();
                 text1.text = null;
             }
             else
             {
-                if (_playerManager.Inventory.Count == 3 && oclick.a)
+                if (_playerManager.Inventory.Count == 3 && clickF)
                 {
                     //Text text = GameObject.Find("infoAboutWeapons").GetComponent<Text>();
                     text1.text = "Inventory full";
@@ -138,37 +149,44 @@ public class WeaponBehaviour : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        ButtonWeapons onclick = GameObject.Find("ButtonTakeWeapon").GetComponent<ButtonWeapons>();
-        if (onclick.a)
+        //ButtonWeapons onclick = GameObject.Find("ButtonTakeWeapon").GetComponent<ButtonWeapons>();
+        if (clickF)
         {
             OnTriggerEnter(other);
         }
- 
+        if (other.CompareTag("Player"))
+        {
+            if (Input.GetKey(KeyCode.F))
+            {
+                clickF = true;
+            }
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         Text text = GameObject.Find("infoAboutWeapons").GetComponent<Text>();
         text.text = null;
-        ButtonWeapons oclick = GameObject.Find("ButtonTakeWeapon").GetComponent<ButtonWeapons>();
-        oclick.a = false;
-        Button but = oclick.GetComponent<Button>();
-        but.interactable = false;
-        but.image.enabled = false;
-        
+        //  ButtonWeapons oclick = GameObject.Find("ButtonTakeWeapon").GetComponent<ButtonWeapons>();
+        //  oclick.a = false;
+        //  Button but = oclick.GetComponent<Button>();
+        //  but.interactable = false;
+        //  but.image.enabled = false;
+        pressFText.GetComponent<TextMeshProUGUI>().enabled = false;
     }
 
 
     private void Start()
     {
-        _playerManager = GameObject.Find("videoCharacter").GetComponent<CustomCharacterController>();
-        button = GameObject.Find("ButtonTakeWeapon").GetComponent<Button>();
-        oclick = GameObject.Find("ButtonTakeWeapon").GetComponent<ButtonWeapons>();
+        _playerManager = GameObject.Find("Player Character").GetComponent<CustomCharacterController>();
+      //  button = GameObject.Find("ButtonTakeWeapon").GetComponent<Button>();
+      //  oclick = GameObject.Find("ButtonTakeWeapon").GetComponent<ButtonWeapons>();
         text1 = GameObject.Find("infoAboutWeapons").GetComponent<Text>();
-        onclick = GameObject.Find("ButtonTakeWeapon").GetComponent<ButtonWeapons>();
+        //  onclick = GameObject.Find("ButtonTakeWeapon").GetComponent<ButtonWeapons>();
         //_grid = _playerManager.canvas.GetComponentInChildren<GridLayoutGroup>();
-       // testCube = GameObject.Find("Cube");
+        // testCube = GameObject.Find("Cube");
+        pressFText = GameObject.FindGameObjectWithTag("PressFText");
+        pressFText.GetComponent<TextMeshProUGUI>().enabled = false;
         
     }
-   
 }

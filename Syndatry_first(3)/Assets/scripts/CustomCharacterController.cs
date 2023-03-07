@@ -38,7 +38,9 @@ public class CustomCharacterController : MonoBehaviour
     public float horisontal;
     public float vertical;
     private float lerpMulti = 7f;
-    // Start is called before the first frame update
+
+    public bool canGo = true; 
+
     void Start()
     {
         canvas = FindObjectOfType<Canvas>();
@@ -54,7 +56,6 @@ public class CustomCharacterController : MonoBehaviour
     void Walk()
     {
         // Mathf.Lerp - отвчает за то, чтобы каждый кадр число animationInterpolation(в данном случае) приближалось к числу 1 со скоростью Time.deltaTime * 3.
-        // Time.deltaTime - это время между этим кадром и предыдущим кадром. Это позволяет плавно переходить с одного числа до второго НЕЗАВИСИМО ОТ КАДРОВ В СЕКУНДУ (FPS)!!!
         animationInterpolation = Mathf.Lerp(animationInterpolation, 1f, Time.deltaTime * 3);
         anim.SetFloat("x", horisontal * 1.5f);
         anim.SetFloat("y", vertical * 1.5f);
@@ -64,35 +65,46 @@ public class CustomCharacterController : MonoBehaviour
     }
     private void Update()
     {
-        horisontal = Mathf.Lerp(horisontal, joystick.Horizontal, Time.deltaTime * lerpMulti);
-        vertical = Mathf.Lerp(vertical, joystick.Vertical, Time.deltaTime * lerpMulti);
-        // Устанавливаем поворот персонажа когда камера поворачивается 
-        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, mainCamera.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
-
-        // Зажаты ли кнопки W и Shift?
-        if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.LeftShift))
+        if (canGo)
         {
-            // Зажаты ли еще кнопки A S D?
-            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+            horisontal = Input.GetAxis("Horizontal") * animationInterpolation;
+            vertical = Input.GetAxis("Vertical") * animationInterpolation;
+            //horisontal = Mathf.Lerp(horisontal, joystick.Horizontal, Time.deltaTime * lerpMulti);
+            //vertical = Mathf.Lerp(vertical, joystick.Vertical, Time.deltaTime * lerpMulti);
+            // Устанавливаем поворот персонажа когда камера поворачивается 
+            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, mainCamera.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
+            // Зажаты ли кнопки W и Shift?
+            if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.LeftShift))
             {
-                // Если да, то мы идем пешком
-                Walk();
+                // Зажаты ли еще кнопки A S D?
+                //Debug.Log("aaaa");
+                if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+                {
+                    // Если да, то мы идем пешком
+                    Walk();
+                }
+                // Если нет, то тогда бежим!
+                else
+                {
+                    Run();
+                }
             }
-            // Если нет, то тогда бежим!
+            // Если W & Shift не зажаты, то мы просто идем пешком
             else
             {
-                Run();
+                Walk();
+            }
+            //Если зажат пробел, то в аниматоре отправляем сообщение тригеру, который активирует анимацию прыжка
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                anim.SetTrigger("Jump");
             }
         }
-        // Если W & Shift не зажаты, то мы просто идем пешком
         else
         {
-            Walk();
-        }
-        //Если зажат пробел, то в аниматоре отправляем сообщение тригеру, который активирует анимацию прыжка
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            anim.SetTrigger("Jump");
+            horisontal = 0;
+            vertical = 0;
+            currentSpeed = 0;
         }
     }
     // Update is called once per frame

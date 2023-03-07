@@ -5,7 +5,7 @@ using UnityEngine;
 public class rotation_cam : MonoBehaviour
 {
     public FixedJoystick joystick;
-    protected float CameraAngleSpeed = 3f;
+    protected float CameraAngleSpeed = 2f;
     protected float CameraAngle;
     public Transform target;
     private Vector3 _local;
@@ -34,7 +34,7 @@ public class rotation_cam : MonoBehaviour
     void Start()
     {
         _camera = Camera.main;
-        CameraAngle += joystick.Horizontal * CameraAngleSpeed;
+        //CameraAngle += joystick.Horizontal * CameraAngleSpeed;
         _position = transform.position +
             Quaternion.AngleAxis(CameraAngle, Vector3.up) * new Vector3(0, 15, 20);
         _local = target.InverseTransformPoint(_position);
@@ -45,14 +45,16 @@ public class rotation_cam : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        CameraAngle += joystick.Horizontal * CameraAngleSpeed;
+        float mouseX = Input.GetAxis("Mouse X");
+        float mouseY = Input.GetAxis("Mouse Y");
+
+
+        CameraAngle += mouseX * CameraAngleSpeed;
         //Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, 
             //transform.position + Quaternion.AngleAxis(CameraAngle, Vector3.up) * new Vector3(0, 20, 30), 0.2f);
   
-        _position = transform.position +
-            Quaternion.AngleAxis(CameraAngle, Vector3.up) * new Vector3(0, 15, 20);
-        _rotation = Quaternion.LookRotation(transform.position + Vector3.up * 2f - _position, Vector3.up);
+        _position = transform.position + Quaternion.AngleAxis(CameraAngle, Vector3.up) * new Vector3(0, 15, 20);
+        _rotation = Quaternion.LookRotation(transform.position + Vector3.up * 8f - _position, Vector3.up);
         ObReact();
 
     }

@@ -3,21 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System.Diagnostics.Contracts;
 
 public class WeaponInfo : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
     [SerializeField] private int index;
     private CustomCharacterController _playerManager;
     private Text text;
-    private Image img;
+    public Image img;
     private Text who;
     private Transform playerPostion;
-    [SerializeField] private GameObject shotgunPrefab;
-    [SerializeField] private GameObject katanaPrefab;
+    [SerializeField] public GameObject shotgunPrefab;
+    [SerializeField] public GameObject katanaPrefab;
+
+
 
     private void Start()
     {
-        _playerManager = GameObject.Find("videoCharacter").GetComponent<CustomCharacterController>();
+        _playerManager = GameObject.Find("Player Character").GetComponent<CustomCharacterController>();
         text = GameObject.Find("infoAboutSlots").GetComponent<Text>();
         img = GetComponent<Image>();
         who = GameObject.Find("infoAboutWeapons").GetComponent<Text>();
@@ -33,7 +36,7 @@ public class WeaponInfo : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
         
         if ((_playerManager.Inventory.Count == 3) && (who.text.Length > 1) && (!this.name.Equals("debaf0")) && (!this.name.Equals("debaf1")))
         {
-            playerPostion = GameObject.Find("videoCharacter").transform;
+            playerPostion = GameObject.Find("Player Character").transform;
             switch (img.sprite.name)
             {
                 case "shotgun":
@@ -89,4 +92,6 @@ public class WeaponInfo : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
             text.text = null;
         }
     }
+
+
 }

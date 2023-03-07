@@ -17,7 +17,7 @@ public class test12 : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         rotation_cam playerScript = other.GetComponent<rotation_cam>();
-        if (other.gameObject.name.Equals("videoCharacter"))
+        if (other.tag == "Player")
         {
             playerScript.enabled = true;
         }

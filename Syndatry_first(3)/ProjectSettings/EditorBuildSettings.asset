@@ -17,10 +17,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Loader.unity
     guid: 482a8c156e0d8334698acbb89a64f294
+  - enabled: 1
+    path: Assets/Scenes/ParkSecondScene.unity
+    guid: e51fed8724563184a8368a5eefc2654b
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: ed1a3912b1bbe3c4690df7160156cf91,
       type: 2}
     com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000,
       guid: a941258dafbc02f438b934cdb5722d4d, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000,
-      guid: 8aff151caf059de4f8241e218aa9b61b, type: 2}
+      guid: e91ce40489a0a9249831777a6254c0ff, type: 2}

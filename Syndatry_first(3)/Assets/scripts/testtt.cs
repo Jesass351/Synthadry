@@ -21,7 +21,7 @@ public class testtt : MonoBehaviour
         
         List <WeaponBehaviour> _Inventory = other.GetComponent<CustomCharacterController>().Inventory;
         //Animator animator = other.GetComponent<Animator>();
-        if (other.gameObject.name.Equals("videoCharacter"))
+        if (other.tag == "Player")
         {
             for (int i = 0; i < _Inventory.Count; i++)
             {
