@@ -39,11 +39,15 @@ public class CustomCharacterController : MonoBehaviour
     public float vertical;
     private float lerpMulti = 7f;
 
-    public bool canGo = true; 
+    public bool canGo = true;
+
+
+    private CharacterController characterController;
 
     void Start()
     {
         canvas = FindObjectOfType<Canvas>();
+        characterController = GetComponent<CharacterController>();
     }
     void Run()
     {
@@ -65,73 +69,132 @@ public class CustomCharacterController : MonoBehaviour
     }
     private void Update()
     {
-        if (canGo)
+        /* if (canGo)
+         {
+             horisontal = Input.GetAxis("Horizontal") * animationInterpolation;
+             vertical = Input.GetAxis("Vertical") * animationInterpolation;
+             //horisontal = Mathf.Lerp(horisontal, joystick.Horizontal, Time.deltaTime * lerpMulti);
+             //vertical = Mathf.Lerp(vertical, joystick.Vertical, Time.deltaTime * lerpMulti);
+             // Устанавливаем поворот персонажа когда камера поворачивается 
+             transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, mainCamera.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
+             // Зажаты ли кнопки W и Shift?
+             if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.LeftShift))
+             {
+                 // Зажаты ли еще кнопки A S D?
+                 //Debug.Log("aaaa");
+                 if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+                 {
+                     // Если да, то мы идем пешком
+                     Walk();
+                 }
+                 // Если нет, то тогда бежим!
+                 else
+                 {
+                     Run();
+                 }
+             }
+             // Если W & Shift не зажаты, то мы просто идем пешком
+             else
+             {
+                 Walk();
+             }
+             //Если зажат пробел, то в аниматоре отправляем сообщение тригеру, который активирует анимацию прыжка
+             if (Input.GetKeyDown(KeyCode.Space))
+             {
+                 anim.SetTrigger("Jump");
+             }
+         }
+         else
+         {
+             horisontal = 0;
+             vertical = 0;
+             currentSpeed = 0;
+         } */
+
+
+        horisontal = Input.GetAxis("Horizontal") * animationInterpolation;
+        vertical = Input.GetAxis("Vertical") * animationInterpolation;
+        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, mainCamera.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
+
+        if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.LeftShift))
         {
-            horisontal = Input.GetAxis("Horizontal") * animationInterpolation;
-            vertical = Input.GetAxis("Vertical") * animationInterpolation;
-            //horisontal = Mathf.Lerp(horisontal, joystick.Horizontal, Time.deltaTime * lerpMulti);
-            //vertical = Mathf.Lerp(vertical, joystick.Vertical, Time.deltaTime * lerpMulti);
-            // Устанавливаем поворот персонажа когда камера поворачивается 
-            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, mainCamera.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
-            // Зажаты ли кнопки W и Shift?
-            if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.LeftShift))
-            {
-                // Зажаты ли еще кнопки A S D?
-                //Debug.Log("aaaa");
-                if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
-                {
-                    // Если да, то мы идем пешком
-                    Walk();
-                }
-                // Если нет, то тогда бежим!
-                else
-                {
-                    Run();
-                }
-            }
-            // Если W & Shift не зажаты, то мы просто идем пешком
-            else
+            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
             {
                 Walk();
             }
-            //Если зажат пробел, то в аниматоре отправляем сообщение тригеру, который активирует анимацию прыжка
-            if (Input.GetKeyDown(KeyCode.Space))
+            else
             {
-                anim.SetTrigger("Jump");
+                Run();
             }
         }
         else
         {
-            horisontal = 0;
-            vertical = 0;
-            currentSpeed = 0;
+            Walk();
+        }
+
+        if (characterController.isGrounded && Input.GetKeyDown(KeyCode.Space))
+        {
+            anim.SetTrigger("Jump");
         }
     }
     // Update is called once per frame
     void FixedUpdate()
     {
-        // Здесь мы задаем движение персонажа в зависимости от направления в которое смотрит камера
-        // Сохраняем направление вперед и вправо от камеры 
+        /*  // Здесь мы задаем движение персонажа в зависимости от направления в которое смотрит камера
+          // Сохраняем направление вперед и вправо от камеры 
+          Vector3 camF = mainCamera.forward;
+          Vector3 camR = mainCamera.right;
+          // Чтобы направления вперед и вправо не зависили от того смотрит ли камера вверх или вниз, иначе когда мы смотрим вперед, персонаж будет идти быстрее чем когда смотрит вверх или вниз
+          // Можете сами проверить что будет убрав camF.y = 0 и camR.y = 0 :)
+          camF.y = 0;
+          camR.y = 0;
+          Vector3 movingVector;
+          // Тут мы умножаем наше нажатие на кнопки W & S на направление камеры вперед и прибавляем к нажатиям на кнопки A & D и умножаем на направление камеры вправо
+          movingVector = Vector3.ClampMagnitude(camF.normalized * vertical * currentSpeed + camR.normalized * horisontal * currentSpeed, currentSpeed);
+          // Magnitude - это длинна вектора. я делю длинну на currentSpeed так как мы умножаем этот вектор на currentSpeed на 86 строке. Я хочу получить число максимум 1.
+          anim.SetFloat("magnitude", movingVector.magnitude / currentSpeed);
+          //Debug.Log(movingVector.magnitude / currentSpeed);
+          // Здесь мы двигаем персонажа! Устанавливаем движение только по x & z потому что мы не хотим чтобы наш персонаж взлетал в воздух
+          rig.velocity = new Vector3(movingVector.x, rig.velocity.y, movingVector.z);
+          // У меня был баг, что персонаж крутился на месте и это исправил с помощью этой строки
+          rig.angularVelocity = Vector3.zero;*/
+
+
         Vector3 camF = mainCamera.forward;
         Vector3 camR = mainCamera.right;
-        // Чтобы направления вперед и вправо не зависили от того смотрит ли камера вверх или вниз, иначе когда мы смотрим вперед, персонаж будет идти быстрее чем когда смотрит вверх или вниз
-        // Можете сами проверить что будет убрав camF.y = 0 и camR.y = 0 :)
         camF.y = 0;
         camR.y = 0;
         Vector3 movingVector;
-        // Тут мы умножаем наше нажатие на кнопки W & S на направление камеры вперед и прибавляем к нажатиям на кнопки A & D и умножаем на направление камеры вправо
         movingVector = Vector3.ClampMagnitude(camF.normalized * vertical * currentSpeed + camR.normalized * horisontal * currentSpeed, currentSpeed);
-        // Magnitude - это длинна вектора. я делю длинну на currentSpeed так как мы умножаем этот вектор на currentSpeed на 86 строке. Я хочу получить число максимум 1.
         anim.SetFloat("magnitude", movingVector.magnitude / currentSpeed);
-        //Debug.Log(movingVector.magnitude / currentSpeed);
-        // Здесь мы двигаем персонажа! Устанавливаем движение только по x & z потому что мы не хотим чтобы наш персонаж взлетал в воздух
-        rig.velocity = new Vector3(movingVector.x, rig.velocity.y, movingVector.z);
-        // У меня был баг, что персонаж крутился на месте и это исправил с помощью этой строки
-        rig.angularVelocity = Vector3.zero;
+
+        if (!characterController.isGrounded)
+        {
+            movingVector.y -= walkingSpeed * 2;
+        }
+
+
+
+        /*  RaycastHit hit;  // Карабканье по вертикальным стенам тест
+          if (Physics.Raycast(transform.position, transform.forward, out hit, 2f)) //&& hit.normal.y <= 0.1f)
+          {
+              movingVector = Vector3.up * walkingSpeed;
+          }
+
+          */
+
+
+        characterController.Move(movingVector * Time.fixedDeltaTime);
+
     }
     public void Jump()
     {
-        // Выполняем прыжок по команде анимации.
-        rig.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        /* // Выполняем прыжок по команде анимации.
+         rig.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);*/
+
+        if (characterController.isGrounded)
+        {
+            characterController.Move(Vector3.up * jumpForce * Time.fixedDeltaTime);
+        }
     }
 }
