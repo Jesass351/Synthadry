@@ -1,18 +1,19 @@
-/*using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 public class ItemInteraction : MonoBehaviour
 {
-    Transform cam;
+    [SerializeField] private Transform cam;
+    [SerializeField] private int takeDistance = 8;
+    [SerializeField] private GameObject player;
     [SerializeField] LayerMask itemLayer;
-    InventorySystem inventorySystem;
+    private InventorySystem inventorySystem;
 
-    [SerializeField] TextMeshProUGUI txt_HoveredItem;
+    //[SerializeField] TextMeshProUGUI txt_HoveredItem;
     void Start()
     {
-        cam = Camera.main.transform;
-        inventorySystem = GetComponent<InventorySystem>();
+        inventorySystem = player.GetComponent<InventorySystem>();
     }
 
     // Update is called once per frame
@@ -20,26 +21,29 @@ public class ItemInteraction : MonoBehaviour
     {
         RaycastHit hit;
 
-        if (Physics.Raycast(cam.position, cam.forward, out hit, 2, itemLayer))
+        if (Input.GetKeyDown(KeyCode.F))
         {
-            if (!hit.collider.GetComponent<ItemObject>())
-                return;
-
-
-
-            txt_HoveredItem.text = $"Press 'F' to pick up {hit.collider.GetComponent<ItemObject>().itemStats.name}";
-
-            if (Input.GetKeyDown(KeyCode.F))
+            if (Physics.Raycast(cam.position, cam.forward, out hit, takeDistance, itemLayer))
             {
-                inventorySystem.PickUpItem(hit.collider.GetComponent<ItemObject>());
+                if (!hit.collider.GetComponent<ItemObject>())
+                    return;
+
+
+
+                //txt_HoveredItem.text = $"Press 'F' to pick up {hit.collider.GetComponent<ItemObject>().itemStat.name}";
+
+
+                Debug.Log(hit.collider.gameObject);
+
+                inventorySystem.PickUpItem(hit.collider.gameObject);
             }
-
-
-
+            else
+            {
+                //Ã¡  ¿ Œ…-“Œ «¬”  œ–Œ»√–€¬¿“‹?
+                //txt_HoveredItem.text = string.Empty;
+            }
+           
         }
-        else
-        {
-            txt_HoveredItem.text = string.Empty;
-        }
+        
     }
-}*/
+}
