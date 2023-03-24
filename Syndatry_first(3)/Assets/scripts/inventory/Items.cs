@@ -15,7 +15,8 @@ public class Items : ScriptableObject
     {
         firearms,
         coldWeapons,
-        baph
+        baph,
+        extra
     };
 
     public enum Rarity
@@ -33,8 +34,8 @@ public class Items : ScriptableObject
     };
 
     public GameObject prefab;
-    public Texture iconActive1K;
-    public Texture iconDisable1K;
+    public Sprite iconActive1K;
+    public Sprite iconDisable1K;
 
     public Types type;
     public Rarity rarity;

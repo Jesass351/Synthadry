@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+
 public class ItemInteraction : MonoBehaviour
 {
     [SerializeField] private Transform cam;
@@ -28,11 +28,6 @@ public class ItemInteraction : MonoBehaviour
                 if (!hit.collider.GetComponent<ItemObject>())
                     return;
 
-
-
-                //txt_HoveredItem.text = $"Press 'F' to pick up {hit.collider.GetComponent<ItemObject>().itemStat.name}";
-
-
                 Debug.Log(hit.collider.gameObject);
 
                 inventorySystem.PickUpItem(hit.collider.gameObject);
@@ -40,7 +35,6 @@ public class ItemInteraction : MonoBehaviour
             else
             {
                 //Ã¡  ¿ Œ…-“Œ «¬”  œ–Œ»√–€¬¿“‹?
-                //txt_HoveredItem.text = string.Empty;
             }
            
         }
