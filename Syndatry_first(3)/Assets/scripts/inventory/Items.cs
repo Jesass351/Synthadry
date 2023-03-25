@@ -15,7 +15,6 @@ public class Items : ScriptableObject
     {
         firearms,
         coldWeapons,
-        baph,
         extra
     };
 
@@ -41,5 +40,5 @@ public class Items : ScriptableObject
     public Rarity rarity;
     public TypeOfMissile typeOfMissile;
     public int maximumAmmo; //в барабане/магазине я хз
-    public int count; //для бафов
+
 }

@@ -8,6 +8,7 @@ public class ItemInteraction : MonoBehaviour
     [SerializeField] private int takeDistance = 8;
     [SerializeField] private GameObject player;
     [SerializeField] LayerMask itemLayer;
+    [SerializeField] LayerMask buffLayer;
     private InventorySystem inventorySystem;
 
     //[SerializeField] TextMeshProUGUI txt_HoveredItem;
@@ -31,8 +32,18 @@ public class ItemInteraction : MonoBehaviour
                 Debug.Log(hit.collider.gameObject);
 
                 inventorySystem.PickUpItem(hit.collider.gameObject);
+                hit.collider.gameObject.SetActive(false);
             }
-            else
+            else if (Physics.Raycast(cam.position, cam.forward, out hit, takeDistance, buffLayer))
+            {
+                if (!hit.collider.GetComponent<BuffObject>())
+                    return;
+
+                Debug.Log(hit.collider.gameObject);
+
+                inventorySystem.PickUpBuff(hit.collider.gameObject);
+                hit.collider.gameObject.SetActive(false);
+            } else
             {
                 //Ã¡  ¿ Œ…-“Œ «¬”  œ–Œ»√–€¬¿“‹?
             }
