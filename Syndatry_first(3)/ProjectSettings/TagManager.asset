@@ -12,14 +12,14 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - PostFX
   - Water
   - UI
   - 
   - 
   - 
   - 
-  - 
+  - EnemyPointer
   - 
   - 
   - 

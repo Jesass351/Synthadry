@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using UnityEngine.UI;
 using System.Linq;
+using TMPro;
 
 public class InventorySystem : MonoBehaviour
 {
@@ -61,6 +62,16 @@ public class InventorySystem : MonoBehaviour
             DiscardTheItem(activeMainGun);
             UpdateInventoryUIItems(activeMainGun);
         }
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f) // ŒÀ®—» ŒÃ ¬œ≈–®ƒ
+        {
+            activeMainGun = (activeMainGun + 1) % 3;
+            UpdateInventoryUIItems(activeMainGun);
+        }
+        if (Input.GetAxis("Mouse ScrollWheel") < 0f) // ŒÀ®—» ŒÃ Õ¿«¿ƒ
+        {
+            activeMainGun = (3 + activeMainGun - 1) % 3;
+            UpdateInventoryUIItems(activeMainGun);
+        }
     }
 
 
@@ -84,7 +95,7 @@ public class InventorySystem : MonoBehaviour
                 {
                     Debug.Log(mainGuns[i]);
                 }
-                UpdateInventoryUIItems();
+                UpdateInventoryUIItems(activeMainGun);
             } else
             {
                 Debug.Log("---------");
@@ -99,11 +110,8 @@ public class InventorySystem : MonoBehaviour
                 Debug.Log("------------");
                 Debug.Log("extraGuns:");
                 extraGuns.Add(item);
-                for (int i = 0; i < extraGuns.Count; i++)
-                {
-                    Debug.Log(extraGuns[i]);
-                }
-                UpdateInventoryUIItems();
+
+                UpdateInventoryUIItems(activeMainGun);
             }
             else
             {
@@ -117,23 +125,28 @@ public class InventorySystem : MonoBehaviour
 
     public void UpdateInventoryUIItems(int active = 0)
     {
-        for (int i = 0; i < UiMainGuns.Count; i++)
+        /* for (int i = 0; i < UiMainGuns.Count; i++)
+         {
+             UiMainGuns[i].GetComponent<Image>().sprite = null;
+             UiMainGuns[i].SetActive(false);
+         }
+         for (int i = 0; i < mainGuns.Count; i++)
+         {
+             UiMainGuns[i].SetActive(true);
+             UiMainGuns[i].GetComponent<Image>().sprite = mainGuns[i].GetComponent<ItemObject>().itemStat.iconDisable1K;
+         }
+         UiMainGuns[active].GetComponent<Image>().sprite = mainGuns[active].GetComponent<ItemObject>().itemStat.iconActive1K;*/
+        if (mainGuns.Count > 0)
         {
-            UiMainGuns[i].GetComponent<Image>().sprite = null;
-            UiMainGuns[i].SetActive(false);
+            UiMainGuns[0].SetActive(true);
+            UiMainGuns[0].GetComponent<Image>().sprite = mainGuns[active].GetComponent<ItemObject>().itemStat.iconActive1K;
         }
-        for (int i = 0; i < mainGuns.Count; i++)
-        {
-            UiMainGuns[i].SetActive(true);
-            UiMainGuns[i].GetComponent<Image>().sprite = mainGuns[i].GetComponent<ItemObject>().itemStat.iconDisable1K;
-        }
-        UiMainGuns[active].GetComponent<Image>().sprite = mainGuns[active].GetComponent<ItemObject>().itemStat.iconActive1K;
         if (extraGuns.Count > 0)
         {
             UiExtraGuns[0].SetActive(true);
             UiExtraGuns[1].SetActive(true);
             UiExtraGuns[0].GetComponent<Image>().sprite = extraGuns[0].GetComponent<ItemObject>().itemStat.iconActive1K;
-            UiExtraGuns[1].GetComponent<Text>().text = extraGuns.Count.ToString();
+            UiExtraGuns[1].GetComponent<TextMeshProUGUI>().text = extraGuns.Count.ToString();
         }
     }
 
@@ -207,19 +220,19 @@ public class InventorySystem : MonoBehaviour
         if (activeBuff == 0 && hpBuffs.Count != 0)
         {
             UiBuffs[0].GetComponent<Image>().sprite = hpBuffs[0].GetComponent<BuffObject>().BuffStat.iconActive1K;
-            UiBuffs[1].GetComponent<Text>().text = hpBuffs.Count.ToString();
+            UiBuffs[1].GetComponent<TextMeshProUGUI>().text = hpBuffs.Count.ToString();
             return;
 
         } else if (activeBuff == 1 && powerBuffs.Count != 0)
         {
             UiBuffs[0].GetComponent<Image>().sprite = powerBuffs[0].GetComponent<BuffObject>().BuffStat.iconActive1K;
-            UiBuffs[1].GetComponent<Text>().text = powerBuffs.Count.ToString();
+            UiBuffs[1].GetComponent<TextMeshProUGUI>().text = powerBuffs.Count.ToString();
             return;
 
         } else if (activeBuff == 2 && speedBuffs.Count != 0)
         {
             UiBuffs[0].GetComponent<Image>().sprite = speedBuffs[0].GetComponent<BuffObject>().BuffStat.iconActive1K;
-            UiBuffs[1].GetComponent<Text>().text = speedBuffs.Count.ToString();
+            UiBuffs[1].GetComponent<TextMeshProUGUI>().text = speedBuffs.Count.ToString();
             return;
         } else
         {
