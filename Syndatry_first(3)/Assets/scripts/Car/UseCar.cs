@@ -8,6 +8,7 @@ public class UseCar : MonoBehaviour
     [SerializeField] private GameObject carCamera;
     [SerializeField] private GameObject realCar;
     [SerializeField] private GameObject fakeCar;
+    [SerializeField] private GameObject collider;
     [SerializeField] private Transform OutPoint;
 
     public bool canEnter = false;
@@ -32,15 +33,21 @@ public class UseCar : MonoBehaviour
                     carCamera.GetComponent<CarCamera>().target = realCar.transform;
                     fakeCar.SetActive(false);
                 }
-                else
-                {
-                    player.transform.position = OutPoint.position;
-                    player.SetActive(true);
-                    realCar.SetActive(false);
-                    carCamera.SetActive(false);
-                    fakeCar.SetActive(true);
-                }
+                canEnter = false;
 
+
+            }
+            else
+            {
+                player.transform.position = OutPoint.position;
+                player.SetActive(true);
+                realCar.SetActive(false);
+                carCamera.SetActive(false);
+                fakeCar.transform.position = realCar.transform.position;
+                fakeCar.transform.rotation = realCar.transform.rotation;
+                collider.transform.position = realCar.transform.position;
+                fakeCar.SetActive(true);
+                canEnter = false;
             }
         }
     }
