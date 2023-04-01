@@ -18,15 +18,21 @@ MonoBehaviour:
     m_Values: 
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: M Fern HDRP
-  m_Shader: {fileID: -6465566751694194690, guid: 104b3e66382647544a0d0eb0f0788700, type: 3}
-  m_ShaderKeywords: _ALPHATEST_ON _DISABLE_DECALS _DISABLE_SSR _DISABLE_SSR_TRANSPARENT
-    _DOUBLESIDED_ON
+  m_Shader: {fileID: -6465566751694194690, guid: 104b3e66382647544a0d0eb0f0788700,
+    type: 3}
+  m_ValidKeywords:
+  - _ALPHATEST_ON
+  - _DISABLE_DECALS
+  - _DISABLE_SSR
+  - _DISABLE_SSR_TRANSPARENT
+  - _DOUBLESIDED_ON
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 1
@@ -158,12 +164,13 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 1
     m_Colors:
-    - _DiffusionProfileAsset: {r: -7.493815e+37, g: 1.4719325e+32, b: -6.991789e+20, a: -2.0486585e-22}
+    - _DiffusionProfileAsset: {r: -7.493815e+37, g: 1.4719325e+32, b: -6.991789e+20,
+        a: -2.0486585e-22}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _DryColor: {r: 0.7075472, g: 0.5367464, b: 0.3571111, a: 1}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _HealthyColor: {r: 1, g: 1, b: 1, a: 1}
-    - _MinMaxScales: {r: 0.6, g: 1.1111112, b: 0, a: 0}
+    - _MinMaxScales: {r: 5, g: 0.2, b: 0, a: 0}
     - _SpecularReflectivity: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _WindMultiplier: {r: 1, g: 1, b: 2.48, a: 2}
   m_BuildTextureStacks: []

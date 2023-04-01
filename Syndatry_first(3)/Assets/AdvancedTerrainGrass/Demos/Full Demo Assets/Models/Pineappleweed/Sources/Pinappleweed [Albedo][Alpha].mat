@@ -2,14 +2,17 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Pinappleweed [Albedo][Alpha]
   m_Shader: {fileID: 4800000, guid: b4e90ecac4a4348a7904bc428b89bc82, type: 3}
-  m_ShaderKeywords: _METALLICGLOSSMAP _MIXMODE_RANDOM
+  m_ValidKeywords:
+  - _METALLICGLOSSMAP
+  m_InvalidKeywords:
+  - _MIXMODE_RANDOM
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -35,6 +38,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - _Clip: 0.3
     - _Culling: 0
@@ -47,6 +51,7 @@ Material:
     - _NormalBend: 0.3
     - _SampleNormal: 0
     - _SamplePivot: 1
+    - _ScaleMode: 0
     - _SizeThreshold: 0.5
     - _Spec: 0
     - _TransPower: 0.8
@@ -55,8 +60,9 @@ Material:
     - _WindMultiplier: 0.65
     m_Colors:
     - _DebugColor: {r: 1, g: 0, b: 0, a: 1}
-    - _DryColor: {r: 0.88235295, g: 0.88235295, b: 0.88235295, a: 0.91764706}
-    - _HealthyColor: {r: 1, g: 1, b: 1, a: 1}
-    - _MinMaxScales: {r: 0.6, g: 1.818182, b: 0, a: 0}
+    - _DryColor: {r: 0.8039216, g: 0.7372549, b: 0.101960786, a: 1}
+    - _HealthyColor: {r: 0.2627451, g: 0.9764706, b: 0.16470589, a: 1}
+    - _MinMaxScales: {r: 1, g: 1, b: 0, a: 0}
     - _SpecularReflectivity: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _WindMultiplier: {r: 0.3, g: 0.2, b: 0, a: 0}
+  m_BuildTextureStacks: []
