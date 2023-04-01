@@ -9,12 +9,17 @@ public class ItemInteraction : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] LayerMask itemLayer;
     [SerializeField] LayerMask buffLayer;
+    [SerializeField] LayerMask torchLayer;
     private InventorySystem inventorySystem;
+
+    [SerializeField] private GameObject torch;
+    private Torch torchSystem;
 
     //[SerializeField] TextMeshProUGUI txt_HoveredItem;
     void Start()
     {
         inventorySystem = player.GetComponent<InventorySystem>();
+        torchSystem = torch.GetComponent<Torch>();
     }
 
     // Update is called once per frame
@@ -43,7 +48,15 @@ public class ItemInteraction : MonoBehaviour
 
                 inventorySystem.PickUpBuff(hit.collider.gameObject);
                 hit.collider.gameObject.SetActive(false);
-            } else
+            }
+            else if (Physics.Raycast(cam.position, cam.forward, out hit, takeDistance, torchLayer))
+            {
+                Debug.Log(hit.collider.gameObject);
+                torchSystem.addPercentages(hit.collider.gameObject.GetComponent<TorchObject>().torchPeace.Percents);
+                Destroy(hit.collider.gameObject);
+                
+            }
+            else
             {
                 //Ã¡  ¿ Œ…-“Œ «¬”  œ–Œ»√–€¬¿“‹?
             }

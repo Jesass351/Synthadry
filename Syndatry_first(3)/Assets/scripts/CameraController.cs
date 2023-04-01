@@ -30,7 +30,7 @@ public class CameraController : MonoBehaviour
         }
         rot.y = rot.y + MouseX;
 
-        transform.eulerAngles =  rot;
+        transform.eulerAngles = rot;
         player.transform.eulerAngles = new Vector3(0, rot.y, 0);
     }
 }
