@@ -1,4 +1,4 @@
-using System;
+/*using System;
 using UnityEngine;
 using System.Collections;
 
@@ -33,9 +33,9 @@ public class CameraController : MonoBehaviour
         transform.eulerAngles = rot;
         player.transform.eulerAngles = new Vector3(0, rot.y, 0);
     }
-}
+}*/
 
-/*using System;
+using System;
 using UnityEngine;
 using System.Collections;
 
@@ -122,7 +122,7 @@ public class CameraController : MonoBehaviour
     {
         while (transform.localPosition != newPos)
         {
-            transform.localPosition = Vector3.Lerp(transform.localPosition, newPos, Time.deltaTime * 5);
+            transform.localPosition = Vector3.Lerp(transform.localPosition, newPos, Time.deltaTime);
             yield return new WaitForSeconds(Time.deltaTime);
         }
     }
@@ -132,8 +132,8 @@ public class CameraController : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         while(transform.localPosition != initialCameraPosition)
         {
-            transform.localPosition = Vector3.Lerp(transform.localPosition, initialCameraPosition, Time.deltaTime * 5);
+            transform.localPosition = Vector3.Lerp(transform.localPosition, initialCameraPosition, Time.deltaTime);
             yield return new WaitForSeconds(Time.deltaTime);
         }
     }
-}*/
+}
