@@ -1,4 +1,4 @@
-using System.Collections;
+Ôªøusing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -10,22 +10,30 @@ public class InventorySystem : MonoBehaviour
 {
     [SerializeField] private Transform player;
 
-    [SerializeField] private List<GameObject> mainGuns;
-    [SerializeField] private List<GameObject> extraGuns;
+    public List<GameObject> mainGuns;
+    public List<GameObject> extraGuns;
 
     [SerializeField] private List<GameObject> UiMainGuns;
+/*   0 - –∏–∫–æ–Ω–∫–∞
+     1 - —Å–µ–π—á–∞—Å –ø–∞—Ä—Ç—Ä–æ–Ω–æ–≤
+     2 - –≤—Å–µ–≥–æ –ø–∞—Ç—Ä–æ–Ω–æ–≤*/
+
     [SerializeField] private List<GameObject> UiExtraGuns;
+/*   0 - –∏–∫–æ–Ω–∫–∞
+     1 - –∫–æ–ª–∏—á–µ—Å—Ç–≤–æ*/
 
     [SerializeField] private int activeMainGun = 0;
 
 
     [SerializeField] private List<GameObject> UiBuffs;
 
-    [SerializeField] private List<GameObject> hpBuffs;
-    [SerializeField] private List<GameObject> powerBuffs;
-    [SerializeField] private List<GameObject> speedBuffs;
+    public List<GameObject> hpBuffs;
+    public List<GameObject> powerBuffs;
+    public List<GameObject> speedBuffs;
 
     [SerializeField] private int activeBuff = 0;
+
+    private ItemObject itemObject;
 
     private List<int> notEmpty;
     // Start is called before the first frame update
@@ -37,7 +45,7 @@ public class InventorySystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q)) //—Ã≈Õ¿ ¿ “»¬ÕŒ√Œ ¡¿‘‘¿
+        if (Input.GetKeyDown(KeyCode.Q)) //–°–ú–ï–ù–ê –ê–ö–¢–ò–í–ù–û–ì–û –ë–ê–§–§–ê
         {
             activeBuff = (activeBuff + 1) % 3;
             UpdateInventoryUIBuffs();
@@ -57,17 +65,17 @@ public class InventorySystem : MonoBehaviour
             activeMainGun = 2;
             UpdateInventoryUIItems(activeMainGun);
         }
-        if (Input.GetKeyDown(KeyCode.G)) //¬€ »Õ”“‹ œ–≈ƒÃ≈“
+        if (Input.GetKeyDown(KeyCode.G)) //–í–´–ö–ò–ù–£–¢–¨ –ü–†–ï–î–ú–ï–¢
         {
             DiscardTheItem(activeMainGun);
             UpdateInventoryUIItems(activeMainGun);
         }
-        if (Input.GetAxis("Mouse ScrollWheel") > 0f) // ŒÀ®—» ŒÃ ¬œ≈–®ƒ
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f) //–ö–û–õ–Å–°–ò–ö–û–ú –í–ü–ï–†–Å–î
         {
             activeMainGun = (activeMainGun + 1) % 3;
             UpdateInventoryUIItems(activeMainGun);
         }
-        if (Input.GetAxis("Mouse ScrollWheel") < 0f) // ŒÀ®—» ŒÃ Õ¿«¿ƒ
+        if (Input.GetAxis("Mouse ScrollWheel") < 0f) //–ö–û–õ–Å–°–ò–ö–û–ú –ù–ê–ó–ê–î
         {
             activeMainGun = (3 + activeMainGun - 1) % 3;
             UpdateInventoryUIItems(activeMainGun);
@@ -75,12 +83,22 @@ public class InventorySystem : MonoBehaviour
     }
 
 
-    //-------------œŒƒŒ¡–¿“‹ »À» ¬€¡–Œ—»“‹ œ–≈ƒÃ≈“ (Œ–”∆»≈ » √–¿Õ¿“€)---------------
+    //-------------–ü–û–î–û–ë–†–ê–¢–¨ –ò–õ–ò –í–´–ë–†–û–°–ò–¢–¨ –ü–†–ï–î–ú–ï–¢ (–û–†–£–ñ–ò–ï –ò –ì–†–ê–ù–ê–¢–´)---------------
     public void DiscardTheItem(int active)
     {
         mainGuns[active].transform.position = player.position;
         mainGuns[active].SetActive(true);
         mainGuns.Remove(mainGuns[active]);
+        if (mainGuns[active - 1] != null)
+        {
+            active = active - 1;
+        } else if (mainGuns[active + 1] != null)
+        {
+            active = active + 1;
+        } else
+        {
+            active = 0;
+        }
     }
     public void PickUpItem(GameObject item)
     {
@@ -99,7 +117,7 @@ public class InventorySystem : MonoBehaviour
             } else
             {
                 Debug.Log("---------");
-                Debug.Log("ŒÒÌÓ‚ÌÓÈ ËÌ‚ÂÌÚ‡¸ ÛÊÂ ÔÓÎÌ˚È");
+                Debug.Log("–û—Å–Ω–æ–≤–Ω–æ–π –∏–Ω–≤–µ–Ω—Ç–∞—Ä—å —É–∂–µ –ø–æ–ª–Ω—ã–π");
             }
 
         }
@@ -116,7 +134,7 @@ public class InventorySystem : MonoBehaviour
             else
             {
                 Debug.Log("---------");
-                Debug.Log("ƒÓÔÓÎÌËÚÂÎ¸Ì˚È („‡Ì‡ÚÌ˚È) ËÌ‚ÂÌÚ‡¸ ÛÊÂ ÔÓÎÌ˚È");
+                Debug.Log("–î–æ–ø–æ–ª–Ω–∏—Ç–µ–ª—å–Ω—ã–π (–≥—Ä–∞–Ω–∞—Ç–Ω—ã–π) –∏–Ω–≤–µ–Ω—Ç–∞—Ä—å —É–∂–µ –ø–æ–ª–Ω—ã–π");
             }
 
         }
@@ -139,19 +157,42 @@ public class InventorySystem : MonoBehaviour
         if (mainGuns.Count > 0)
         {
             UiMainGuns[0].SetActive(true);
+            UiMainGuns[1].SetActive(true);
+            UiMainGuns[2].SetActive(true);
+            itemObject = mainGuns[active].GetComponent<ItemObject>();
             UiMainGuns[0].GetComponent<Image>().sprite = mainGuns[active].GetComponent<ItemObject>().itemStat.iconActive1K;
+            if (itemObject.itemStat.type.ToString() is "coldWeapons")
+            {
+                UiMainGuns[1].GetComponent<TextMeshProUGUI>().text = "";
+                UiMainGuns[2].GetComponent<TextMeshProUGUI>().text = "";
+            } else
+            {
+                UiMainGuns[1].GetComponent<TextMeshProUGUI>().text = mainGuns[active].GetComponent<ItemObject>().currentAmmo.ToString();
+                UiMainGuns[2].GetComponent<TextMeshProUGUI>().text = "/ " + mainGuns[active].GetComponent<ItemObject>().allAmmo.ToString();
+            }
+        } else
+        {
+            UiMainGuns[0].SetActive(false);
+            UiMainGuns[1].SetActive(false);
+            UiMainGuns[2].SetActive(false);
         }
         if (extraGuns.Count > 0)
         {
             UiExtraGuns[0].SetActive(true);
-            UiExtraGuns[1].SetActive(true);
+
             UiExtraGuns[0].GetComponent<Image>().sprite = extraGuns[0].GetComponent<ItemObject>().itemStat.iconActive1K;
+
             UiExtraGuns[1].GetComponent<TextMeshProUGUI>().text = extraGuns.Count.ToString();
+            
+
+        } else
+        {
+            UiExtraGuns[0].SetActive(false);
         }
     }
 
 
-    //-------------œŒƒŒ¡–¿“‹ ¡¿‘‘€ (’œ, —»À¿, — Œ–Œ—“‹)---------------
+    //-------------–ü–û–î–û–ë–†–ê–¢–¨ –ë–ê–§–§–´ (–•–ü, –°–ò–õ–ê, –°–ö–û–†–û–°–¢–¨)---------------
     public void PickUpBuff(GameObject item)
     {
         if (item.GetComponent<BuffObject>().BuffStat.type.ToString() is "hp")
@@ -170,7 +211,7 @@ public class InventorySystem : MonoBehaviour
             else
             {
                 Debug.Log("---------");
-                Debug.Log("’œ ËÌ‚ÂÌÚ‡¸ ÛÊÂ ÔÓÎÌ˚È");
+                Debug.Log("–•–ü –∏–Ω–≤–µ–Ω—Ç–∞—Ä—å —É–∂–µ –ø–æ–ª–Ω—ã–π");
             }
         }
         else if (item.GetComponent<BuffObject>().BuffStat.type.ToString() is "speed")
@@ -189,7 +230,7 @@ public class InventorySystem : MonoBehaviour
             else
             {
                 Debug.Log("---------");
-                Debug.Log("Speed ËÌ‚ÂÌÚ‡¸ ÛÊÂ ÔÓÎÌ˚È");
+                Debug.Log("Speed –∏–Ω–≤–µ–Ω—Ç–∞—Ä—å —É–∂–µ –ø–æ–ª–Ω—ã–π");
             }
         }
         else if (item.GetComponent<BuffObject>().BuffStat.type.ToString() is "power")
@@ -208,7 +249,7 @@ public class InventorySystem : MonoBehaviour
             else
             {
                 Debug.Log("---------");
-                Debug.Log("Power ËÌ‚ÂÌÚ‡¸ ÛÊÂ ÔÓÎÌ˚È");
+                Debug.Log("Power –∏–Ω–≤–µ–Ω—Ç–∞—Ä—å —É–∂–µ –ø–æ–ª–Ω—ã–π");
             }
         }
     }

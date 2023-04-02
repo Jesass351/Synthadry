@@ -6,13 +6,19 @@ public class CameraController : MonoBehaviour
 {
     [SerializeField] private GameObject player; //target
 
-    [SerializeField] private float sensitivityX = 2;
-    [SerializeField] private float sensitivityY = 2;
+    public float sensitivityX = 2;
+    public float sensitivityY = 2;
 
     [SerializeField] private int maxAngleUp = 65; //вниз
     [SerializeField] private int maxAngleDown = 65; //вверх
 
     Vector3 rot = new Vector3(0, 0, 0);
+
+    public void ChangeSensitivity(int x, int y)
+    {
+        sensitivityX = x;
+        sensitivityY = y;
+    }
 
     void Update()
     {

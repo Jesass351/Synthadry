@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 3279947223233939230}
   - component: {fileID: 2543294952961663733}
   - component: {fileID: 6954218800145993539}
-  - component: {fileID: 3016802450668113137}
+  - component: {fileID: 6492194196238033118}
   m_Layer: 0
   m_Name: Icosphere_LOD0
   m_TagString: Untagged
@@ -147,8 +147,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &3016802450668113137
-CapsuleCollider:
+--- !u!65 &6492194196238033118
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -157,10 +157,9 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.0027800705
-  m_Height: 0.115941785
-  m_Direction: 2
-  m_Center: {x: 0.00037303596, y: 0.00054347044, z: -0.07223872}
+  serializedVersion: 2
+  m_Size: {x: 0.0061025787, y: 0.0051931897, z: 0.059226613}
+  m_Center: {x: 0.00033170343, y: 0.0011045759, z: -0.081795104}
 --- !u!1 &8021346175604647606
 GameObject:
   m_ObjectHideFlags: 0
@@ -172,7 +171,6 @@ GameObject:
   - component: {fileID: 716448274177909596}
   - component: {fileID: 8063615051872820768}
   - component: {fileID: 6580907237949156264}
-  - component: {fileID: 4228721736269828772}
   m_Layer: 0
   m_Name: Icosphere_LOD1
   m_TagString: Untagged
@@ -246,20 +244,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &4228721736269828772
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8021346175604647606}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.0027800705
-  m_Height: 0.115941785
-  m_Direction: 2
-  m_Center: {x: 0.00037303596, y: 0.00054347044, z: -0.07223872}
 --- !u!1 &8914203435549839552
 GameObject:
   m_ObjectHideFlags: 0
@@ -271,7 +255,6 @@ GameObject:
   - component: {fileID: 3807861063186063655}
   - component: {fileID: 7180077884005551212}
   - component: {fileID: 5501334864285899687}
-  - component: {fileID: 8602546417251108410}
   m_Layer: 0
   m_Name: Icosphere_LOD2
   m_TagString: Untagged
@@ -345,17 +328,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &8602546417251108410
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8914203435549839552}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.0027800705
-  m_Height: 0.115941785
-  m_Direction: 2
-  m_Center: {x: 0.00037303596, y: 0.00054347044, z: -0.07223872}

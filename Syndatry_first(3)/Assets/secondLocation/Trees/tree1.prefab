@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 2843266477099243383}
   - component: {fileID: 1498268428514425526}
   - component: {fileID: 725592141325027205}
+  - component: {fileID: 1779761283503936602}
+  - component: {fileID: 6781524686914138369}
   m_Layer: 0
   m_Name: OakTree2_LOD0
   m_TagString: Untagged
@@ -99,6 +101,34 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 74795996981025115, guid: 11bd18f9e52be4f489134a17c784ad7a, type: 3}
+--- !u!136 &1779761283503936602
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487659986417834648}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.01371443
+  m_Height: 0.027428865
+  m_Direction: 2
+  m_Center: {x: 0.000496521, y: 0.0023572827, z: 0.0012290359}
+--- !u!136 &6781524686914138369
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487659986417834648}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.023796272
+  m_Height: 0
+  m_Direction: 2
+  m_Center: {x: 0.0061338423, y: 0.002196777, z: 0.03247651}
 --- !u!1 &3416168391123708451
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,6 +203,8 @@ GameObject:
   - component: {fileID: 7173681829903005673}
   - component: {fileID: 7773882425961725857}
   - component: {fileID: 1989898501205370795}
+  - component: {fileID: 4677290331873706629}
+  - component: {fileID: 4508649059503851908}
   m_Layer: 0
   m_Name: OakTree2_LOD1
   m_TagString: Untagged
@@ -260,6 +292,34 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -5654848095129832937, guid: 11bd18f9e52be4f489134a17c784ad7a, type: 3}
+--- !u!136 &4677290331873706629
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7603114405985351297}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.023796272
+  m_Height: 0
+  m_Direction: 2
+  m_Center: {x: 0.0061338423, y: 0.002196777, z: 0.03247651}
+--- !u!136 &4508649059503851908
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7603114405985351297}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.01371443
+  m_Height: 0.027428865
+  m_Direction: 2
+  m_Center: {x: 0.000496521, y: 0.0023572827, z: 0.0012290359}
 --- !u!1 &8566170372733404172
 GameObject:
   m_ObjectHideFlags: 0
@@ -272,6 +332,8 @@ GameObject:
   - component: {fileID: 1750631892461797063}
   - component: {fileID: 3509479744915437630}
   - component: {fileID: 6046442080481472670}
+  - component: {fileID: 60523118357780545}
+  - component: {fileID: 3155222212604008822}
   m_Layer: 0
   m_Name: OakTree2_LOD2
   m_TagString: Untagged
@@ -359,3 +421,31 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -7163072257449193684, guid: 11bd18f9e52be4f489134a17c784ad7a, type: 3}
+--- !u!136 &60523118357780545
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8566170372733404172}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.01371443
+  m_Height: 0.027428865
+  m_Direction: 2
+  m_Center: {x: 0.000496521, y: 0.0023572827, z: 0.0012290359}
+--- !u!136 &3155222212604008822
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8566170372733404172}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.023796272
+  m_Height: 0
+  m_Direction: 2
+  m_Center: {x: 0.0061338423, y: 0.002196777, z: 0.03247651}
