@@ -114,6 +114,7 @@ public class CustomCharacterController : MonoBehaviour
 
         horisontal = Input.GetAxis("Horizontal") * animationInterpolation;
         vertical = Input.GetAxis("Vertical") * animationInterpolation;
+
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, mainCamera.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
 
         if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.LeftShift))
