@@ -1,4 +1,4 @@
-/*using System;
+using System;
 using UnityEngine;
 using System.Collections;
 
@@ -33,9 +33,9 @@ public class CameraController : MonoBehaviour
         transform.eulerAngles = rot;
         player.transform.eulerAngles = new Vector3(0, rot.y, 0);
     }
-}*/
+}
 
-using System;
+/*using System;
 using UnityEngine;
 using System.Collections;
 
@@ -51,7 +51,7 @@ public class CameraController : MonoBehaviour
 
     private Vector3 initialCameraPosition;
     Vector3 rot = new Vector3(0, 0, 0);
-    float cameraMoveOffset = 0.04f;
+    float cameraMoveOffset = 0.02f;
     private bool isIdle = false;
     private Coroutine resetCameraCoroutine;
     private Coroutine setPosCameraCoroutine;
@@ -136,4 +136,4 @@ public class CameraController : MonoBehaviour
             yield return new WaitForSeconds(Time.deltaTime);
         }
     }
-}
+}*/
