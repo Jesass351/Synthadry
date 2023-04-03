@@ -1,12 +1,3 @@
-/*
-MESSAGE FROM CREATOR: This script was coded by Mena. You can use it in your games either these are commercial or
-personal projects. You can even add or remove functions as you wish. However, you cannot sell copies of this
-script by itself, since it is originally distributed as a free product.
-I wish you the best for your project. Good luck!
-
-P.S: If you need more cars, you can check my other vehicle assets on the Unity Asset Store, perhaps you could find
-something useful for your game. Best regards, Mena.
-*/
 
 using System;
 using System.Collections;
@@ -16,11 +7,13 @@ using UnityEngine.UI;
 
 public class PrometeoCarController : MonoBehaviour
 {
+    [SerializeField] private List<GameObject> brakeLight;
+    public int a;
 
     //CAR SETUP
 
-      [Space(20)]
-      //[Header("CAR SETUP")]
+    [Space(20)]
+    //[Header("CAR SETUP")]
       [Space(10)]
       [Range(20, 190)]
       public int maxSpeed = 90; //The maximum speed that the car can reach in km/h.
@@ -42,21 +35,24 @@ public class PrometeoCarController : MonoBehaviour
       public int handbrakeDriftMultiplier = 5; // How much grip the car loses when the user hit the handbrake.
       [Space(10)]
       public Vector3 bodyMassCenter; // This is a vector that contains the center of mass of the car. I recommend to set this value
-                                    // in the points x = 0 and z = 0 of your car. You can select the value that you want in the y axis,
-                                    // however, you must notice that the higher this value is, the more unstable the car becomes.
-                                    // Usually the y value goes from 0 to 1.5.
+                                     // in the points x = 0 and z = 0 of your car. You can select the value that you want in the y axis,
+                                     // however, you must notice that the higher this value is, the more unstable the car becomes.
+                                     // Usually the y value goes from 0 to 1.5.
 
     //WHEELS
 
-      //[Header("WHEELS")]
+    //[Header("WHEELS")]
 
-      /*
-      The following variables are used to store the wheels' data of the car. We need both the mesh-only game objects and wheel
-      collider components of the wheels. The wheel collider components and 3D meshes of the wheels cannot come from the same
-      game object; they must be separate game objects.
-      */
-      public GameObject frontLeftMesh;
-      public WheelCollider frontLeftCollider;
+    /*
+    The following variables are used to store the wheels' data of the car. We need both the mesh-only game objects and wheel
+    collider components of the wheels. The wheel collider components and 3D meshes of the wheels cannot come from the same
+    game object; they must be separate game objects.
+    */
+    [Space(10)]
+
+    [Space(10)]
+    public GameObject frontLeftMesh;
+    public WheelCollider frontLeftCollider;
       [Space(10)]
       public GameObject frontRightMesh;
       public WheelCollider frontRightCollider;
@@ -158,6 +154,24 @@ public class PrometeoCarController : MonoBehaviour
       WheelFrictionCurve RRwheelFriction;
       float RRWextremumSlip;
 
+    void BrakeLightOn()
+    {
+        for (var i = 0; i < brakeLight.Count; i++)
+        {
+            brakeLight[i].SetActive(true);
+        }
+    }
+
+    void BrakeLightOff()
+    {
+        if (brakeLight[0].activeInHierarchy)
+        {
+            for (var i = 0; i < brakeLight.Count; i++)
+            {
+                brakeLight[i].SetActive(false);
+            }
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {

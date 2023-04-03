@@ -2,21 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UseCar : MonoBehaviour
+public class NewUseCar : MonoBehaviour
 {
+    [SerializeField] private GameObject car;
+    [SerializeField] private List<GameObject> wheelColliders;
     [SerializeField] private GameObject player;
+    [SerializeField] private Transform outPos;
     [SerializeField] private GameObject carCamera;
-    [SerializeField] private GameObject realCar;
-    [SerializeField] private GameObject fakeCar;
-    [SerializeField] private GameObject collider;
-    [SerializeField] private Transform OutPoint;
 
-    public bool canEnter = false;
+
+    private bool canEnter = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        car.GetComponent<PrometeoCarController>().enabled = false;
+        for (var i = 0; i < wheelColliders.Count; i++)
+        {
+            wheelColliders[i].SetActive(false);
+        }
     }
+
+
 
     // Update is called once per frame
     void Update()
@@ -28,10 +35,13 @@ public class UseCar : MonoBehaviour
                 if (player.activeInHierarchy)
                 {
                     player.SetActive(false);
-                    realCar.SetActive(true);
                     carCamera.SetActive(true);
-                    carCamera.GetComponent<CarCamera>().target = realCar.transform;
-                    fakeCar.SetActive(false);
+                    carCamera.GetComponent<CarCamera>().target = car.transform;
+                    for (var i = 0; i < wheelColliders.Count; i++)
+                    {
+                        wheelColliders[i].SetActive(true);
+                    }
+                    car.GetComponent<PrometeoCarController>().enabled = true;
                 }
                 canEnter = false;
 
@@ -39,18 +49,19 @@ public class UseCar : MonoBehaviour
             }
             else
             {
-                player.transform.position = OutPoint.position;
+                player.transform.position = outPos.position;
                 player.SetActive(true);
-                realCar.SetActive(false);
                 carCamera.SetActive(false);
-                fakeCar.transform.position = realCar.transform.position;
-                fakeCar.transform.rotation = realCar.transform.rotation;
-                collider.transform.position = realCar.transform.position;
-                fakeCar.SetActive(true);
+                car.GetComponent<PrometeoCarController>().enabled = false;
+                for (var i = 0; i < wheelColliders.Count; i++)
+                {
+                    wheelColliders[i].SetActive(false);
+                }
                 canEnter = false;
             }
         }
     }
+
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")

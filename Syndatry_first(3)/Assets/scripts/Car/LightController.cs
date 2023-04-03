@@ -5,6 +5,26 @@ using UnityEngine;
 public class LightController : MonoBehaviour
 {
     [SerializeField] private List<GameObject> headLight;
+    [SerializeField] private List<GameObject> headLight3d;
+
+    [SerializeField] private List<GameObject> rearLight;
+    [SerializeField] private List<GameObject> rearLight3d;
+
+    [SerializeField] private List<GameObject> topLight;
+    [SerializeField] private List<GameObject> topLight3d;
+
+    [SerializeField] private GameObject player;
+
+    [SerializeField] private int phaseCount = 3;
+
+    private int phase = 0;
+
+/*    Например с балкой:
+        0 - всё выкл
+        1 - только ближний
+        2 - ближний + балка*/
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,18 +34,59 @@ public class LightController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.B))
+        if (Input.GetKeyDown(KeyCode.H))
         {
-            for (var i = 0; i < headLight.Count; i++)
+            if (!player.activeInHierarchy)
             {
-                if (headLight[i].activeInHierarchy)
+                phase = (phase + 1) % phaseCount;
+            }
+            phaseController(phase);
+
+        }
+    }
+
+    void phaseController(int num)
+    {
+        switch (num)
+        {
+            case 0:
+                for (var i = 0; i < headLight.Count; i++)
                 {
                     headLight[i].SetActive(false);
-                } else
+                    headLight3d[i].SetActive(false);
+                    rearLight3d[i].SetActive(false);
+                    rearLight[i].SetActive(false);
+                }
+                if (topLight.Count > 0)
+                {
+                    for (var i = 0; i < topLight.Count; i++)
+                    {
+                        topLight[i].SetActive(false);
+                        topLight3d[i].SetActive(false);
+                    }
+                }
+                break;
+
+            case 1:
+                for (var i = 0; i < headLight.Count; i++)
                 {
                     headLight[i].SetActive(true);
+                    headLight3d[i].SetActive(true);
+                    rearLight3d[i].SetActive(true);
+                    rearLight[i].SetActive(true);
                 }
-            }
+                break;
+            case 2:
+                if (topLight.Count > 0)
+                {
+                    for (var i = 0; i < topLight.Count; i++)
+                    {
+                        topLight[i].SetActive(true);
+                        topLight3d[i].SetActive(true);
+                    }
+                }
+                break;
+
         }
     }
 }
