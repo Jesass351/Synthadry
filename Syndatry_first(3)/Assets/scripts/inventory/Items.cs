@@ -39,6 +39,8 @@ public class Items : ScriptableObject
     public Types type;
     public Rarity rarity;
     public TypeOfMissile typeOfMissile;
+    public float damage; //(0-100)
+    public float rateOfFire; //(0-100)
     public int maximumAmmo; //в барабане/магазине я хз
 
 }

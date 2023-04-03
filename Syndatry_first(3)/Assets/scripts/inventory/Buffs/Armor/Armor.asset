@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b04fe46bf69679b4c9d29131b537f0d4, type: 3}
-  m_Name: Power
+  m_Name: Armor
   m_EditorClassIdentifier: 
   id: 201
   itemName: Powe Boost

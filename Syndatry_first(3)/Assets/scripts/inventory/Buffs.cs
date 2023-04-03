@@ -15,7 +15,7 @@ public class Buffs : ScriptableObject
     {
         hp,
         speed,
-        power
+        armor
     };
 
     public enum Rarity

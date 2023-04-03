@@ -28,18 +28,19 @@ public class InventorySystem : MonoBehaviour
     [SerializeField] private List<GameObject> UiBuffs;
 
     public List<GameObject> hpBuffs;
-    public List<GameObject> powerBuffs;
+    public List<GameObject> armorBuffs;
     public List<GameObject> speedBuffs;
 
     [SerializeField] private int activeBuff = 0;
 
     private ItemObject itemObject;
 
-    private List<int> notEmpty;
+    private HPAndArmor hpAndArmor;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        hpAndArmor = player.GetComponent<HPAndArmor>();
     }
 
     // Update is called once per frame
@@ -50,6 +51,13 @@ public class InventorySystem : MonoBehaviour
             activeBuff = (activeBuff + 1) % 3;
             UpdateInventoryUIBuffs();
         }
+
+        if (Input.GetKeyDown(KeyCode.X)) //СМЕНА АКТИВНОГО БАФФА
+        {
+            UseBuff(activeBuff);
+            UpdateInventoryUIBuffs();
+        }
+
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             activeMainGun = 0;
@@ -91,15 +99,22 @@ public class InventorySystem : MonoBehaviour
         mainGuns.Remove(mainGuns[active]);
         if (mainGuns[active - 1] != null)
         {
-            active = active - 1;
+            activeMainGun = active - 1;
         } else if (mainGuns[active + 1] != null)
         {
-            active = active + 1;
+            activeMainGun = active + 1;
         } else
         {
-            active = 0;
+            activeMainGun = 0;
         }
+        UpdateInventoryUIItems(activeMainGun);
     }
+
+    public void SetActiveMainGun(int active)
+    {
+        activeMainGun = active;
+    }
+
     public void PickUpItem(GameObject item)
     {
         if (item.GetComponent<ItemObject>().itemStat.type.ToString() is "firearms" || item.GetComponent<ItemObject>().itemStat.type.ToString() is "coldWeapons")
@@ -163,8 +178,8 @@ public class InventorySystem : MonoBehaviour
             UiMainGuns[0].GetComponent<Image>().sprite = mainGuns[active].GetComponent<ItemObject>().itemStat.iconActive1K;
             if (itemObject.itemStat.type.ToString() is "coldWeapons")
             {
-                UiMainGuns[1].GetComponent<TextMeshProUGUI>().text = "";
-                UiMainGuns[2].GetComponent<TextMeshProUGUI>().text = "";
+                UiMainGuns[1].GetComponent<TextMeshProUGUI>().text = "∞";
+                UiMainGuns[2].GetComponent<TextMeshProUGUI>().text = "/ ∞";
             } else
             {
                 UiMainGuns[1].GetComponent<TextMeshProUGUI>().text = mainGuns[active].GetComponent<ItemObject>().currentAmmo.ToString();
@@ -233,23 +248,23 @@ public class InventorySystem : MonoBehaviour
                 Debug.Log("Speed инвентарь уже полный");
             }
         }
-        else if (item.GetComponent<BuffObject>().BuffStat.type.ToString() is "power")
+        else if (item.GetComponent<BuffObject>().BuffStat.type.ToString() is "armor")
         {
-            if (powerBuffs.Count < 9)
+            if (armorBuffs.Count < 9)
             {
                 Debug.Log("------------");
-                Debug.Log("powerBuffs:");
-                powerBuffs.Add(item);
-                for (int i = 0; i < powerBuffs.Count; i++)
+                Debug.Log("armorBuffs:");
+                armorBuffs.Add(item);
+                for (int i = 0; i < armorBuffs.Count; i++)
                 {
-                    Debug.Log(powerBuffs[i]);
+                    Debug.Log(armorBuffs[i]);
                 }
                 UpdateInventoryUIBuffs();
             }
             else
             {
                 Debug.Log("---------");
-                Debug.Log("Power инвентарь уже полный");
+                Debug.Log("armor инвентарь уже полный");
             }
         }
     }
@@ -264,10 +279,10 @@ public class InventorySystem : MonoBehaviour
             UiBuffs[1].GetComponent<TextMeshProUGUI>().text = hpBuffs.Count.ToString();
             return;
 
-        } else if (activeBuff == 1 && powerBuffs.Count != 0)
+        } else if (activeBuff == 1 && armorBuffs.Count != 0)
         {
-            UiBuffs[0].GetComponent<Image>().sprite = powerBuffs[0].GetComponent<BuffObject>().BuffStat.iconActive1K;
-            UiBuffs[1].GetComponent<TextMeshProUGUI>().text = powerBuffs.Count.ToString();
+            UiBuffs[0].GetComponent<Image>().sprite = armorBuffs[0].GetComponent<BuffObject>().BuffStat.iconActive1K;
+            UiBuffs[1].GetComponent<TextMeshProUGUI>().text = armorBuffs.Count.ToString();
             return;
 
         } else if (activeBuff == 2 && speedBuffs.Count != 0)
@@ -281,5 +296,36 @@ public class InventorySystem : MonoBehaviour
             UiBuffs[1].SetActive(false);
         }
 
+    }
+
+    public void UseBuff(int active)
+    {
+        if (activeBuff == 0 && hpBuffs.Count != 0)
+        {
+            hpAndArmor.TakeHeal(hpBuffs[0].GetComponent<BuffObject>().BuffStat.increase, hpBuffs[0].GetComponent<BuffObject>().BuffStat.type.ToString());
+            hpBuffs.RemoveAt(0);
+            UpdateInventoryUIBuffs();
+            return;
+
+        }
+        else if (activeBuff == 1 && armorBuffs.Count != 0)
+        {
+            hpAndArmor.TakeHeal(armorBuffs[0].GetComponent<BuffObject>().BuffStat.increase, armorBuffs[0].GetComponent<BuffObject>().BuffStat.type.ToString());
+            armorBuffs.RemoveAt(0);
+            UpdateInventoryUIBuffs();
+            return;
+
+        }
+        else if (activeBuff == 2 && speedBuffs.Count != 0)
+        {
+            UiBuffs[0].GetComponent<Image>().sprite = speedBuffs[0].GetComponent<BuffObject>().BuffStat.iconActive1K;
+            UiBuffs[1].GetComponent<TextMeshProUGUI>().text = speedBuffs.Count.ToString();
+            return;
+        }
+        else
+        {
+            UiBuffs[0].SetActive(false);
+            UiBuffs[1].SetActive(false);
+        }
     }
 }

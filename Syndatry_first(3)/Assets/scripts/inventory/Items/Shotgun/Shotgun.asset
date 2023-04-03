@@ -21,5 +21,6 @@ MonoBehaviour:
   type: 0
   rarity: 0
   typeOfMissile: 0
+  damage: 70
+  rateOfFire: 35
   maximumAmmo: 7
-  count: 0
