@@ -13,7 +13,7 @@ public class CustomTooltip : MonoBehaviour
 
     [SerializeField] private Sprite image;
     [SerializeField] private Vector2 imageSize =  new Vector2(40, 40);
-    [SerializeField] private float lerpTime = 30;
+    [SerializeField] private float lerpTime = 50;
 
     private GameObject newPointer;
 
@@ -26,7 +26,15 @@ public class CustomTooltip : MonoBehaviour
         if (newPointer != null)
         {
             Vector3 screenPos = cam.WorldToScreenPoint(gameObject.transform.position);
-            newPointer.transform.position = Vector3.Lerp(newPointer.transform.position, screenPos, lerpTime * Time.deltaTime);
+            if (screenPos.z < 0)
+            {
+                newPointer.SetActive(false);
+            } else
+            {
+                newPointer.SetActive(true);
+                newPointer.transform.position = Vector3.Lerp(newPointer.transform.position, screenPos, lerpTime * Time.deltaTime);
+            }
+
         }
     }
 
