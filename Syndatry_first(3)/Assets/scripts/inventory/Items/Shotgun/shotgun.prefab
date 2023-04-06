@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3422002068625858294}
   - component: {fileID: 5318265475950746883}
   - component: {fileID: 443389480505927734}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: mainPart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 6993794032415917881}
   - component: {fileID: 2723575532225331113}
   - component: {fileID: 6679446261436071581}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: reload
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 6035820932481511865}
   - component: {fileID: 4385496642292451753}
   - component: {fileID: 4118878211255081613}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: shotgun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -251,7 +251,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2304727083689081844}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: BulletSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}

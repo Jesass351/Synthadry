@@ -77,17 +77,21 @@ public class MouseOverPart : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public void ShowActivePart(int number)
     {
         gameObject.GetComponent<Image>().color = new Color(1, 1, 1, 1);
-        if (gameObject.GetComponent<Image>() != null)
+        if (inventorySystem.mainGuns[indexOfUi] != null)
         {
-            if (indexOfUi <= 3)
+            if (gameObject.GetComponent<Image>() != null)
             {
-                inventorySystem.SetActiveMainGun(indexOfUi);
-                inventorySystem.UpdateInventoryUIItems(indexOfUi);
-                SetInfoCenter();
+                if (indexOfUi <= 3)
+                {
+                    inventorySystem.SetActiveMainGun(indexOfUi);
+                    inventorySystem.UpdateInventoryUIItems(indexOfUi);
+                    SetInfoCenter();
+
+                }
 
             }
-
         }
+        
     }
 
     void ClearBuffs()
