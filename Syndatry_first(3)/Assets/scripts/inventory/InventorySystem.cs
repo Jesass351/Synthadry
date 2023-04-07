@@ -37,6 +37,8 @@ public class InventorySystem : MonoBehaviour
 
     private HPAndArmor hpAndArmor;
 
+    [SerializeField] private GrenadeThrow grenadeThrow;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,6 +48,16 @@ public class InventorySystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.T)) //БРОСОК ГРАНАТЫ
+        {
+            if (extraGuns.Count > 0)
+            {
+                grenadeThrow.ThrowGrenade(extraGuns[extraGuns.Count - 1]);
+                extraGuns.RemoveAt(extraGuns.Count - 1);
+                UpdateInventoryUIItems();
+            }
+        }
+
         if (Input.GetKeyDown(KeyCode.Q)) //СМЕНА АКТИВНОГО БАФФА
         {
             activeBuff = (activeBuff + 1) % 3;
@@ -198,11 +210,15 @@ public class InventorySystem : MonoBehaviour
             UiExtraGuns[0].GetComponent<Image>().sprite = extraGuns[0].GetComponent<ItemObject>().itemStat.iconActive1K;
 
             UiExtraGuns[1].GetComponent<TextMeshProUGUI>().text = extraGuns.Count.ToString();
-            
+
+            UiExtraGuns[2].SetActive(true);
 
         } else
         {
             UiExtraGuns[0].SetActive(false);
+            UiExtraGuns[1].GetComponent<TextMeshProUGUI>().text = "";
+            UiExtraGuns[2].SetActive(false);
+
         }
     }
 

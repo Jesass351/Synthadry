@@ -48,6 +48,7 @@ public class ItemInteraction : MonoBehaviour
 
                 inventorySystem.PickUpBuff(hit.collider.gameObject);
                 hit.collider.gameObject.SetActive(false);
+
             }
             else if (Physics.Raycast(cam.position, cam.forward, out hit, takeDistance, torchLayer))
             {
