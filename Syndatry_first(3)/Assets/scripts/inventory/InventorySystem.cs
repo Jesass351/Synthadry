@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using System.Linq;
 using TMPro;
 
+
 public class InventorySystem : MonoBehaviour
 {
     [SerializeField] private Transform player;
@@ -40,6 +41,14 @@ public class InventorySystem : MonoBehaviour
     [SerializeField] private GrenadeThrow grenadeThrow;
 
     [SerializeField] private GameObject mainGunSpawn;
+
+    [Header("КОМПОНЕНТЫ")]
+    [SerializeField] private int fuel = 0;
+    [SerializeField] private int cloth = 0;
+    [SerializeField] private int scrap = 0;
+    [SerializeField] private int plastic = 0;
+    [SerializeField] private int chemBasis = 0;
+    [SerializeField] private int wires = 0;
 
     public void GetActiveMainGun()
     {
@@ -358,5 +367,38 @@ public class InventorySystem : MonoBehaviour
             UiBuffs[0].SetActive(false);
             UiBuffs[1].SetActive(false);
         }
+    }
+
+    public void PickUpComponent(GameObject component)
+    {
+        Debug.Log("123");
+        for (var i = 0; i < component.GetComponent<ComponentsObject>().componentStat.Count; i++)
+        {
+            string type = component.GetComponent<ComponentsObject>().componentStat[i].type.ToString();
+            switch (type){
+                case "fuel":
+                    fuel += component.GetComponent<ComponentsObject>().amount[i];
+                    break;
+                case "cloth":
+                    cloth += component.GetComponent<ComponentsObject>().amount[i];
+                    break;
+                case "scrap":
+                    scrap += component.GetComponent<ComponentsObject>().amount[i];
+                    break;
+                case "plastic":
+                    plastic += component.GetComponent<ComponentsObject>().amount[i];
+                    break;
+                case "chemBasis":
+                    chemBasis += component.GetComponent<ComponentsObject>().amount[i];
+                    break;
+                case "wires":
+                    wires += component.GetComponent<ComponentsObject>().amount[i];
+                    break;
+                case "":
+                    break;
+
+            }
+        }
+        
     }
 }

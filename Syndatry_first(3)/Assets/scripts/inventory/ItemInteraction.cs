@@ -10,6 +10,8 @@ public class ItemInteraction : MonoBehaviour
     [SerializeField] LayerMask itemLayer;
     [SerializeField] LayerMask buffLayer;
     [SerializeField] LayerMask torchLayer;
+    [SerializeField] LayerMask componentLayer;
+
     private InventorySystem inventorySystem;
 
     [SerializeField] private GameObject torch;
@@ -56,6 +58,12 @@ public class ItemInteraction : MonoBehaviour
                 torchSystem.addPercentages(hit.collider.gameObject.GetComponent<TorchObject>().torchPeace.Percents);
                 Destroy(hit.collider.gameObject);
                 
+            }
+            else if (Physics.Raycast(cam.position, cam.forward, out hit, takeDistance, componentLayer))
+            {
+                Debug.Log("4567");
+                inventorySystem.PickUpComponent(hit.collider.gameObject);
+                Destroy(hit.collider.gameObject);
             }
             else
             {
