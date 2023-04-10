@@ -39,6 +39,19 @@ public class InventorySystem : MonoBehaviour
 
     [SerializeField] private GrenadeThrow grenadeThrow;
 
+    [SerializeField] private GameObject mainGunSpawn;
+
+    public void GetActiveMainGun()
+    {
+        foreach (GameObject gun in mainGuns)
+        {
+            gun.SetActive(false);
+        }
+        mainGuns[activeMainGun].SetActive(true);
+        mainGuns[activeMainGun].transform.SetParent(mainGunSpawn.transform);
+        mainGuns[activeMainGun].transform.position = mainGunSpawn.transform.position;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -197,6 +210,8 @@ public class InventorySystem : MonoBehaviour
                 UiMainGuns[1].GetComponent<TextMeshProUGUI>().text = mainGuns[active].GetComponent<ItemObject>().currentAmmo.ToString();
                 UiMainGuns[2].GetComponent<TextMeshProUGUI>().text = "/ " + mainGuns[active].GetComponent<ItemObject>().allAmmo.ToString();
             }
+            /*Debug.Log(GetActiveMainGun());*/
+            GetActiveMainGun();
         } else
         {
             UiMainGuns[0].SetActive(false);
