@@ -1,9 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using System;
 using UnityEngine.UI;
-using System.Linq;
 using TMPro;
 
 
@@ -221,6 +218,7 @@ public class InventorySystem : MonoBehaviour
             }
             /*Debug.Log(GetActiveMainGun());*/
             GetActiveMainGun();
+
         } else
         {
             UiMainGuns[0].SetActive(false);

@@ -37,8 +37,8 @@ public class MouseOverPart : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         center.SetActive(true);
 
         item = inventorySystem.mainGuns[indexOfUi].GetComponent<ItemObject>().itemStat;
-        damageLine.fillAmount = Convert.ToSingle(item.damage / 100);
-        rateLine.fillAmount = Convert.ToSingle(item.rateOfFire / 100);
+        damageLine.fillAmount = Convert.ToSingle(inventorySystem.mainGuns[indexOfUi].GetComponent<ItemObject>().damage / 100);
+        rateLine.fillAmount = Convert.ToSingle(inventorySystem.mainGuns[indexOfUi].GetComponent<ItemObject>().rateOfFire / 100);
 
         switch (item.rarity.ToString())
         {
