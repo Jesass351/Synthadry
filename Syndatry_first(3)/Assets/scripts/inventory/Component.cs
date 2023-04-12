@@ -16,9 +16,9 @@ public class Component : ScriptableObject
     {
         fuel,
         cloth,
-        scrap,
+        metal,
         plastic,
-        chemBasis,
+        chemical,
         wires
     };
 

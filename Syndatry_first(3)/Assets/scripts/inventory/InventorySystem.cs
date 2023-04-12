@@ -40,12 +40,12 @@ public class InventorySystem : MonoBehaviour
     [SerializeField] private GameObject mainGunSpawn;
 
     [Header("КОМПОНЕНТЫ")]
-    [SerializeField] private int fuel = 0;
-    [SerializeField] private int cloth = 0;
-    [SerializeField] private int scrap = 0;
-    [SerializeField] private int plastic = 0;
-    [SerializeField] private int chemBasis = 0;
-    [SerializeField] private int wires = 0;
+    public int fuel = 0;
+    public int cloth = 0;
+    public int metal = 0;
+    public int plastic = 0;
+    public int chemical = 0;
+    public int wires = 0;
 
     public void GetActiveMainGun()
     {
@@ -380,14 +380,14 @@ public class InventorySystem : MonoBehaviour
                 case "cloth":
                     cloth += component.GetComponent<ComponentsObject>().amount[i];
                     break;
-                case "scrap":
-                    scrap += component.GetComponent<ComponentsObject>().amount[i];
+                case "metal":
+                    metal += component.GetComponent<ComponentsObject>().amount[i];
                     break;
                 case "plastic":
                     plastic += component.GetComponent<ComponentsObject>().amount[i];
                     break;
-                case "chemBasis":
-                    chemBasis += component.GetComponent<ComponentsObject>().amount[i];
+                case "chemical":
+                    chemical += component.GetComponent<ComponentsObject>().amount[i];
                     break;
                 case "wires":
                     wires += component.GetComponent<ComponentsObject>().amount[i];
