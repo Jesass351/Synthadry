@@ -12,7 +12,7 @@ public class ShowMenu : MonoBehaviour
         {
             PlayerMenuCanvas.SetActive(true);
             gameObject.SetActive(false);
-            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.lockState = CursorLockMode.None;
             Time.timeScale = 0;
             Time.fixedDeltaTime = Time.timeScale * 0.02f;
         }

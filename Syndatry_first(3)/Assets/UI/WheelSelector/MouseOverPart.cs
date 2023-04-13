@@ -84,7 +84,7 @@ public class MouseOverPart : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
                 if (indexOfUi <= 3)
                 {
                     inventorySystem.SetActiveMainGun(indexOfUi);
-                    inventorySystem.UpdateInventoryUIItems(indexOfUi);
+                    inventorySystem.MainGunsUi.UpdateMainGunsUi(indexOfUi);
                     SetInfoCenter();
 
                 }

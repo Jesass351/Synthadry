@@ -2,23 +2,20 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 
 public class InventorySystem : MonoBehaviour
 {
     [SerializeField] private Transform player;
+    public MainGunsController MainGunsUi;
 
     public List<GameObject> mainGuns;
     public List<GameObject> extraGuns;
 
-    [SerializeField] private List<GameObject> UiMainGuns;
-/*   0 - иконка
-     1 - сейчас партронов
-     2 - всего патронов*/
-
     [SerializeField] private List<GameObject> UiExtraGuns;
-/*   0 - иконка
-     1 - количество*/
+    /*   0 - иконка
+         1 - количество*/
 
     [SerializeField] private int activeMainGun = 0;
 
@@ -83,7 +80,7 @@ public class InventorySystem : MonoBehaviour
             UpdateInventoryUIBuffs();
         }
 
-        if (Input.GetKeyDown(KeyCode.X)) //СМЕНА АКТИВНОГО БАФФА
+        if (Input.GetKeyDown(KeyCode.X)) //ПРИМЕНЕНИЕ АКТИВНОГО БАФФА
         {
             UseBuff(activeBuff);
             UpdateInventoryUIBuffs();
@@ -93,31 +90,65 @@ public class InventorySystem : MonoBehaviour
         {
             activeMainGun = 0;
             UpdateInventoryUIItems(activeMainGun);
+            MainGunsUi.UpdateMainGunsUi(activeMainGun);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            activeMainGun = 1;
-            UpdateInventoryUIItems(activeMainGun);
+            if (mainGuns.Count > 1)
+            {
+                activeMainGun = 1;
+                UpdateInventoryUIItems(activeMainGun);
+                MainGunsUi.UpdateMainGunsUi(activeMainGun);
+            }
+
+
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            activeMainGun = 2;
-            UpdateInventoryUIItems(activeMainGun);
+            if (mainGuns.Count > 2)
+            {
+                activeMainGun = 2;
+                UpdateInventoryUIItems(activeMainGun);
+                MainGunsUi.UpdateMainGunsUi(activeMainGun);
+            }
+
+
         }
         if (Input.GetKeyDown(KeyCode.G)) //ВЫКИНУТЬ ПРЕДМЕТ
         {
             DiscardTheItem(activeMainGun);
+
+            activeMainGun = Math.Max(mainGuns.Count - 1, 0);
+
             UpdateInventoryUIItems(activeMainGun);
+            MainGunsUi.UpdateMainGunsUi(activeMainGun);
         }
         if (Input.GetAxis("Mouse ScrollWheel") > 0f) //КОЛЁСИКОМ ВПЕРЁД
         {
-            activeMainGun = (activeMainGun + 1) % 3;
+            if (mainGuns.Count > 0)
+            {
+                activeMainGun = (activeMainGun + 1) % mainGuns.Count;
+            } else
+            {
+                activeMainGun = 0;
+            }
             UpdateInventoryUIItems(activeMainGun);
+            MainGunsUi.UpdateMainGunsUi(activeMainGun);
+
         }
         if (Input.GetAxis("Mouse ScrollWheel") < 0f) //КОЛЁСИКОМ НАЗАД
         {
-            activeMainGun = (3 + activeMainGun - 1) % 3;
+            if (mainGuns.Count > 0)
+            {
+                activeMainGun = (mainGuns.Count + activeMainGun - 1) % mainGuns.Count;
+            } else
+            {
+                activeMainGun = 0;
+            }
+
             UpdateInventoryUIItems(activeMainGun);
+            MainGunsUi.UpdateMainGunsUi(activeMainGun);
+
         }
     }
 
@@ -128,16 +159,6 @@ public class InventorySystem : MonoBehaviour
         mainGuns[active].transform.position = player.position;
         mainGuns[active].SetActive(true);
         mainGuns.Remove(mainGuns[active]);
-        if (mainGuns[active - 1] != null)
-        {
-            activeMainGun = active - 1;
-        } else if (mainGuns[active + 1] != null)
-        {
-            activeMainGun = active + 1;
-        } else
-        {
-            activeMainGun = 0;
-        }
         UpdateInventoryUIItems(activeMainGun);
     }
 
@@ -159,6 +180,7 @@ public class InventorySystem : MonoBehaviour
                 {
                     Debug.Log(mainGuns[i]);
                 }
+                MainGunsUi.UpdateMainGunsUi(activeMainGun);
                 UpdateInventoryUIItems(activeMainGun);
             } else
             {
@@ -200,31 +222,6 @@ public class InventorySystem : MonoBehaviour
              UiMainGuns[i].GetComponent<Image>().sprite = mainGuns[i].GetComponent<ItemObject>().itemStat.iconDisable1K;
          }
          UiMainGuns[active].GetComponent<Image>().sprite = mainGuns[active].GetComponent<ItemObject>().itemStat.iconActive1K;*/
-        if (mainGuns.Count > 0)
-        {
-            UiMainGuns[0].SetActive(true);
-            UiMainGuns[1].SetActive(true);
-            UiMainGuns[2].SetActive(true);
-            itemObject = mainGuns[active].GetComponent<ItemObject>();
-            UiMainGuns[0].GetComponent<Image>().sprite = mainGuns[active].GetComponent<ItemObject>().itemStat.iconActive1K;
-            if (itemObject.itemStat.type.ToString() is "coldWeapons")
-            {
-                UiMainGuns[1].GetComponent<TextMeshProUGUI>().text = "∞";
-                UiMainGuns[2].GetComponent<TextMeshProUGUI>().text = "/ ∞";
-            } else
-            {
-                UiMainGuns[1].GetComponent<TextMeshProUGUI>().text = mainGuns[active].GetComponent<ItemObject>().currentAmmo.ToString();
-                UiMainGuns[2].GetComponent<TextMeshProUGUI>().text = "/ " + mainGuns[active].GetComponent<ItemObject>().allAmmo.ToString();
-            }
-            /*Debug.Log(GetActiveMainGun());*/
-            GetActiveMainGun();
-
-        } else
-        {
-            UiMainGuns[0].SetActive(false);
-            UiMainGuns[1].SetActive(false);
-            UiMainGuns[2].SetActive(false);
-        }
         if (extraGuns.Count > 0)
         {
             UiExtraGuns[0].SetActive(true);
@@ -369,7 +366,6 @@ public class InventorySystem : MonoBehaviour
 
     public void PickUpComponent(GameObject component)
     {
-        Debug.Log("123");
         for (var i = 0; i < component.GetComponent<ComponentsObject>().componentStat.Count; i++)
         {
             string type = component.GetComponent<ComponentsObject>().componentStat[i].type.ToString();

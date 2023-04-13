@@ -7,6 +7,9 @@ public class CloseMenu : MonoBehaviour
 
     [SerializeField] private GameObject MainCanvas;
     [SerializeField] private GameObject PlayerMenu;
+
+    [SerializeField] private GameObject InventoryPage;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +32,7 @@ public class CloseMenu : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             ShowMainCanvas();
+            InventoryPage.SetActive(false);
         }
     }
 }
