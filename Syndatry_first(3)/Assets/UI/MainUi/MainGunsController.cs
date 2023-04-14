@@ -1,4 +1,4 @@
-using System.Collections;
+п»їusing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,9 +11,9 @@ public class MainGunsController : MonoBehaviour
     [SerializeField] private InventorySystem PlayerInventory;
 
     [SerializeField] private GameObject UiMainGuns;
-    /*   0 - иконка
-         1 - сейчас партронов
-         2 - всего патронов*/
+    /*   0 - РёРєРѕРЅРєР°
+         1 - СЃРµР№С‡Р°СЃ РїР°СЂС‚СЂРѕРЅРѕРІ
+         2 - РІСЃРµРіРѕ РїР°С‚СЂРѕРЅРѕРІ*/
 
     public void UpdateMainGunsUi(int MainGunNum)
     {
@@ -21,8 +21,16 @@ public class MainGunsController : MonoBehaviour
         {
             UiMainGuns.transform.GetChild(1).gameObject.SetActive(true);
             UiMainGuns.transform.GetChild(1).GetComponent<Image>().sprite = PlayerInventory.mainGuns[MainGunNum].GetComponent<ItemObject>().itemStat.iconActive1K;
-            UiMainGuns.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = PlayerInventory.mainGuns[MainGunNum].GetComponent<ItemObject>().allAmmo.ToString();
-            UiMainGuns.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = PlayerInventory.mainGuns[MainGunNum].GetComponent<ItemObject>().currentAmmo.ToString();
+
+            if (PlayerInventory.mainGuns[MainGunNum].GetComponent<ItemObject>().itemStat.typeOfMissile.ToString() is "hand")
+            {
+                UiMainGuns.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = "/в€ћ";
+                UiMainGuns.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = "в€ћ";
+            } else
+            {
+                UiMainGuns.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = "/" + PlayerInventory.mainGuns[MainGunNum].GetComponent<ItemObject>().allAmmo.ToString();
+                UiMainGuns.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = PlayerInventory.mainGuns[MainGunNum].GetComponent<ItemObject>().currentAmmo.ToString();
+            }
         } else
         {
             UiMainGuns.transform.GetChild(1).gameObject.SetActive(false);
