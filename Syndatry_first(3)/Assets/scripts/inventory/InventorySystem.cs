@@ -9,6 +9,7 @@ public class InventorySystem : MonoBehaviour
 {
     [SerializeField] private Transform player;
     public MainGunsController MainGunsUi;
+    public BuffsController BuffsUi;
 
     public List<GameObject> mainGuns;
     public List<GameObject> extraGuns;
@@ -19,12 +20,11 @@ public class InventorySystem : MonoBehaviour
 
     [SerializeField] private int activeMainGun = 0;
 
-
-    [SerializeField] private List<GameObject> UiBuffs;
-
     public List<GameObject> hpBuffs;
     public List<GameObject> armorBuffs;
     public List<GameObject> speedBuffs;
+
+    private int TypeOfBuffsCount = 0;
 
     [SerializeField] private int activeBuff = 0;
 
@@ -77,13 +77,12 @@ public class InventorySystem : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q)) //СМЕНА АКТИВНОГО БАФФА
         {
             activeBuff = (activeBuff + 1) % 3;
-            UpdateInventoryUIBuffs();
+            BuffsUi.UpdateBuffsUi(hpBuffs, armorBuffs, speedBuffs, activeBuff);
         }
 
         if (Input.GetKeyDown(KeyCode.X)) //ПРИМЕНЕНИЕ АКТИВНОГО БАФФА
         {
             UseBuff(activeBuff);
-            UpdateInventoryUIBuffs();
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -211,17 +210,6 @@ public class InventorySystem : MonoBehaviour
 
     public void UpdateInventoryUIItems(int active = 0)
     {
-        /* for (int i = 0; i < UiMainGuns.Count; i++)
-         {
-             UiMainGuns[i].GetComponent<Image>().sprite = null;
-             UiMainGuns[i].SetActive(false);
-         }
-         for (int i = 0; i < mainGuns.Count; i++)
-         {
-             UiMainGuns[i].SetActive(true);
-             UiMainGuns[i].GetComponent<Image>().sprite = mainGuns[i].GetComponent<ItemObject>().itemStat.iconDisable1K;
-         }
-         UiMainGuns[active].GetComponent<Image>().sprite = mainGuns[active].GetComponent<ItemObject>().itemStat.iconActive1K;*/
         if (extraGuns.Count > 0)
         {
             UiExtraGuns[0].SetActive(true);
@@ -256,7 +244,7 @@ public class InventorySystem : MonoBehaviour
                 {
                     Debug.Log(hpBuffs[i]);
                 }
-                UpdateInventoryUIBuffs();
+                BuffsUi.UpdateBuffsUi(hpBuffs, armorBuffs, speedBuffs, activeBuff);
             }
             else
             {
@@ -275,7 +263,7 @@ public class InventorySystem : MonoBehaviour
                 {
                     Debug.Log(speedBuffs[i]);
                 }
-                UpdateInventoryUIBuffs();
+                BuffsUi.UpdateBuffsUi(hpBuffs, armorBuffs, speedBuffs, activeBuff);
             }
             else
             {
@@ -294,7 +282,7 @@ public class InventorySystem : MonoBehaviour
                 {
                     Debug.Log(armorBuffs[i]);
                 }
-                UpdateInventoryUIBuffs();
+                BuffsUi.UpdateBuffsUi(hpBuffs, armorBuffs, speedBuffs, activeBuff);
             }
             else
             {
@@ -304,34 +292,7 @@ public class InventorySystem : MonoBehaviour
         }
     }
 
-    public void UpdateInventoryUIBuffs()
-    {
-        UiBuffs[0].SetActive(true);
-        UiBuffs[1].SetActive(true);
-        if (activeBuff == 0 && hpBuffs.Count != 0)
-        {
-            UiBuffs[0].GetComponent<Image>().sprite = hpBuffs[0].GetComponent<BuffObject>().BuffStat.iconActive1K;
-            UiBuffs[1].GetComponent<TextMeshProUGUI>().text = hpBuffs.Count.ToString();
-            return;
 
-        } else if (activeBuff == 1 && armorBuffs.Count != 0)
-        {
-            UiBuffs[0].GetComponent<Image>().sprite = armorBuffs[0].GetComponent<BuffObject>().BuffStat.iconActive1K;
-            UiBuffs[1].GetComponent<TextMeshProUGUI>().text = armorBuffs.Count.ToString();
-            return;
-
-        } else if (activeBuff == 2 && speedBuffs.Count != 0)
-        {
-            UiBuffs[0].GetComponent<Image>().sprite = speedBuffs[0].GetComponent<BuffObject>().BuffStat.iconActive1K;
-            UiBuffs[1].GetComponent<TextMeshProUGUI>().text = speedBuffs.Count.ToString();
-            return;
-        } else
-        {
-            UiBuffs[0].SetActive(false);
-            UiBuffs[1].SetActive(false);
-        }
-
-    }
 
     public void UseBuff(int active)
     {
@@ -339,7 +300,7 @@ public class InventorySystem : MonoBehaviour
         {
             hpAndArmor.TakeHeal(hpBuffs[0].GetComponent<BuffObject>().BuffStat.increase, hpBuffs[0].GetComponent<BuffObject>().BuffStat.type.ToString());
             hpBuffs.RemoveAt(0);
-            UpdateInventoryUIBuffs();
+            BuffsUi.UpdateBuffsUi(hpBuffs, armorBuffs, speedBuffs, activeBuff);
             return;
 
         }
@@ -347,20 +308,15 @@ public class InventorySystem : MonoBehaviour
         {
             hpAndArmor.TakeHeal(armorBuffs[0].GetComponent<BuffObject>().BuffStat.increase, armorBuffs[0].GetComponent<BuffObject>().BuffStat.type.ToString());
             armorBuffs.RemoveAt(0);
-            UpdateInventoryUIBuffs();
+            BuffsUi.UpdateBuffsUi(hpBuffs, armorBuffs, speedBuffs, activeBuff);
             return;
 
         }
         else if (activeBuff == 2 && speedBuffs.Count != 0)
         {
-            UiBuffs[0].GetComponent<Image>().sprite = speedBuffs[0].GetComponent<BuffObject>().BuffStat.iconActive1K;
-            UiBuffs[1].GetComponent<TextMeshProUGUI>().text = speedBuffs.Count.ToString();
+            speedBuffs.RemoveAt(0);
+            BuffsUi.UpdateBuffsUi(hpBuffs, armorBuffs, speedBuffs, activeBuff);
             return;
-        }
-        else
-        {
-            UiBuffs[0].SetActive(false);
-            UiBuffs[1].SetActive(false);
         }
     }
 
