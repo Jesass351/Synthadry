@@ -6,45 +6,28 @@ public class LightDetection : MonoBehaviour
 {
     private Light m_light;
     private SphereCollider m_sphereCollider;
-    private bool isInRadius;
-
-    public float darkness;
-
-    [SerializeField]
-    private float m_updateTime = .1f;
+    private LightDetectionManager m_lightDetectionManager;
 
     void Start()
     {
         m_light = GetComponent<Light>();
         m_sphereCollider = GetComponent<SphereCollider>();
         m_sphereCollider.radius = m_light.range;
+        m_sphereCollider.isTrigger = true;
+        m_lightDetectionManager = FindObjectOfType(typeof(LightDetectionManager)) as LightDetectionManager;
     }
 
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
-            isInRadius = true;
+            m_lightDetectionManager.SetInRadius(true);
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Player")
-            isInRadius = false;
+            m_lightDetectionManager.SetInRadius(false);
     }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            Vector3 playerPosition = other.transform.position;
-            playerPosition.y = m_light.transform.position.y;
-            darkness = 1 - ((playerPosition - transform.position).magnitude/m_light.range);
-            if (darkness < 0)
-                darkness = 0;
-            Debug.Log("Darkness:" + darkness);
-        }
-    }
-
 }
 
