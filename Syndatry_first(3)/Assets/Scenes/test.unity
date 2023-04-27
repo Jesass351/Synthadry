@@ -17290,12 +17290,12 @@ PrefabInstance:
     - target: {fileID: 1451561389330983326, guid: e186a5a41f8a98a4aabb343fab8d2074,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -375
       objectReference: {fileID: 0}
     - target: {fileID: 1451561389330983326, guid: e186a5a41f8a98a4aabb343fab8d2074,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 7.17
       objectReference: {fileID: 0}
     - target: {fileID: 1451561389330983326, guid: e186a5a41f8a98a4aabb343fab8d2074,
         type: 3}
@@ -17341,6 +17341,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LightDetectionManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5701664937983843632, guid: e186a5a41f8a98a4aabb343fab8d2074,
+        type: 3}
+      propertyPath: enemy
+      value: 
+      objectReference: {fileID: 100000, guid: 92a4ca158c006714da64430ae541b661, type: 3}
+    - target: {fileID: 5701664937983843632, guid: e186a5a41f8a98a4aabb343fab8d2074,
+        type: 3}
+      propertyPath: addEnemySeconds
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5701664937983843632, guid: e186a5a41f8a98a4aabb343fab8d2074,
+        type: 3}
+      propertyPath: maxEnemiesCount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5701664937983843632, guid: e186a5a41f8a98a4aabb343fab8d2074,
+        type: 3}
+      propertyPath: frequencyOfSpawn
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
