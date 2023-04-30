@@ -178,11 +178,17 @@
       }
     },
     "com.unity.render-pipelines.high-definition-config": {
+<<<<<<< Updated upstream
       "version": "file:com.unity.render-pipelines.high-definition-config",
       "depth": 0,
       "source": "embedded",
+=======
+      "version": "14.0.7",
+      "depth": 1,
+      "source": "builtin",
+>>>>>>> Stashed changes
       "dependencies": {
-        "com.unity.render-pipelines.core": "12.1.10"
+        "com.unity.render-pipelines.core": "14.0.7"
       }
     },
     "com.unity.searcher": {
@@ -223,6 +229,7 @@
       "source": "registry",
       "dependencies": {
         "com.unity.sysroot": "2.0.5"
+<<<<<<< Updated upstream
       },
       "url": "https://packages.unity.com"
     },
@@ -233,6 +240,8 @@
       "dependencies": {
         "com.unity.modules.terrain": "1.0.0",
         "com.unity.modules.terrainphysics": "1.0.0"
+=======
+>>>>>>> Stashed changes
       },
       "url": "https://packages.unity.com"
     },

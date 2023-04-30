@@ -252,7 +252,11 @@ Material:
     - _MetallicRemapMin: 0
     - _Mode: 0
     - _NormalMapSpace: 0
+<<<<<<< Updated upstream
     - _NormalScale: 1.27
+=======
+    - _NormalScale: 1
+>>>>>>> Stashed changes
     - _ObjectSpaceUVMapping: 0
     - _ObjectSpaceUVMappingEmissive: 0
     - _OcclusionStrength: 1

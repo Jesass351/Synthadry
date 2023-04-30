@@ -133,7 +133,11 @@ PlayerSettings:
   vulkanEnableLateAcquireNextImage: 0
   vulkanEnableCommandBufferRecycling: 1
   loadStoreDebugModeEnabled: 0
+<<<<<<< Updated upstream
   bundleVersion: 1.1.0
+=======
+  bundleVersion: 1.0.2
+>>>>>>> Stashed changes
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -831,6 +835,7 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
+<<<<<<< Updated upstream
     Android: UNITY_POST_PROCESSING_STACK_V2;HDRP_OUTLINE;EPO_DOTWEEN
     EmbeddedLinux: UNITY_POST_PROCESSING_STACK_V2;HDRP_OUTLINE;EPO_DOTWEEN
     GameCoreScarlett: HDRP_OUTLINE;EPO_DOTWEEN;UNITY_POST_PROCESSING_STACK_V2
@@ -848,6 +853,24 @@ PlayerSettings:
     XboxOne: UNITY_POST_PROCESSING_STACK_V2;HDRP_OUTLINE;EPO_DOTWEEN
     iPhone: HDRP_OUTLINE;EPO_DOTWEEN
     tvOS: UNITY_POST_PROCESSING_STACK_V2;HDRP_OUTLINE;EPO_DOTWEEN
+=======
+    Android: UNITY_POST_PROCESSING_STACK_V2
+    EmbeddedLinux: UNITY_POST_PROCESSING_STACK_V2
+    GameCoreScarlett: UNITY_POST_PROCESSING_STACK_V2
+    GameCoreXboxOne: UNITY_POST_PROCESSING_STACK_V2
+    LinuxHeadlessSimulation: UNITY_POST_PROCESSING_STACK_V2
+    Lumin: UNITY_POST_PROCESSING_STACK_V2
+    Nintendo Switch: UNITY_POST_PROCESSING_STACK_V2
+    PS4: UNITY_POST_PROCESSING_STACK_V2
+    PS5: UNITY_POST_PROCESSING_STACK_V2
+    QNX: UNITY_POST_PROCESSING_STACK_V2
+    Stadia: UNITY_POST_PROCESSING_STACK_V2
+    Standalone: UNITY_POST_PROCESSING_STACK_V2;FIRST_PERSON_CONTROLLER;ULTIMATE_CHARACTER_CONTROLLER_SHOOTER;FIRST_PERSON_SHOOTER;ULTIMATE_CHARACTER_CONTROLLER_HDRP
+    WebGL: UNITY_POST_PROCESSING_STACK_V2
+    Windows Store Apps: UNITY_POST_PROCESSING_STACK_V2
+    XboxOne: UNITY_POST_PROCESSING_STACK_V2
+    tvOS: UNITY_POST_PROCESSING_STACK_V2
+>>>>>>> Stashed changes
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:

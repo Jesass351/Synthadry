@@ -46,7 +46,11 @@ MonoBehaviour:
   m_SampleCount:
     m_OverrideState: 1
     m_Value: 8
+<<<<<<< Updated upstream
 --- !u!114 &-3356073532914153709
+=======
+--- !u!114 &-5746852911060789702
+>>>>>>> Stashed changes
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -62,7 +66,10 @@ MonoBehaviour:
   diffusionProfiles:
     m_OverrideState: 1
     m_Value:
+<<<<<<< Updated upstream
     - {fileID: 11400000, guid: 408261fee13ae8743a9c17e2e9aa779b, type: 2}
+=======
+>>>>>>> Stashed changes
     - {fileID: 11400000, guid: d9e53a93dd4042d42b2ab901814c4acd, type: 2}
     - {fileID: 11400000, guid: d66cb905f2aa82746bf72fce3114f247, type: 2}
 --- !u!114 &-1016694868962581565
@@ -136,7 +143,11 @@ MonoBehaviour:
   - {fileID: 1932259527246508038}
   - {fileID: 448115243408767295}
   - {fileID: -7089757308646879465}
+<<<<<<< Updated upstream
   - {fileID: -3356073532914153709}
+=======
+  - {fileID: -5746852911060789702}
+>>>>>>> Stashed changes
 --- !u!114 &448115243408767295
 MonoBehaviour:
   m_ObjectHideFlags: 3
