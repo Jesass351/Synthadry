@@ -5,7 +5,8 @@ using UnityEngine;
 // необходимо чтобы название скрипта и название класса совпадали
 public class CustomCharacterController : MonoBehaviour
 {
-
+    [SerializeField] private Transform aimTarget;
+    public float multy;
 
     [SerializeField] private List<WeaponBehaviour> inventory = new List<WeaponBehaviour>();
     public List<WeaponBehaviour> Inventory
@@ -69,6 +70,10 @@ public class CustomCharacterController : MonoBehaviour
     }
     private void Update()
     {
+
+        Ray desiredTargetRay = mainCamera.gameObject.GetComponent<Camera>().ScreenPointToRay(new Vector2(Screen.width / 2, Screen.height / 2));
+        Vector3 desiredTargetPosition = desiredTargetRay.origin + desiredTargetRay.direction * multy;
+        aimTarget.position = desiredTargetPosition;
         /* if (canGo)
          {
              horisontal = Input.GetAxis("Horizontal") * animationInterpolation;

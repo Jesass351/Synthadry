@@ -4,7 +4,7 @@ using System.Collections;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] private GameObject player; //target
+/*    [SerializeField] private GameObject player; //target*/
 
     public float sensitivityX = 2;
     public float sensitivityY = 2;
@@ -37,7 +37,7 @@ public class CameraController : MonoBehaviour
         rot.y = rot.y + MouseX;
 
         transform.eulerAngles = rot;
-        player.transform.eulerAngles = new Vector3(0, rot.y, 0);
+/*        player.transform.eulerAngles = new Vector3(0, rot.y, 0);*/
     }
 }
 

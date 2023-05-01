@@ -16,8 +16,8 @@ public class InventoryPage : MonoBehaviour
     [Header("Бафы")]
     [SerializeField] private List<GameObject> BuffsUi;
 
-    [Header("Всякие предметы")]
-    [SerializeField] private GameObject Things;
+/*    [Header("Всякие предметы")]
+    [SerializeField] private GameObject Things;*/
 
     public void OpenInventoryPage()
     {

@@ -27,6 +27,7 @@ public class WorkStationController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("123123123123");
         if (other.tag == "Player")
         {
             CanOpenMenuF = true;
