@@ -5,6 +5,7 @@ using UnityEngine;
 public class NewUseCar : MonoBehaviour
 {
     [SerializeField] private GameObject car;
+    [SerializeField] private GameObject meshColliders;
     [SerializeField] private List<GameObject> wheelColliders;
     [SerializeField] private GameObject player;
     [SerializeField] private Transform outPos;
@@ -35,6 +36,7 @@ public class NewUseCar : MonoBehaviour
                 if (player.activeInHierarchy)
                 {
                     player.SetActive(false);
+                    player.GetComponent<CustomCharacterController>().enabled = false;
                     carCamera.SetActive(true);
                     carCamera.GetComponent<CarCamera>().target = car.transform;
                     for (var i = 0; i < wheelColliders.Count; i++)
@@ -43,6 +45,7 @@ public class NewUseCar : MonoBehaviour
                     }
                     car.GetComponent<PrometeoCarController>().enabled = true;
                 }
+                meshColliders.GetComponent<BoxCollider>().enabled = false;
                 canEnter = false;
 
 
@@ -51,12 +54,14 @@ public class NewUseCar : MonoBehaviour
             {
                 player.transform.position = outPos.position;
                 player.SetActive(true);
+                player.GetComponent<CustomCharacterController>().enabled = true;
                 carCamera.SetActive(false);
                 car.GetComponent<PrometeoCarController>().enabled = false;
                 for (var i = 0; i < wheelColliders.Count; i++)
                 {
                     wheelColliders[i].SetActive(false);
                 }
+                meshColliders.GetComponent<BoxCollider>().enabled = true;
                 canEnter = false;
             }
         }
