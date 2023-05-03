@@ -15,8 +15,12 @@ public class MainGunsController : MonoBehaviour
          1 - сейчас партронов
          2 - всего патронов*/
 
-    public void UpdateMainGunsUi(int MainGunNum)
+    public void UpdateMainGunsUi(int MainGunNum = -1)
     {
+        if (MainGunNum == -1)
+        {
+            MainGunNum = PlayerInventory.activeMainGun;
+        }
         if (MainGunNum < PlayerInventory.mainGuns.Count)
         {
             UiMainGuns.transform.GetChild(1).gameObject.SetActive(true);
@@ -38,23 +42,5 @@ public class MainGunsController : MonoBehaviour
             UiMainGuns.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = "";
             UiMainGuns.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = "";
         }
-
-
-       /* for (var i = 0; i < UiMainGuns.Count; i++)
-        {
-            if (i < PlayerInventory.mainGuns.Count)
-            {
-                UiMainGuns[i].transform.GetChild(1).GetComponent<Image>().sprite = PlayerInventory.mainGuns[i].GetComponent<ItemObject>().itemStat.iconActive1K;
-                UiMainGuns[i].transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = PlayerInventory.mainGuns[i].GetComponent<ItemObject>().allAmmo.ToString();
-                UiMainGuns[i].transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = PlayerInventory.mainGuns[i].GetComponent<ItemObject>().currentAmmo.ToString();
-            } else
-            {
-                UiMainGuns[i].SetActive(false);
-            }
-        }
-        UiMainGuns[MainGunNum].SetActive(true);*/
     }
-
-   
-
 }

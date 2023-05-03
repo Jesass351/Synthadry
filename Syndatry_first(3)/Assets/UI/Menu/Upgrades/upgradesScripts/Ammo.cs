@@ -4,7 +4,7 @@ using TMPro;
 
 public class Ammo : MonoBehaviour
 {
-    [SerializeField] private InventorySystem PlayerInventory;
+    private InventorySystem PlayerInventory;
     [SerializeField] private MaterialUIController MaterialsUi;
     [SerializeField] private ShowInfoMainGun InfoMainGun;
 
@@ -29,7 +29,10 @@ public class Ammo : MonoBehaviour
     public int wires = 0;
 
     public int weaponNum = 0;
-
+    private void Start()
+    {
+        PlayerInventory = GameObject.FindGameObjectWithTag("Player").GetComponent<InventorySystem>();
+    }
     public void CheckUprageLevelAmmo()
     {
         if (PlayerInventory.mainGuns[weaponNum].GetComponent<ItemObject>().levelAmmo == PlayerInventory.mainGuns[weaponNum].GetComponent<ItemObject>().maxLevelAmmo)

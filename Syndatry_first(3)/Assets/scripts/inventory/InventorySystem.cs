@@ -18,7 +18,7 @@ public class InventorySystem : MonoBehaviour
     /*   0 - иконка
          1 - количество*/
 
-    [SerializeField] private int activeMainGun = 0;
+    public int activeMainGun = 0;
 
     public List<GameObject> hpBuffs;
     public List<GameObject> armorBuffs;
@@ -31,10 +31,10 @@ public class InventorySystem : MonoBehaviour
     private ItemObject itemObject;
 
     private HPAndArmor hpAndArmor;
-
+/*
     [SerializeField] private GrenadeThrow grenadeThrow;
 
-    [SerializeField] private GameObject mainGunSpawn;
+    [SerializeField] private GameObject mainGunSpawn;*/
 
     [Header("КОМПОНЕНТЫ")]
     public int fuel = 0;
@@ -44,7 +44,7 @@ public class InventorySystem : MonoBehaviour
     public int chemical = 0;
     public int wires = 0;
 
-    public void GetActiveMainGun()
+/*    public void GetActiveMainGun()
     {
         foreach (GameObject gun in mainGuns)
         {
@@ -53,7 +53,7 @@ public class InventorySystem : MonoBehaviour
         mainGuns[activeMainGun].SetActive(true);
         mainGuns[activeMainGun].transform.SetParent(mainGunSpawn.transform);
         mainGuns[activeMainGun].transform.position = mainGunSpawn.transform.position;
-    }
+    }*/
 
     // Start is called before the first frame update
     void Start()
@@ -64,7 +64,7 @@ public class InventorySystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T)) //БРОСОК ГРАНАТЫ
+/*        if (Input.GetKeyDown(KeyCode.T)) //БРОСОК ГРАНАТЫ
         {
             if (extraGuns.Count > 0)
             {
@@ -72,7 +72,7 @@ public class InventorySystem : MonoBehaviour
                 extraGuns.RemoveAt(extraGuns.Count - 1);
                 UpdateInventoryUIItems();
             }
-        }
+        }*/
 
         if (Input.GetKeyDown(KeyCode.Q)) //СМЕНА АКТИВНОГО БАФФА
         {

@@ -11,13 +11,13 @@ public class ItemObject : MonoBehaviour
 
     [Header("0 - 100")]
     public float damage; 
-    public float rateOfFire; 
+    public float rateOfFire; //100 = 10 выстрелов в секунду (ак74 так стреляет)
 
     [Header("МАКСИМУМ В МАГАЗИНЕ (0 - 99)")]
     public int maximumAmmo; //в барабане/магазине я хз
 
     [Header("СКОРОСТРЕЛЬНОСТЬ")]
-    public int maxLevelRateOfFire = 5;
+    public int maxLevelRateOfFire = 5; //добавляем по 5 к рэйту
     public int levelRateOfFire = 0;
 
     [Header("УРОН")]
@@ -38,9 +38,41 @@ public class ItemObject : MonoBehaviour
     public TextMeshProUGUI allAmmoInGameUi;
     public TextMeshProUGUI currentAmmoInGameUi;
 
+    [Header("СТРЕЛЬБА")]
+    public GameObject bullet;
+    public int bulletAlive;
+    public Transform spawnPoint;
+    /*    public GameObject VFX;*/
+
+
+    private MainGunsController mainGunsController;
+
+
+/*    private void Start()
+    {
+        mainGunsController = GameObject.Find("MainGuns").GetComponent<MainGunsController>();
+    }*/
+
     private void OnEnable()
     {
         UpdateInGameUi();
+    }
+
+    public void Shoot()
+    {
+        //сделай пожалуйста ещё карутины или хз что для скорострельности <3
+        if (currentAmmo > 0)
+        {
+
+
+            currentAmmo -= 1;
+            UpdateInGameUi();
+        } else
+        {
+            //ЗВУК ОСЕЧКИ ИЛИ ПЕРЕЗАРЯДКА (потом сделаю)
+        }
+
+
     }
 
     public void UpdateInGameUi()
@@ -51,6 +83,11 @@ public class ItemObject : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetMouseButton(0))
+        {
+            Shoot();
+        }
+
         if (Input.GetKeyDown(KeyCode.B)) //ВКЛЮЧИТЬ ФОНАРИК
         {
             if (gameObject.activeInHierarchy)

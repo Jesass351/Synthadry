@@ -7,7 +7,7 @@ using TMPro;
 public class Lantern : MonoBehaviour
 {
 
-    [SerializeField] private InventorySystem PlayerInventory;
+    private InventorySystem PlayerInventory;
     [SerializeField] private MaterialUIController MaterialsUi;
 
     [SerializeField] private Button DoButton;
@@ -24,7 +24,10 @@ public class Lantern : MonoBehaviour
     public int wires = 0;
 
     public int weaponNum = 0;
-
+    private void Start()
+    {
+        PlayerInventory = GameObject.FindGameObjectWithTag("Player").GetComponent<InventorySystem>();
+    }
     public void CheckLantern()
     {
         if (!PlayerInventory.mainGuns[weaponNum].transform.Find("lantern")) //еярэ бнглнфмнярэ онярюбхрэ тнмюпхй

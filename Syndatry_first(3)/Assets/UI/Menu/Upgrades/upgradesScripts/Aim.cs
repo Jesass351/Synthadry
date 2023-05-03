@@ -6,7 +6,7 @@ using TMPro;
 
 public class Aim : MonoBehaviour
 {
-    [SerializeField] private InventorySystem PlayerInventory;
+    private InventorySystem PlayerInventory;
     [SerializeField] private MaterialUIController MaterialsUi;
 
 
@@ -24,6 +24,11 @@ public class Aim : MonoBehaviour
     public int wires = 0;
 
     public int weaponNum = 0;
+
+    private void Start()
+    {
+        PlayerInventory = GameObject.FindGameObjectWithTag("Player").GetComponent<InventorySystem>();
+    }
 
     public void CheckAim()
     {
