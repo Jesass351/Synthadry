@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 
-// необходимо чтобы название скрипта и название класса совпадали
+
 public class CustomCharacterController : MonoBehaviour
 {
     [SerializeField] private Transform aimTarget;
     public float multy;
+
+    [SerializeField] private Rig rigRifle;
 
     [SerializeField] private List<WeaponBehaviour> inventory = new List<WeaponBehaviour>();
     public List<WeaponBehaviour> Inventory
@@ -45,10 +48,20 @@ public class CustomCharacterController : MonoBehaviour
 
     private CharacterController characterController;
 
+    private InventorySystem inventorySystem;
+
+    private string activeMainWeaponName;
+
     void Start()
     {
         canvas = FindObjectOfType<Canvas>();
         characterController = GetComponent<CharacterController>();
+        inventorySystem = GetComponent<InventorySystem>();
+    }
+
+    public void UpdateMainGunName(string name)
+    {
+        activeMainWeaponName = name;
     }
     void Run()
     {
@@ -57,6 +70,8 @@ public class CustomCharacterController : MonoBehaviour
         anim.SetFloat("y", vertical * animationInterpolation);
 
         currentSpeed = Mathf.Lerp(currentSpeed, runningSpeed, Time.deltaTime * 3);
+        SetRigWeight(0);
+        anim.SetBool("RifleRunning", true);
     }
     void Walk()
     {
@@ -67,7 +82,22 @@ public class CustomCharacterController : MonoBehaviour
 
         //currentSpeed = Mathf.Lerp(currentSpeed, walkingSpeed, Time.deltaTime * 3);
         currentSpeed = Mathf.Lerp(currentSpeed, walkingSpeed, Time.deltaTime * 3);
+
+        SetRigWeight(1);
+        anim.SetBool("RifleRunning", false);
     }
+
+    void SetRigWeight(float weight, string name = "AK")
+    {
+
+        switch (name)
+        {
+            case "AK":
+                rigRifle.weight = weight;
+                break;
+        }
+    }
+
     private void Update()
     {
 
@@ -122,19 +152,28 @@ public class CustomCharacterController : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, mainCamera.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
 
-        if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.LeftShift))
+        /*        if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.LeftShift))
+                {
+                    if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+                    {
+                        rigRifle.weight = 1f;
+                        anim.SetBool("RifleRunning", false);
+                        Walk();
+                    }
+                    else
+                    {
+
+                    }
+                }*/
+        if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.W)) && Input.GetKey(KeyCode.LeftShift))
         {
-            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
-            {
-                Walk();
-            }
-            else
-            {
-                Run();
-            }
+
+            Run();
         }
         else
         {
+            rigRifle.weight = 1;
+            anim.SetBool("RifleRunning", false);
             Walk();
         }
 

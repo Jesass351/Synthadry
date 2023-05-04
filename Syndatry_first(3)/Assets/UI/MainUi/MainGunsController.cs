@@ -15,8 +15,17 @@ public class MainGunsController : MonoBehaviour
          1 - сейчас партронов
          2 - всего патронов*/
 
+    private CustomCharacterController customCharacterController;
+
+    private void Start()
+    {
+        customCharacterController = GetComponent<CustomCharacterController>();
+    }
+
     public void UpdateMainGunsUi(int MainGunNum = -1)
     {
+        customCharacterController.UpdateMainGunName(PlayerInventory.mainGuns[PlayerInventory.activeMainGun].GetComponent<ItemObject>().itemStat.itemName);
+
         if (MainGunNum == -1)
         {
             MainGunNum = PlayerInventory.activeMainGun;
