@@ -67833,7 +67833,7 @@ MonoBehaviour:
   rig: {fileID: 5866666020237735269}
   mainCamera: {fileID: 373784778}
   jumpForce: 5
-  walkingSpeed: 15
+  walkingSpeed: 10
   runningSpeed: 20
   currentSpeed: 0
   joystick: {fileID: 0}

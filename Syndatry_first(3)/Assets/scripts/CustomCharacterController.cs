@@ -62,11 +62,11 @@ public class CustomCharacterController : MonoBehaviour
     {
         // Mathf.Lerp - отвчает за то, чтобы каждый кадр число animationInterpolation(в данном случае) приближалось к числу 1 со скоростью Time.deltaTime * 3.
         animationInterpolation = Mathf.Lerp(animationInterpolation, 1f, Time.deltaTime * 3);
-        anim.SetFloat("x", horisontal * 1.5f);
-        anim.SetFloat("y", vertical * 1.5f);
+        anim.SetFloat("x", horisontal * 0.25f);
+        anim.SetFloat("y", vertical * 0.25f);
 
         //currentSpeed = Mathf.Lerp(currentSpeed, walkingSpeed, Time.deltaTime * 3);
-        currentSpeed = Mathf.Lerp(currentSpeed, runningSpeed, Time.deltaTime * 3);
+        currentSpeed = Mathf.Lerp(currentSpeed, walkingSpeed, Time.deltaTime * 3);
     }
     private void Update()
     {
