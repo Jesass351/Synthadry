@@ -10464,6 +10464,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aimTarget: {fileID: 546130417}
+  aimLerp: 7
   multy: 15
   rigRifle: {fileID: 1803198694}
   inventory: []
@@ -33017,7 +33018,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70b342d8ce5c2fd48b8fa3147d48d1d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Weight: 1
+  m_Weight: 0.97
   m_Effectors:
   - m_Transform: {fileID: 0}
     m_Style:
@@ -34794,7 +34795,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70b342d8ce5c2fd48b8fa3147d48d1d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Weight: 1
+  m_Weight: 0.35
   m_Effectors:
   - m_Transform: {fileID: 546130417}
     m_Style:
