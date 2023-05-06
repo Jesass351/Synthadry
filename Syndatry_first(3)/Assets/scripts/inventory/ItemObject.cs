@@ -42,6 +42,8 @@ public class ItemObject : MonoBehaviour
     public GameObject bullet;
     public int bulletAlive;
     public Transform spawnPoint;
+
+    public ParticleSystem fireFx;
     /*    public GameObject VFX;*/
 
 
@@ -65,6 +67,7 @@ public class ItemObject : MonoBehaviour
         {
 
 
+            fireFx.Play();
             currentAmmo -= 1;
             UpdateInGameUi();
         } else
@@ -83,7 +86,7 @@ public class ItemObject : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
         {
             Shoot();
         }

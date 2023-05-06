@@ -9,7 +9,8 @@ public class CustomCharacterController : MonoBehaviour
     [SerializeField] private Transform aimTarget;
     public float multy;
 
-    [SerializeField] private Rig rigRifle;
+    [Header("RifleRigs")]
+    [SerializeField] private MultiAimConstraint rigRifle;
 
     [SerializeField] private List<WeaponBehaviour> inventory = new List<WeaponBehaviour>();
     public List<WeaponBehaviour> Inventory
@@ -57,6 +58,8 @@ public class CustomCharacterController : MonoBehaviour
         canvas = FindObjectOfType<Canvas>();
         characterController = GetComponent<CharacterController>();
         inventorySystem = GetComponent<InventorySystem>();
+        this.GetComponent<CustomCharacterController>().enabled = false;
+        this.GetComponent<CustomCharacterController>().enabled = true;
     }
 
     public void UpdateMainGunName(string name)
