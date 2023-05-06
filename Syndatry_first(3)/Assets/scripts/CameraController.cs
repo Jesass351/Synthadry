@@ -4,7 +4,8 @@ using System.Collections;
 
 public class CameraController : MonoBehaviour
 {
-/*    [SerializeField] private GameObject player; //target*/
+    [SerializeField] private Transform targetPosition;
+    [SerializeField] private float lerpPosition;
 
     public float sensitivityX = 2;
     public float sensitivityY = 2;
@@ -22,6 +23,8 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
+        transform.position = Vector3.Lerp(transform.position, targetPosition.position, lerpPosition * Time.deltaTime);
+
         float MouseX = Input.GetAxis("Mouse X") * sensitivityX;
         float MouseY = Input.GetAxis("Mouse Y") * sensitivityY;
 

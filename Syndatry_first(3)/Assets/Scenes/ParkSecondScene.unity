@@ -24,7 +24,7 @@ RenderSettings:
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 0
+  m_AmbientMode: 4
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
@@ -10276,6 +10276,7 @@ Transform:
   - {fileID: 1844038788}
   - {fileID: 1170236988}
   - {fileID: 1111088144}
+  - {fileID: 867018748}
   m_Father: {fileID: 0}
   m_RootOrder: 35
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -13492,6 +13493,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 452393794}
   m_CullTransparentMesh: 1
+--- !u!1 &453589607
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 453589608}
+  m_Layer: 0
+  m_Name: CameraTargetPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &453589608
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453589607}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.3, z: 1.387}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1572472065}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &453814710
 GameObject:
   m_ObjectHideFlags: 0
@@ -20829,7 +20861,7 @@ MonoBehaviour:
   drawingMode: -1
   outlineLayer: 1
   outlineTargets:
-  - IsVisible: 0
+  - IsVisible: 1
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -26036,12 +26068,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 867018747}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.3, z: 1.06}
+  m_LocalRotation: {x: 0.000000003781265, y: -1.6257218e-11, z: -1.2325397e-15, w: 1}
+  m_LocalPosition: {x: -0.000087193075, y: 17.10314, z: 0.98924905}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1572472065}
+  m_Father: {fileID: 350598073}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &867018749
@@ -26106,6 +26138,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2285ba82805297642abaca7176ef0de5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetPosition: {fileID: 453589608}
+  lerpPosition: 300
   sensitivityX: 2
   sensitivityY: 2
   maxAngleUp: 55
@@ -34879,7 +34913,7 @@ MonoBehaviour:
         clearFlags: 0
         passFoldout: 0
         m_Version: 0
-        lastSelectedCamera: {fileID: 0}
+        lastSelectedCamera: {fileID: 867018755}
 --- !u!4 &1174567838
 Transform:
   m_ObjectHideFlags: 0
@@ -47553,7 +47587,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1895469093}
-  - {fileID: 867018748}
+  - {fileID: 453589608}
   m_Father: {fileID: 560553185}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -53862,7 +53896,7 @@ MonoBehaviour:
   drawingMode: -1
   outlineLayer: 1
   outlineTargets:
-  - IsVisible: 0
+  - IsVisible: 1
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
