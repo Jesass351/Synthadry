@@ -108,7 +108,7 @@ public class CustomCharacterController : MonoBehaviour
         Ray desiredTargetRay = mainCamera.gameObject.GetComponent<Camera>().ScreenPointToRay(new Vector2(Screen.width / 2, Screen.height / 2));
         Vector3 desiredTargetPosition = desiredTargetRay.origin + desiredTargetRay.direction * multy;
         aimTarget.position = Vector3.Lerp(aimTarget.position, desiredTargetPosition, aimLerp * Time.deltaTime);
-/*        aimTarget.position = desiredTargetPosition;*/
+        /*        aimTarget.position = desiredTargetPosition;*/
         /* if (canGo)
          {
              horisontal = Input.GetAxis("Horizontal") * animationInterpolation;
