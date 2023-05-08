@@ -65,22 +65,11 @@ public class ItemObject : MonoBehaviour
 
     public void Shoot()
     {
+        bool onlyOneHit = true;
         //сделай пожалуйста ещё карутины или хз что для скорострельности <3
         if (currentAmmo > 0)
         {
-            RaycastHit hit;
-            Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-            bool isHit = Physics.Raycast(ray, out hit, range);
-            if (isHit)
-            {
-                Collider hitObject = hit.collider;
-                Debug.Log("Я попал в " + hitObject);
-                if (hitObject.CompareTag("Enemy"))
-                {
-                    hitObject.GetComponent<EnemyDamage>().GetDamage(damage);
-                }
-            }
-            isHit = false;
+
             /*
             GameObject lineObject = new GameObject();
             LineRenderer line = lineObject.AddComponent<LineRenderer>();
@@ -98,6 +87,20 @@ public class ItemObject : MonoBehaviour
             */
 
             fireFx.Play();
+            RaycastHit hit;
+            Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+            bool isHit = Physics.Raycast(ray, out hit, range);
+            if (isHit && onlyOneHit)
+            {
+                onlyOneHit = false;
+                Collider hitObject = hit.collider;
+                Debug.Log("Я попал в " + hitObject);
+                if (hitObject.CompareTag("Enemy"))
+                {
+                    hitObject.GetComponent<EnemyDamage>().GetDamage(damage);
+                }
+            }
+
             currentAmmo -= 1;
             UpdateInGameUi();
         } 
