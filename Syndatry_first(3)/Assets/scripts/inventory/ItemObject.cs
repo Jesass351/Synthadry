@@ -42,9 +42,12 @@ public class ItemObject : MonoBehaviour
     public TextMeshProUGUI currentAmmoInGameUi;
 
     [Header("—“–≈À‹¡¿")]
-    public GameObject bullet;
+    public GameObject bulletPref;
+    public Vector3 bulletRotation;
+    public GameObject bulletTracer;
+    public Vector3 bulletOutForce;
     public int bulletAlive;
-    public Transform spawnPoint;
+    public Transform bulletSpawnPoint;
 
     public ParticleSystem fireFx;
     /*    public GameObject VFX;*/
@@ -97,18 +100,39 @@ public class ItemObject : MonoBehaviour
                 Debug.Log("ﬂ ÔÓÔ‡Î ‚ " + hitObject);
                 if (hitObject.CompareTag("Enemy"))
                 {
-                    hitObject.GetComponent<EnemyDamage>().GetDamage(damage);
+                    if (hitObject.TryGetComponent<EnemyDamage>(out EnemyDamage enemyDamage))
+                    {
+                        enemyDamage.GetDamage(damage);
+                    }
+                    if (hitObject.TryGetComponent<TargetDamage>(out TargetDamage targetDamage))
+                    {
+                        targetDamage.GetDamage(damage);
+                    }
                 }
             }
-
             currentAmmo -= 1;
             UpdateInGameUi();
-        } 
+/*            SpawnBullet();*/
+
+        }
         else
         {
             //«¬”  Œ—≈◊ » »À» œ≈–≈«¿–ﬂƒ ¿ (ÔÓÚÓÏ Ò‰ÂÎ‡˛)
         }
 
+
+    }
+
+    void SpawnBullet()
+    {
+        GameObject bullet = Instantiate(bulletPref, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
+        bullet.GetComponent<Rigidbody>().velocity = bulletSpawnPoint.right * 100f;
+        GameObject bulletTrace = Instantiate(bulletTracer, bulletSpawnPoint.position, Quaternion.identity);
+
+        bulletTrace.transform.SetParent(bullet.transform);
+
+        Destroy(bullet, bulletAlive);
+        Destroy(bulletTrace, bulletAlive);
 
     }
 
@@ -143,6 +167,7 @@ public class ItemObject : MonoBehaviour
                 }
             }
         }
+
     }
 
     public void AddLantern()

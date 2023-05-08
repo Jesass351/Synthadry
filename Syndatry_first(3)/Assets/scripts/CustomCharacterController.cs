@@ -80,7 +80,7 @@ public class CustomCharacterController : MonoBehaviour
         anim.SetBool("RifleRunning", true);
         isRunning = true;
     }
-    void Walk()
+    public void Walk()
     {
         // Mathf.Lerp - отвчает за то, чтобы каждый кадр число animationInterpolation(в данном случае) приближалось к числу 1 со скоростью Time.deltaTime * 3.
         animationInterpolation = Mathf.Lerp(animationInterpolation, 1f, Time.deltaTime * 3);

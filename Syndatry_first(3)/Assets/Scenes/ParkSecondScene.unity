@@ -24,7 +24,7 @@ RenderSettings:
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 4
+  m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
@@ -5475,6 +5475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e53d972e35ce2554ca461317210502a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   itemStat: {fileID: 11400000, guid: 899245d9548cbe346b5bdecb3a9439d0, type: 2}
   amount: 1
   currentAmmo: 99
@@ -5488,14 +5489,18 @@ MonoBehaviour:
   levelDamage: 0
   maxLevelAmmo: 5
   levelAmmo: 0
+  range: 50
   lantern: {fileID: 1793780403}
   light: {fileID: 1060785490}
   aim: {fileID: 1776017534}
   allAmmoInGameUi: {fileID: 1279910786}
   currentAmmoInGameUi: {fileID: 739978841}
-  bullet: {fileID: 0}
+  bulletPref: {fileID: 0}
+  bulletRotation: {x: 0, y: 0, z: 0}
+  bulletTracer: {fileID: 0}
+  bulletOutForce: {x: 0, y: 0, z: 0}
   bulletAlive: 0
-  spawnPoint: {fileID: 0}
+  bulletSpawnPoint: {fileID: 0}
   fireFx: {fileID: 941721635}
 --- !u!65 &193466399
 BoxCollider:
@@ -10481,6 +10486,7 @@ MonoBehaviour:
   horisontal: 0
   vertical: 0
   canGo: 1
+  isRunning: 0
 --- !u!143 &350598080
 CharacterController:
   m_ObjectHideFlags: 0
@@ -20861,7 +20867,7 @@ MonoBehaviour:
   drawingMode: -1
   outlineLayer: 1
   outlineTargets:
-  - IsVisible: 1
+  - IsVisible: 0
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -36386,7 +36392,7 @@ Terrain:
   m_ShadowCastingMode: 2
   m_DrawHeightmap: 1
   m_DrawInstanced: 1
-  m_DrawTreesAndFoliage: 1
+  m_DrawTreesAndFoliage: 0
   m_StaticShadowCaster: 0
   m_IgnoreQualitySettings: 0
   m_ReflectionProbeUsage: 1
@@ -49839,7 +49845,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Intensity: 0.29862368
+  m_Intensity: 0.3
   m_EnableSpotReflector: 1
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
@@ -49961,7 +49967,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.29862368
+  m_Intensity: 0.3
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -53896,7 +53902,7 @@ MonoBehaviour:
   drawingMode: -1
   outlineLayer: 1
   outlineTargets:
-  - IsVisible: 1
+  - IsVisible: 0
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -62976,7 +62982,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2031166381
 Transform:
   m_ObjectHideFlags: 0
