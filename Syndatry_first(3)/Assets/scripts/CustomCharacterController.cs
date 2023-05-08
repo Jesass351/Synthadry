@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 
@@ -46,6 +47,7 @@ public class CustomCharacterController : MonoBehaviour
     private float lerpMulti = 7f;
 
     public bool canGo = true;
+    public bool isRunning = false;
 
 
     private CharacterController characterController;
@@ -76,6 +78,7 @@ public class CustomCharacterController : MonoBehaviour
         currentSpeed = Mathf.Lerp(currentSpeed, runningSpeed, Time.deltaTime * 3);
         SetRigWeight(0);
         anim.SetBool("RifleRunning", true);
+        isRunning = true;
     }
     void Walk()
     {
@@ -89,6 +92,7 @@ public class CustomCharacterController : MonoBehaviour
 
         SetRigWeight(1);
         anim.SetBool("RifleRunning", false);
+        isRunning = false;
     }
 
     void SetRigWeight(float weight, string name = "AK")

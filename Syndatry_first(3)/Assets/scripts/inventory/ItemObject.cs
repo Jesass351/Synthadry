@@ -4,6 +4,7 @@ using System;
 
 public class ItemObject : MonoBehaviour
 {
+    public GameObject player;
     public Items itemStat;
     public int amount;
     public int currentAmmo = 5;
@@ -28,6 +29,8 @@ public class ItemObject : MonoBehaviour
     public int maxLevelAmmo = 5;
     public int levelAmmo = 0;
 
+    [Header("ƒјЋ№Ќќ—“№")]
+    public float range = 50f;
 
     [Header("Ќј¬≈—џ")]
     public GameObject lantern;
@@ -50,11 +53,11 @@ public class ItemObject : MonoBehaviour
     private MainGunsController mainGunsController;
 
 
-/*    private void Start()
+    private void Start()
     {
         mainGunsController = GameObject.Find("MainGuns").GetComponent<MainGunsController>();
-    }*/
-
+        player = GameObject.Find("PlayerRigged");
+    }
     private void OnEnable()
     {
         UpdateInGameUi();
@@ -65,12 +68,40 @@ public class ItemObject : MonoBehaviour
         //сделай пожалуйста ещЄ карутины или хз что дл€ скорострельности <3
         if (currentAmmo > 0)
         {
-
+            RaycastHit hit;
+            Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+            bool isHit = Physics.Raycast(ray, out hit, range);
+            if (isHit)
+            {
+                Collider hitObject = hit.collider;
+                Debug.Log("я попал в " + hitObject);
+                if (hitObject.CompareTag("Enemy"))
+                {
+                    hitObject.GetComponent<EnemyDamage>().GetDamage(damage);
+                }
+            }
+            isHit = false;
+            /*
+            GameObject lineObject = new GameObject();
+            LineRenderer line = lineObject.AddComponent<LineRenderer>();
+            line.SetPosition(0, ray.origin);
+            if (isHit)
+            {g
+                line.SetPosition(1, hit.point);
+            }
+            else
+            {
+                line.SetPosition(1, ray.direction);
+            }
+            line.SetWidth(0.05f, 0.05f);
+            Destroy(lineObject, 0.5f);
+            */
 
             fireFx.Play();
             currentAmmo -= 1;
             UpdateInGameUi();
-        } else
+        } 
+        else
         {
             //«¬”  ќ—≈„ » »Ћ» ѕ≈–≈«ј–яƒ ј (потом сделаю)
         }
@@ -86,7 +117,8 @@ public class ItemObject : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        //Debug.DrawRay(this.transform.position, this.transform.right, Color.green);
+        if (Input.GetMouseButtonDown(0) && !player.GetComponent<CustomCharacterController>().isRunning)
         {
             Shoot();
         }
