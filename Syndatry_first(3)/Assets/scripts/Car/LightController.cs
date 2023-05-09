@@ -5,19 +5,19 @@ using UnityEngine;
 public class LightController : MonoBehaviour
 {
     [SerializeField] private List<GameObject> headLight;
-    [SerializeField] private List<GameObject> headLight3d;
+    [SerializeField] private GameObject headLight3d;
 
     [SerializeField] private List<GameObject> rearLight;
-    [SerializeField] private List<GameObject> rearLight3d;
+    [SerializeField] private GameObject rearLight3d;
 
-    [SerializeField] private List<GameObject> topLight;
-    [SerializeField] private List<GameObject> topLight3d;
+/*    [SerializeField] private List<GameObject> topLight;
+    [SerializeField] private List<GameObject> topLight3d;*/
 
     [SerializeField] private GameObject player;
 
     [SerializeField] private int phaseCount = 3;
 
-    private int phase = 0;
+    public int phase = 0;
 
 /*    Например с балкой:
         0 - всё выкл
@@ -53,30 +53,22 @@ public class LightController : MonoBehaviour
                 for (var i = 0; i < headLight.Count; i++)
                 {
                     headLight[i].SetActive(false);
-                    headLight3d[i].SetActive(false);
-                    rearLight3d[i].SetActive(false);
                     rearLight[i].SetActive(false);
                 }
-                if (topLight.Count > 0)
-                {
-                    for (var i = 0; i < topLight.Count; i++)
-                    {
-                        topLight[i].SetActive(false);
-                        topLight3d[i].SetActive(false);
-                    }
-                }
+                headLight3d.SetActive(false);
+                rearLight3d.SetActive(false);
                 break;
 
             case 1:
                 for (var i = 0; i < headLight.Count; i++)
                 {
                     headLight[i].SetActive(true);
-                    headLight3d[i].SetActive(true);
-                    rearLight3d[i].SetActive(true);
                     rearLight[i].SetActive(true);
                 }
+                headLight3d.SetActive(true);
+                rearLight3d.SetActive(true);
                 break;
-            case 2:
+/*            case 2:
                 if (topLight.Count > 0)
                 {
                     for (var i = 0; i < topLight.Count; i++)
@@ -85,7 +77,7 @@ public class LightController : MonoBehaviour
                         topLight3d[i].SetActive(true);
                     }
                 }
-                break;
+                break;*/
 
         }
     }
