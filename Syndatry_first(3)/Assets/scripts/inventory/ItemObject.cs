@@ -112,6 +112,7 @@ public class ItemObject : MonoBehaviour
             }
             currentAmmo -= 1;
             UpdateInGameUi();
+            mainGunsController.UpdateMainGunsUi();
 /*            SpawnBullet();*/
 
         }

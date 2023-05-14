@@ -9,6 +9,8 @@ TagManager:
   - debuf
   - PressFText
   - Enemy
+  - ForestBoss
+  - MainGunsUI
   layers:
   - Default
   - TransparentFX

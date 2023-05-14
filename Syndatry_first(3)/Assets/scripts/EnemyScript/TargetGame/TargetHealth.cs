@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class TargetHealth : MonoBehaviour
@@ -8,6 +7,7 @@ public class TargetHealth : MonoBehaviour
     [SerializeField] private GameObject counter;
     [SerializeField] private int points;
 
+
     public void GetDamage(float damage, float multiply)
     {
         this.health -= damage * multiply;
@@ -15,6 +15,7 @@ public class TargetHealth : MonoBehaviour
         {
             Death();
         }
+
     }
 
     public void Death()

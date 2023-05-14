@@ -641,7 +641,7 @@ Transform:
   - {fileID: 5359950318817402124}
   - {fileID: 3064472696423438994}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 90.635, z: 0}
 --- !u!1 &1544086310968478994
 GameObject:
@@ -1207,7 +1207,7 @@ MeshRenderer:
   - {fileID: -4404391862184858577, guid: 4f52486f2647ff14ea6cbddcb247f847, type: 3}
   - {fileID: -3355757220932141084, guid: 4f52486f2647ff14ea6cbddcb247f847, type: 3}
   - {fileID: -5078863385669239284, guid: 4f52486f2647ff14ea6cbddcb247f847, type: 3}
-  - {fileID: 2100000, guid: a06ea6d8ac3a7784c81b9e27092f9631, type: 2}
+  - {fileID: 2100000, guid: 140991d072d30c8489237488be87046a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1237,9 +1237,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2540602499959936512}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 0.021580977, y: 0.021135451, z: 0.021375032}
   m_Center: {x: 0.000000060936, y: -0.00054592086, z: 0.02068752}
 --- !u!1 &2749307125272717270

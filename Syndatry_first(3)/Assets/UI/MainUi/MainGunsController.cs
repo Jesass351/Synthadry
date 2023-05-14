@@ -24,7 +24,7 @@ public class MainGunsController : MonoBehaviour
 
     public void UpdateMainGunsUi(int MainGunNum = -1)
     {
-        customCharacterController.UpdateMainGunName(PlayerInventory.mainGuns[PlayerInventory.activeMainGun].GetComponent<ItemObject>().itemStat.itemName);
+ /*       customCharacterController.UpdateMainGunName(PlayerInventory.mainGuns[PlayerInventory.activeMainGun].GetComponent<ItemObject>().itemStat.itemName);*/
 
         if (MainGunNum == -1)
         {
