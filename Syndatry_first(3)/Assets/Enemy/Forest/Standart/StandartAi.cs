@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class StandartAi : MonoBehaviour
 {
+    public int damageValue = 10, attackSpeed = 1;
     private NavMeshAgent Enemy;
     private GameObject Player;
     private Animator anim;
@@ -48,10 +49,16 @@ public class StandartAi : MonoBehaviour
         {
             anim.SetBool("isAttack", true);
             timer += Time.deltaTime;
-                if (timer < 1) return;
-            actionTarget.TakeDamage(10);
+                if (timer < 1 / attackSpeed) return;
+            
             timer = 0;
+            
             anim.SetBool("isAttack", false);
         }
+    }
+
+    public void hitPlayer()
+    {
+        actionTarget.TakeDamage(damageValue);
     }
 }
