@@ -48,18 +48,22 @@ public class ItemObject : MonoBehaviour
     public Vector3 bulletOutForce;
     public int bulletAlive;
     public Transform bulletSpawnPoint;
+    public AudioSource shootSound;
+
 
     public ParticleSystem fireFx;
     /*    public GameObject VFX;*/
 
 
     private MainGunsController mainGunsController;
+    private GameObject canvas;
 
 
     private void Start()
     {
         mainGunsController = GameObject.Find("MainGuns").GetComponent<MainGunsController>();
         player = GameObject.Find("PlayerRigged");
+        canvas = GameObject.FindGameObjectWithTag("MainCanvas");
     }
     private void OnEnable()
     {
@@ -72,24 +76,8 @@ public class ItemObject : MonoBehaviour
         //сделай пожалуйста ещё карутины или хз что для скорострельности <3
         if (currentAmmo > 0)
         {
-
-            /*
-            GameObject lineObject = new GameObject();
-            LineRenderer line = lineObject.AddComponent<LineRenderer>();
-            line.SetPosition(0, ray.origin);
-            if (isHit)
-            {g
-                line.SetPosition(1, hit.point);
-            }
-            else
-            {
-                line.SetPosition(1, ray.direction);
-            }
-            line.SetWidth(0.05f, 0.05f);
-            Destroy(lineObject, 0.5f);
-            */
-
             fireFx.Play();
+            shootSound.Play(0);
             RaycastHit hit;
             Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
             bool isHit = Physics.Raycast(ray, out hit, range);
@@ -146,7 +134,7 @@ public class ItemObject : MonoBehaviour
     private void Update()
     {
         //Debug.DrawRay(this.transform.position, this.transform.right, Color.green);
-        if (Input.GetMouseButtonDown(0) && !player.GetComponent<CustomCharacterController>().isRunning)
+        if (Input.GetMouseButtonDown(0) && !player.GetComponent<CustomCharacterController>().isRunning && canvas.activeInHierarchy)
         {
             Shoot();
         }

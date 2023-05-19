@@ -11,6 +11,8 @@ TagManager:
   - Enemy
   - ForestBoss
   - MainGunsUI
+  - PostFX
+  - MainCanvas
   layers:
   - Default
   - TransparentFX

@@ -9,6 +9,6 @@ public class TargetDamage : MonoBehaviour
     public void GetDamage(float damage)
     {
         transform.parent.GetComponent<TargetHealth>().GetDamage(damage, multiply);
-        Destroy(gameObject);
+        
     }
 }

@@ -11,6 +11,7 @@ public class StandartAi : MonoBehaviour
     private Animator anim;
     private HPAndArmor actionTarget;
     private float timer = 0;
+    public float seePlayer;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +26,7 @@ public class StandartAi : MonoBehaviour
     void Update()
     {
         float DistationPlayer = Vector3.Distance(Player.transform.position, gameObject.transform.position);
-        if (DistationPlayer < 60) {
+        if (DistationPlayer < seePlayer) {
             if (DistationPlayer < 8) {
                 if (DistationPlayer < 5) {
                     Enemy.SetDestination(Enemy.transform.position);

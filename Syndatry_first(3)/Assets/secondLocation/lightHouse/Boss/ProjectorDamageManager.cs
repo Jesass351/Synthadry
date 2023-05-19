@@ -7,6 +7,8 @@ public class ProjectorDamageManager : MonoBehaviour
 
     [SerializeField] private float range;
     [SerializeField] private float damagePerFixedUpdate;
+    [SerializeField] private float force;
+    [SerializeField] private ForestBossAi boss;
 
     void DamageBoss()
     {
@@ -21,9 +23,18 @@ public class ProjectorDamageManager : MonoBehaviour
                 if (hitObject.TryGetComponent<BossHealthManager>(out BossHealthManager bossHealthManager))
                 {
                     bossHealthManager.TakeDamage(damagePerFixedUpdate);
+                    boss.defend = true;
                 }
             }
+        } else
+        {
+            boss.defend = false;
         }
+    }
+
+    private void Start()
+    {
+        boss = GameObject.FindGameObjectWithTag("ForestBoss").GetComponent<ForestBossAi>();
     }
 
     private void FixedUpdate()

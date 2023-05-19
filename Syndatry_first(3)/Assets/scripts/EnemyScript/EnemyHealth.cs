@@ -5,8 +5,15 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] private float health = 500;
-    
-    
+    [SerializeField] private float timeToDestroy = 5;
+
+    private ragdollController ragdoll;
+
+/*    private void Awake()
+    {
+        ragdoll = GetComponent<ragdollController>();
+    }*/
+
     public void GetDamage(float damage, float multiply)
     {
         this.health -= damage * multiply;
@@ -18,6 +25,9 @@ public class EnemyHealth : MonoBehaviour
 
     public void Death()
     {
-        Destroy(gameObject);
+        /*ragdoll.ActivateRagdoll();*/
+        GetComponent<Animator>().enabled = false;
+        GetComponent<StandartAi>().enabled = false;
+        Destroy(gameObject, timeToDestroy);
     }
 }

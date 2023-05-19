@@ -82,10 +82,10 @@ Material:
     - _StencilRefGBuffer: 10
     - _StencilRefMV: 40
     - _StencilWriteMask: 6
-    - _StencilWriteMaskDepth: 8
+    - _StencilWriteMaskDepth: 9
     - _StencilWriteMaskDistortionVec: 4
-    - _StencilWriteMaskGBuffer: 14
-    - _StencilWriteMaskMV: 40
+    - _StencilWriteMaskGBuffer: 15
+    - _StencilWriteMaskMV: 41
     - _SupportDecals: 1
     - _SurfaceType: 0
     - _TransparentBackfaceEnable: 0
@@ -105,7 +105,7 @@ Material:
     - _DryColor: {r: 0.8039216, g: 0.7372549, b: 0.101960786, a: 1}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _HealthyColor: {r: 0.2627451, g: 0.9764706, b: 0.16470589, a: 1}
-    - _MinMaxScales: {r: 5, g: 0.2, b: 0, a: 0}
+    - _MinMaxScales: {r: 1, g: 1, b: 0, a: 0}
     - _SpecularReflectivity: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &8794003398810067442
