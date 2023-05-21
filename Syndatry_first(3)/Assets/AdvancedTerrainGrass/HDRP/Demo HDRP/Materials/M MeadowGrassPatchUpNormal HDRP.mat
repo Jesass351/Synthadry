@@ -373,7 +373,7 @@ Material:
     - _DiffusionProfileAsset: {r: -7.493815e+37, g: 1.4719325e+32, b: -6.991789e+20,
         a: -2.0486585e-22}
     - _DoubleSidedConstants: {r: 1, g: 1, b: 1, a: 0}
-    - _DryColor: {r: 0.8039216, g: 0.7372549, b: 0.101960786, a: 1}
+    - _DryColor: {r: 0.6884568, g: 0.75809544, b: 0.764151, a: 1}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissiveColor: {r: 0, g: 0, b: 0, a: 1}
     - _EmissiveColorLDR: {r: 0, g: 0, b: 0, a: 1}
@@ -381,10 +381,10 @@ Material:
     - _GlossRemap: {r: 0, g: 1, b: 0, a: 0}
     - _HSL: {r: 0.02, g: 0.05, b: 0.1, a: 0}
     - _HSLVariation: {r: -0.02, g: -0.05, b: -0.1, a: 0}
-    - _HealthyColor: {r: 0.2627451, g: 0.9764706, b: 0.16470589, a: 1}
+    - _HealthyColor: {r: 0.8584906, g: 0.8584906, b: 0.8584906, a: 1}
     - _InvPrimScale: {r: 1, g: 1, b: 0, a: 0}
     - _IridescenceThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
-    - _MinMaxScales: {r: 1, g: 1, b: 0, a: 0}
+    - _MinMaxScales: {r: 0.9, g: 1.4285713, b: 0, a: 0}
     - _OcclusionRemap: {r: 0, g: 1, b: 0, a: 0}
     - _ScaleFade: {r: 50, g: 20, b: 0, a: 0}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}

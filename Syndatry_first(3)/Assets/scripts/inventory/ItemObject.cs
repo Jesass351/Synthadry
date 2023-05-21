@@ -50,7 +50,6 @@ public class ItemObject : MonoBehaviour
     public Transform bulletSpawnPoint;
     public AudioSource shootSound;
 
-
     public ParticleSystem fireFx;
     /*    public GameObject VFX;*/
 

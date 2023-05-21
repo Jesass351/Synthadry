@@ -30,6 +30,7 @@ public class TargetSwitcher : MonoBehaviour
 
             /*        StartCoroutine(ChangeText());*/
 
+            newTarget.gameObject.SetActive(true);
             targetScript.GetComponent<TargetPointer>().Target = newTarget;
             Destroy(gameObject);
         }

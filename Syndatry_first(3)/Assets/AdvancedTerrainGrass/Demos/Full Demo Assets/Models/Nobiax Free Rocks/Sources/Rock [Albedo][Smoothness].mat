@@ -2,17 +2,14 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 8
+  serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Rock [Albedo][Smoothness]
   m_Shader: {fileID: 4800000, guid: dfe54e2a97e2448de8753909041f0f99, type: 3}
-  m_ValidKeywords:
-  - _NORMALMAP
-  m_InvalidKeywords:
-  - _MIXMODE_RANDOM
+  m_ShaderKeywords: _MIXMODE_RANDOM _NORMALMAP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -42,7 +39,6 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    m_Ints: []
     m_Floats:
     - _Clip: 0
     - _Cutoff: 0.3
@@ -60,9 +56,8 @@ Material:
     - _WindMultiplier: 1
     m_Colors:
     - _DebugColor: {r: 1, g: 0, b: 0, a: 1}
-    - _DryColor: {r: 0.8039216, g: 0.7372549, b: 0.101960786, a: 1}
-    - _HealthyColor: {r: 0.2627451, g: 0.9764706, b: 0.16470589, a: 1}
-    - _MinMaxScales: {r: 3, g: 0.33333334, b: 0, a: 0}
+    - _DryColor: {r: 0.78039217, g: 0.79607844, b: 0.79607844, a: 1}
+    - _HealthyColor: {r: 1, g: 1, b: 1, a: 1}
+    - _MinMaxScales: {r: 0.5, g: 0.6666667, b: 0, a: 0}
     - _SpecularReflectivity: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _WindMultiplier: {r: 1, g: 0.5, b: 0, a: 0}
-  m_BuildTextureStacks: []

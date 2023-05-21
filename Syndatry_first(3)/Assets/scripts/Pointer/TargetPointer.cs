@@ -13,16 +13,16 @@ public class TargetPointer : MonoBehaviour
 
 	public Sprite OutOfScreenIcon; // иконка когда цель за приделами экрана	
 
-	public float InterfaceScale = 100; // масштаб интерфейса
+	public float sizeX = 100;
+	public float sizeY = 100;
 
 	private Vector3 startPointerSize;
-	private Camera mainCamera;
+	public Camera mainCamera;
 	
 
 	private void Awake()
 	{
 		startPointerSize = PointerUI.sizeDelta;
-		mainCamera = Camera.main;		
 	}
 	private void LateUpdate()
 	{
@@ -60,7 +60,7 @@ public class TargetPointer : MonoBehaviour
 
 		RotatePointer(direction * pos);
 
-		PointerUI.sizeDelta = new Vector2(startPointerSize.x / 100 * InterfaceScale, startPointerSize.y / 100 * InterfaceScale);
+		PointerUI.sizeDelta = new Vector2(sizeX, sizeY);
 		PointerUI.anchoredPosition = outPos;
 	}
 	private bool IsBehind(Vector3 point) // true если point сзади камеры
