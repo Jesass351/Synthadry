@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class rotation_cam : MonoBehaviour
 {
-    public FixedJoystick joystick;
+
     protected float CameraAngleSpeed = 2f;
     protected float CameraAngle;
     public Transform target;

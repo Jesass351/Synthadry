@@ -41,7 +41,7 @@ public class CustomCharacterController : MonoBehaviour
     public float runningSpeed = 15f;
     public float currentSpeed;
     private float animationInterpolation = 1f;
-    public FixedJoystick joystick;
+
     public float horisontal;
     public float vertical;
     private float lerpMulti = 7f;
